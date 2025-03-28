@@ -1,6 +1,5 @@
 package com.cli.fancy.movie_reservation_system
 
-import User
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -8,13 +7,13 @@ import org.springframework.web.bind.annotation.*
 class UserController(private val userService: UserService) {
 
     @GetMapping
-    fun getUsers(): MutableIterable<User> = userService.getAllUsers()
+    fun getUsers(): MutableIterable<Users> = userService.getAllUsers()
 
     @GetMapping("/{id}")
-    fun getUser(@PathVariable id: Long): User? = userService.getUserById(id)
+    fun getUser(@PathVariable id: Long): Users? = userService.getUserById(id)
 
     @PostMapping
-    fun createUser(@RequestBody user: User): User = userService.saveUser(user)
+    fun createUser(@RequestBody user: Users): Users = userService.saveUser(user)
 
     @DeleteMapping("/{id}")
     fun deleteUser(@PathVariable id: Long) = userService.deleteUser(id)
