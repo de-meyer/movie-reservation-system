@@ -1,4 +1,4 @@
-package com.cli.fancy.movie_reservation_system
+package com.cli.fancy.movie_reservation_system.api.user
 
 import org.springframework.stereotype.Service
 
@@ -16,9 +16,9 @@ class UserService(private val userRepository: UserRepository) {
 
     fun deleteUser(id: Long) = userRepository.deleteById(id)
 
-    private fun User.toDTO() = UserDTO(id, name!!, email!!)
+    private fun UserEntity.toDTO() = UserDTO(id, name!!, email!!)
 
-    private fun UserDTO.toEntity() = User().apply {
+    private fun UserDTO.toEntity() = UserEntity().apply {
         id = this@toEntity.id
         name = this@toEntity.name
         email = this@toEntity.email

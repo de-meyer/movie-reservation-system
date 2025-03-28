@@ -1,10 +1,10 @@
-package com.cli.fancy.movie_reservation_system
+package com.cli.fancy.movie_reservation_system.api.user
 
 import jakarta.persistence.*
 
 @Entity
 @Table(name = "users")
- class User {
+ class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_id_gen")
     @SequenceGenerator(name = "users_id_gen", sequenceName = "users_id_seq", allocationSize = 1)
