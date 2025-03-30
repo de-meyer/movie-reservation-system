@@ -3,7 +3,7 @@ package com.cli.fancy.movie_reservation_system.api.user
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 class UserController(private val userService: UserService) {
 
     @GetMapping
@@ -12,7 +12,7 @@ class UserController(private val userService: UserService) {
     @GetMapping("/{id}")
     fun getUser(@PathVariable id: Long): UserDTO? = userService.getUserById(id)
 
-    @PostMapping
+    @PostMapping("/registration")
     fun createUser(@RequestBody userDTO: UserDTO): UserDTO = userService.saveUser(userDTO)
 
     @DeleteMapping("/{id}")

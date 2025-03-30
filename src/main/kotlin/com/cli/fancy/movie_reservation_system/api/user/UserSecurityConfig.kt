@@ -11,7 +11,7 @@ class UserSecurityConfig {
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http.authorizeHttpRequests { authorizeRequests ->
-            authorizeRequests.requestMatchers("/users").permitAll()
+            authorizeRequests.requestMatchers("/api/users/registration").permitAll()
                 .anyRequest().authenticated()
         }
             .csrf{csrf -> csrf.disable()} // Disable CSRF
