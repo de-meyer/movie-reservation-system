@@ -1,26 +1,46 @@
 package com.cli.fancy.movie_reservation_system.api.user
 
+import com.cli.fancy.movie_reservation_system.api.auth.AuthRepository
+import com.cli.fancy.movie_reservation_system.api.model.LoginRequest
+import com.cli.fancy.movie_reservation_system.api.model.RegisterRequest
+import jakarta.transaction.Transactional
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
-class UserService(private val userRepository: UserRepository) {
+class UserService(private val authRepository: AuthRepository) {
+    private val passwordEncoder = BCryptPasswordEncoder()
+    fun getAllUsers(): List<User> = authRepository.findAll().map { it.toDTO() }
+    fun getUserById(id: Long): User? = authRepository.findById(id).orElse(null)?.toDTO()
+    fun getUserByName(name: String): User? = authRepository.getUserEntityByName(name).toDTO()
 
-    fun getAllUsers(): List<UserDTO> = userRepository.findAll().map { it.toDTO() }
-
-    fun getUserById(id: Long): UserDTO? = userRepository.findById(id).orElse(null)?.toDTO()
-
-    fun saveUser(userDTO: UserDTO): UserDTO {
-        val user = userDTO.toEntity()
-        return userRepository.save(user).toDTO()
+    @Transactional
+    fun registerUser(registerRequest: RegisterRequest): User {
+        if (authRepository.existsByEmail(registerRequest.email)) {
+            throw IllegalArgumentException("Email is already in use")
+        }
+        val user = fromRegisterRequest(registerRequest)
+        val savedUser = authRepository.save(user)
+        return savedUser.toDTO()
+    }
+    fun authenticateUser(loginRequest: LoginRequest): User {
+        val userEntity = getUserByName(loginRequest.username)
+            ?: throw IllegalArgumentException("User not found")
+        return userEntity
     }
 
-    fun deleteUser(id: Long) = userRepository.deleteById(id)
+    private fun UserEntity.toDTO() = User(id, name!!, email!!)
 
-    private fun UserEntity.toDTO() = UserDTO(id, name!!, email!!)
-
-    private fun UserDTO.toEntity() = UserEntity().apply {
+    private fun User.toEntity() = UserEntity().apply {
         id = this@toEntity.id
         name = this@toEntity.name
         email = this@toEntity.email
+    }
+    fun fromRegisterRequest(request: RegisterRequest): UserEntity {
+        return UserEntity().apply {
+            name = request.username
+            email = request.email
+            passwordHash = passwordEncoder.encode(request.password) // Encrypt password
+        }
     }
 }

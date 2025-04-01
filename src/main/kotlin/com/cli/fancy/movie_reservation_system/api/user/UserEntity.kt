@@ -16,4 +16,7 @@ import jakarta.persistence.*
 
     @Column(name = "email", nullable = false, length = Integer.MAX_VALUE)
     var email: String? = null
+
+    @Column(name = "password_hash", nullable = false, length = Integer.MAX_VALUE)
+    var passwordHash: String? = null
 }
