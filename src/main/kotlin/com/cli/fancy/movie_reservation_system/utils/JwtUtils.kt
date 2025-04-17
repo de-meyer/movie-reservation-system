@@ -13,9 +13,9 @@ class JwtUtil {
     private val secretKey: SecretKey = SecretKeySpec(ByteArray(48) { it.toByte() }, "HmacSHA384")
     private val expiration: Long = 3600000 // 1 hour
 
-    fun generateToken(username: String): String {
+    fun generateToken(email: String): String {
         return Jwts.builder()
-            .setSubject(username)
+            .setSubject(email)
             .setIssuedAt(Date())
             .setExpiration(Date(System.currentTimeMillis() + expiration))
             .signWith(secretKey, SignatureAlgorithm.HS384)
@@ -31,7 +31,7 @@ class JwtUtil {
         }
     }
 
-    fun getUsernameFromToken(token: String): String {
+    fun getEmailFromToken(token: String): String {
         val claims: Claims = Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).body
         return claims.subject
     }
