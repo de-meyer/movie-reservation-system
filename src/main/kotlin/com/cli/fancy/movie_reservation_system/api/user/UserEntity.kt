@@ -16,5 +16,8 @@ import jakarta.persistence.*
 
     @Column(name = "email", nullable = false, length = Integer.MAX_VALUE)
     var email: String? = null
+
+    @Column(name = "role", nullable = false, length = Integer.MAX_VALUE)
+    var role: String? = "GUEST"
    
 }

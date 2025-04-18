@@ -2,7 +2,6 @@ package com.cli.fancy.movie_reservation_system.api.user
 
 import com.cli.fancy.movie_reservation_system.api.auth.AuthRepository
 import com.cli.fancy.movie_reservation_system.api.model.OAuthLoginRequest
-import com.cli.fancy.movie_reservation_system.api.model.LoginRequest
 import jakarta.transaction.Transactional
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
@@ -10,12 +9,12 @@ import org.springframework.stereotype.Service
 @Service
 class UserService(private val authRepository: AuthRepository) {
     private val passwordEncoder = BCryptPasswordEncoder()
-    fun getAllUsers(): List<User> = authRepository.findAll().map { it.toDTO() }
-    fun getUserById(id: Long): User? = authRepository.findById(id).orElse(null)?.toDTO()
-    fun getUserByEmail(email:String): User? = authRepository.getUserByEmail( email = email).orElse(null)?.toDTO()
+    fun getAllUsers(): List<PrincipalUser> = authRepository.findAll().map { it.toDTO() }
+    fun getUserById(id: Long): PrincipalUser? = authRepository.findById(id).orElse(null)?.toDTO()
+    fun getUserByEmail(email:String): PrincipalUser? = authRepository.getUserByEmail( email = email).orElse(null)?.toDTO()
 
     @Transactional
-    fun registerUser(oAuthLoginRequest: OAuthLoginRequest): User {
+    fun registerUser(oAuthLoginRequest: OAuthLoginRequest): PrincipalUser {
         if (authRepository.existsByEmail(oAuthLoginRequest.email)) {
             throw IllegalArgumentException("Email is already in use")
         }
@@ -24,9 +23,9 @@ class UserService(private val authRepository: AuthRepository) {
         return savedUser.toDTO()
     }
 
-    private fun UserEntity.toDTO() = User(id, name!!, email!!)
+    private fun UserEntity.toDTO() = PrincipalUser(id, name!!, email!!)
 
-    private fun User.toEntity() = UserEntity().apply {
+    private fun PrincipalUser.toEntity() = UserEntity().apply {
         id = this@toEntity.id
         name = this@toEntity.name
         email = this@toEntity.email

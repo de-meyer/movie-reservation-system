@@ -28,6 +28,13 @@ databaseChangeLog:
                   constraints:
                     nullable: false
                     unique: true
+              - column:
+                  name: role
+                  type: VARCHAR(255)
+                  defaultValue: GUEST
+                  constraints:
+                    nullable: false
+                    unique: false
         - addAutoIncrement:
             tableName: users
             columnName: id
