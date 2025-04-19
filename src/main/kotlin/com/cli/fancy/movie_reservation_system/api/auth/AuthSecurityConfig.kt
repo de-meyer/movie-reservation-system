@@ -39,6 +39,7 @@ class AuthSecurityConfig(
             .csrf{csrf -> csrf.disable()} // Disable CSRF
             .formLogin{it.disable()} // Disable form login
             .httpBasic{} // Enable basic authentication
+            .cors{} // Enable CORS
         return http.build()
     }
 }
@@ -51,13 +52,10 @@ class JwtAuthFilter(
         response: HttpServletResponse,
         filterChain: FilterChain
     ) {
-        val header = request.getHeader("Authorization")
-
-        if (header != null && header.startsWith("Bearer ")) {
-            val token = header.substring(7)
-
-            if (jwtService.validateToken(token)) {
-                val principleUser: PrincipalUser = jwtService.getPrincipalUserFromToken(token) // User ID = email in this context
+        val cookie = request.cookies?.find { it.name == "jwt" }?.value
+        if (cookie != null ) {
+            if (jwtService.validateToken(cookie)) {
+                val principleUser: PrincipalUser = jwtService.getPrincipalUserFromToken(cookie) // User ID = email in this context
                 val auth = UsernamePasswordAuthenticationToken(principleUser, null, emptyList())
                 SecurityContextHolder.getContext().authentication = auth
             }
