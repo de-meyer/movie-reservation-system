@@ -1,4 +1,8 @@
 databaseChangeLog:
+  - include:
+        file: db/changelog/db.changelog-create-movie-table.yaml
+  - include:
+        file: db/changelog/db.changelog-insert-movies.yaml
   - changeSet:
       id: 1
       author: de-meyer

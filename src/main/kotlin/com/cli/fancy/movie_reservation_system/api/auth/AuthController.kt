@@ -31,7 +31,7 @@ class AuthController(private val userService: UserService, private val jwtServic
             .httpOnly(true)
             .secure(true) // Use only over HTTPS
             .path("/")
-            .maxAge((7 * 24 * 60 * 60).toLong()) // 7 days
+            .maxAge((1 * 60 * 60).toLong()) // 1 hour
             .sameSite("Strict") // Prevent CSRF
             .build()
 
