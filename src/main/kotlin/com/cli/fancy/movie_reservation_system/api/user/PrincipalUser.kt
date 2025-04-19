@@ -4,5 +4,5 @@ data class PrincipalUser(
     val id: Long? = null,
     val name: String,
     val email: String,
-    val roles: List<String> = emptyList(),
+    val role: String,
 )

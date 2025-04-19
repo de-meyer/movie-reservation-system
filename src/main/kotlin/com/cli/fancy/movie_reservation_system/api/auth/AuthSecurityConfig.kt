@@ -1,6 +1,7 @@
 package com.cli.fancy.movie_reservation_system.api.auth
 
 import com.cli.fancy.movie_reservation_system.api.user.PrincipalUser
+import com.cli.fancy.movie_reservation_system.api.user.UserService
 import com.cli.fancy.movie_reservation_system.utils.JwtService
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
@@ -20,11 +21,12 @@ import org.springframework.web.filter.OncePerRequestFilter
 @EnableWebSecurity
 class AuthSecurityConfig(
     private val jwtService: JwtService,
+    private val userService: UserService,
 ) {
 
     @Bean
     fun jwtAuthFilter(): JwtAuthFilter {
-        return JwtAuthFilter(jwtService)
+        return JwtAuthFilter(jwtService, userService)
     }
 
     @Bean
@@ -44,8 +46,10 @@ class AuthSecurityConfig(
     }
 }
 class JwtAuthFilter(
-    private val jwtService: JwtService
-) : OncePerRequestFilter() {
+    private val jwtService: JwtService,
+    private val userService: UserService,
+
+    ) : OncePerRequestFilter() {
 
     override fun doFilterInternal(
         request: HttpServletRequest,
@@ -56,7 +60,15 @@ class JwtAuthFilter(
         if (cookie != null ) {
             if (jwtService.validateToken(cookie)) {
                 val principleUser: PrincipalUser = jwtService.getPrincipalUserFromToken(cookie) // User ID = email in this context
-                val auth = UsernamePasswordAuthenticationToken(principleUser, null, emptyList())
+                val user = userService.getUserByEmail(principleUser.email)
+                    ?: throw IllegalArgumentException("User not found")
+                val enrichedPrincipalUser = PrincipalUser(
+                    name = user.name,
+                    email = user.email,
+                    role = user.role,
+                    id = user.id
+                )
+                val auth = UsernamePasswordAuthenticationToken(enrichedPrincipalUser, null, emptyList())
                 SecurityContextHolder.getContext().authentication = auth
             }
         }

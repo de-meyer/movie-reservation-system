@@ -21,7 +21,7 @@ class JwtService {
             .setIssuedAt(Date())
             .setExpiration(Date(System.currentTimeMillis() + expiration))
             .claim("name", user.name)
-            .claim("roles", user.roles)
+            .claim("role", user.role)
             .signWith(secretKey, SignatureAlgorithm.HS384)
             .compact()
     }
@@ -40,8 +40,8 @@ class JwtService {
         val claims = parseToken(token)
         val name = claims.body["name"] as String
         val email = claims.body.subject
-        val roles = (claims.body["roles"] as? List<*>)?.filterIsInstance<String>() ?: listOf()
-        return PrincipalUser(name = name, email = email, roles = roles)
+        val role = claims.body["role"] as String
+        return PrincipalUser(name = name, email = email, role = role)
     }
 
     private fun parseToken(token: String): Jws<Claims> {

@@ -23,12 +23,13 @@ class UserService(private val authRepository: AuthRepository) {
         return savedUser.toDTO()
     }
 
-    private fun UserEntity.toDTO() = PrincipalUser(id, name!!, email!!)
+    private fun UserEntity.toDTO() = PrincipalUser(id, name!!, email!!, role!!)
 
     private fun PrincipalUser.toEntity() = UserEntity().apply {
         id = this@toEntity.id
         name = this@toEntity.name
         email = this@toEntity.email
+        role = this@toEntity.role
     }
     fun fromRegisterRequest(request: OAuthLoginRequest): UserEntity {
         return UserEntity().apply {
