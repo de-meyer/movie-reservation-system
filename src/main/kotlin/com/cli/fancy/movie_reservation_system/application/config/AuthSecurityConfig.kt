@@ -1,6 +1,6 @@
 package com.cli.fancy.movie_reservation_system.application.config
 
-import com.cli.fancy.movie_reservation_system.application.user.PrincipalUser
+import com.cli.fancy.movie_reservation_system.application.user.User
 import com.cli.fancy.movie_reservation_system.domain.user.UserService
 import com.cli.fancy.movie_reservation_system.infrastructure.security.JwtService
 import jakarta.servlet.FilterChain
@@ -33,7 +33,7 @@ class AuthSecurityConfig(
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http.authorizeHttpRequests { authorizeRequests ->
             authorizeRequests
-                .requestMatchers("/api/me").authenticated()
+                .requestMatchers("/user/me").authenticated()
                 .anyRequest().permitAll()
         }
             .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter::class.java)
@@ -59,16 +59,16 @@ class JwtAuthFilter(
         val cookie = request.cookies?.find { it.name == "jwt" }?.value
         if (cookie != null ) {
             if (jwtService.validateToken(cookie)) {
-                val principleUser: PrincipalUser = jwtService.getPrincipalUserFromToken(cookie) // User ID = email in this context
+                val principleUser: User = jwtService.getUserFromToken(cookie) // User ID = email in this context
                 val user = userService.getUserByEmail(principleUser.email)
                     ?: throw IllegalArgumentException("User not found")
-                val enrichedPrincipalUser = PrincipalUser(
+                val enrichedUser = User(
                     name = user.name,
                     email = user.email,
                     role = user.role,
                     id = user.id
                 )
-                val auth = UsernamePasswordAuthenticationToken(enrichedPrincipalUser, null, emptyList())
+                val auth = UsernamePasswordAuthenticationToken(enrichedUser, null, emptyList())
                 SecurityContextHolder.getContext().authentication = auth
             }
         }

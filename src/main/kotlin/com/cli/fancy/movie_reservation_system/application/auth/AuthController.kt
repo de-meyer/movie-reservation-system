@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/auth")
 class AuthController(private val userService: UserService, private val jwtService: JwtService) {
 
-    @PostMapping("/auth/oauth/discord")
+    @PostMapping("/oauth/discord")
     fun oAuth(@RequestBody oAuthLoginRequest: OAuthLoginRequest): ResponseEntity<String> {
         val user = userService.getUserByEmail( oAuthLoginRequest.email)
             ?: userService.registerUser(oAuthLoginRequest)

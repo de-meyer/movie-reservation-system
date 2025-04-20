@@ -1,6 +1,6 @@
 package com.cli.fancy.movie_reservation_system.application.user
 
-data class PrincipalUser(
+data class User(
     val id: Long? = null,
     val name: String,
     val email: String,
