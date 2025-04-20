@@ -1,8 +1,8 @@
-package com.cli.fancy.movie_reservation_system.api.auth
+package com.cli.fancy.movie_reservation_system.application.config
 
-import com.cli.fancy.movie_reservation_system.api.user.PrincipalUser
-import com.cli.fancy.movie_reservation_system.api.user.UserService
-import com.cli.fancy.movie_reservation_system.utils.JwtService
+import com.cli.fancy.movie_reservation_system.application.user.PrincipalUser
+import com.cli.fancy.movie_reservation_system.domain.user.UserService
+import com.cli.fancy.movie_reservation_system.infrastructure.security.JwtService
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse

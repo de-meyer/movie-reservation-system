@@ -1,0 +1,35 @@
+package com.cli.fancy.movie_reservation_system.application.auth
+
+import com.cli.fancy.movie_reservation_system.domain.user.UserService
+import com.cli.fancy.movie_reservation_system.infrastructure.security.JwtService
+import org.springframework.http.HttpHeaders
+import org.springframework.http.ResponseCookie
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
+
+@RestController
+@RequestMapping("/api")
+class AuthController(private val userService: UserService, private val jwtService: JwtService) {
+
+    @PostMapping("/auth/oauth/discord")
+    fun oAuth(@RequestBody oAuthLoginRequest: OAuthLoginRequest): ResponseEntity<String> {
+        val user = userService.getUserByEmail( oAuthLoginRequest.email)
+            ?: userService.registerUser(oAuthLoginRequest)
+        val token = jwtService.generateToken(user)
+        val cookie = ResponseCookie.from("jwt", token)
+            .httpOnly(true)
+            .secure(true) // Use only over HTTPS
+            .path("/")
+            .maxAge((1 * 60 * 60).toLong()) // 1 hour
+            .sameSite("Strict") // Prevent CSRF
+            .build()
+
+        return ResponseEntity.ok()
+            .header(HttpHeaders.SET_COOKIE, cookie.toString())
+            .body("Login successful")
+    }
+
+}

@@ -1,6 +1,6 @@
-package com.cli.fancy.movie_reservation_system.utils
+package com.cli.fancy.movie_reservation_system.infrastructure.security
 
-import com.cli.fancy.movie_reservation_system.api.user.PrincipalUser
+import com.cli.fancy.movie_reservation_system.application.user.PrincipalUser
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jws
 import io.jsonwebtoken.Jwts

@@ -1,7 +1,9 @@
-package com.cli.fancy.movie_reservation_system.api.user
+package com.cli.fancy.movie_reservation_system.domain.user
 
-import com.cli.fancy.movie_reservation_system.api.auth.AuthRepository
-import com.cli.fancy.movie_reservation_system.api.model.OAuthLoginRequest
+import com.cli.fancy.movie_reservation_system.application.user.PrincipalUser
+import com.cli.fancy.movie_reservation_system.infrastructure.persistence.user.AuthRepository
+import com.cli.fancy.movie_reservation_system.application.auth.OAuthLoginRequest
+import com.cli.fancy.movie_reservation_system.infrastructure.persistence.user.UserEntity
 import jakarta.transaction.Transactional
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service

@@ -1,4 +1,4 @@
-package com.cli.fancy.movie_reservation_system.api.user
+package com.cli.fancy.movie_reservation_system.application.user
 
 data class PrincipalUser(
     val id: Long? = null,

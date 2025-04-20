@@ -1,4 +1,4 @@
-package com.cli.fancy.movie_reservation_system.api
+package com.cli.fancy.movie_reservation_system.application.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
