@@ -1,4 +1,4 @@
-package com.cli.fancy.movie_reservation_system.domain.movie
+package com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie
 
 import jakarta.persistence.*
 import java.time.LocalDateTime
