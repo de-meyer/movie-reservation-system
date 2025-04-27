@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service
 
 @Service
 class MovieService(val movieRepository: MovieRepository) {
-    fun getAllMovies(): MutableIterable<Movie> = movieRepository.findAll()
+    fun getAllMovies(): List<Movie> = movieRepository.findAll()
         .map { it.toDto() }
         .toList()
-        .toMutableList()
+
     private fun MovieEntity.toDto() = Movie(
         id = this.id,
         title = this.title,

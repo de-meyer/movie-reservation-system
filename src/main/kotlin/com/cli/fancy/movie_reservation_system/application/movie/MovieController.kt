@@ -13,7 +13,7 @@ class MovieController(val movieService: MovieService) {
     // Add your movie-related endpoints here
     // For example:
      @GetMapping("/all")
-     fun getAllMovies(): MutableIterable<Movie> {
+     fun getAllMovies(): List<Movie> {
          return movieService.getAllMovies()
      }
 }
