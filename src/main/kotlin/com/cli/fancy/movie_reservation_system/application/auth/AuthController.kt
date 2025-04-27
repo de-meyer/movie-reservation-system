@@ -19,7 +19,7 @@ class AuthController(private val userService: UserService, private val jwtServic
         val user = userService.getUserByEmail( oAuthLoginRequest.email)
             ?: userService.registerUser(oAuthLoginRequest)
         val token = jwtService.generateToken(user)
-        val cookie = ResponseCookie.from("jwt", token)
+        val cookie = ResponseCookie.from("user_jwt", token)
             .httpOnly(true)
             .secure(true) // Use only over HTTPS
             .path("/")
