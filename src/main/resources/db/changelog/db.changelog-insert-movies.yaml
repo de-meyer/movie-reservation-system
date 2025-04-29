@@ -187,6 +187,7 @@ databaseChangeLog:
               - column: { name: director, value: "Fluffy Wachowsky" }
               - column: { name: genre, value: "Sci-Fi" }
               - column: { name: duration_minutes, value: 117 }
+              - column: { name: rating, value: 9.1 }
         - insert:
             tableName: movies
             columns:
