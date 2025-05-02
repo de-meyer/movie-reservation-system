@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: create-movies-table
-      author: yourname
+      author: de-meyer
       changes:
         - sql:
             splitStatements: false
@@ -25,6 +25,11 @@ databaseChangeLog:
               - column:
                   name: description
                   type: TEXT
+              - column:
+                  name: image
+                  type: BYTEA
+                  constraints:
+                    nullable: true
               - column:
                   name: release_year
                   type: INT

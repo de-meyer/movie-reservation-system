@@ -6,6 +6,7 @@ import com.cli.fancy.movie_reservation_system.application.movie.dto.MovieBrowseI
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie.MovieEntity
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie.MovieRepository
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class MovieService(val movieRepository: MovieRepository) {
@@ -15,25 +16,28 @@ class MovieService(val movieRepository: MovieRepository) {
 
     private fun MovieEntity.toBrowseInformationDTO() = MovieBrowseInformationDTO (
        name = this.title,
-        image = "",
+        image = this.image,
         url = "/movie/${this.id}"
     )
     private fun MovieEntity.toDto() = Movie(
         id = this.id,
         title = this.title,
-        genre = this.genre!!,
-        duration = this.durationMinutes!!,
-        releaseYear = this.releaseYear!!,
-        rating = this.rating!!,
-        description = this.description!!
+        genre = this.genre,
+        durationMinutes = this.durationMinutes!!,
+        releaseYear = this.releaseYear,
+        rating = this.rating,
+        description = this.description!!,
+        director = this.director,
+        image = this.image,
     )
     private fun Movie.toEntity() = MovieEntity(
         id = this.id,
         title = this.title,
         genre = this.genre,
-        durationMinutes = this.duration,
+        durationMinutes = this.durationMinutes,
         releaseYear = this.releaseYear,
         rating = this.rating,
-        description = this.description
+        description = this.description,
+        image = this.image,
     )
 }
