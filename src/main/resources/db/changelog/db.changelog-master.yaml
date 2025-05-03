@@ -1,8 +1,4 @@
 databaseChangeLog:
-  - include:
-        file: db/changelog/db.changelog-create-movie-table.yaml
-  - include:
-        file: db/changelog/db.changelog-insert-movies.yaml
   - changeSet:
       id: 1
       author: de-meyer
@@ -44,3 +40,9 @@ databaseChangeLog:
             columnName: id
             generationType: SEQUENCE
             defaultValueSequenceNext: users_id_seq
+  - include:
+      file: db/changelog/db.changelog-create-movie-table.yaml
+  - include:
+      file: db/changelog/db.changelog-insert-movies.yaml
+  - include:
+      file: db/changelog/db.changelog-update-movie-images-default-decode-base64.yaml
