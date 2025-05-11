@@ -1,9 +1,8 @@
 package com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie
 
 import org.springframework.data.repository.CrudRepository
+import java.util.*
 
-interface MovieRepository: CrudRepository<MovieEntity, Long> {
-    fun findByTitle(title: String): MovieEntity?
-    fun findByGenre(genre: String): List<MovieEntity>
-    fun findByRating(rating: Double): List<MovieEntity>
+interface MovieRepository: CrudRepository<MovieEntity, UUID> {
+
 }

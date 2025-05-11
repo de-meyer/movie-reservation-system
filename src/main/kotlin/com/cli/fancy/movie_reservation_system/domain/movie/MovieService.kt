@@ -13,11 +13,18 @@ class MovieService(val movieRepository: MovieRepository) {
     fun getAllMovies(): List<MovieBrowseInformationDTO> = movieRepository.findAll()
         .map { it.toBrowseInformationDTO() }
         .toList()
-
+    fun getMovieById(id: UUID): Movie? {
+        val movieEntity = movieRepository.findById(id)
+        return if (movieEntity.isPresent) {
+            movieEntity.get().toDto()
+        } else {
+            null
+        }
+    }
     private fun MovieEntity.toBrowseInformationDTO() = MovieBrowseInformationDTO (
        name = this.title,
         image = this.image,
-        url = "/movie/${this.id}"
+        url = "movie/${this.id}"
     )
     private fun MovieEntity.toDto() = Movie(
         id = this.id,
