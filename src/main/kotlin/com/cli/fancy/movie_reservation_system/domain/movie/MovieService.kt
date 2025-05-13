@@ -24,7 +24,7 @@ class MovieService(val movieRepository: MovieRepository) {
     private fun MovieEntity.toBrowseInformationDTO() = MovieBrowseInformationDTO (
        name = this.title,
         image = this.image,
-        url = "movie/${this.id}"
+        url = "${this.id}"
     )
     private fun MovieEntity.toDto() = Movie(
         id = this.id,
