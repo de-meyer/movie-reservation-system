@@ -1,7 +1,6 @@
 package com.cli.fancy.movie_reservation_system.domain.movie
 
 import com.cli.fancy.movie_reservation_system.application.movie.Movie
-import com.cli.fancy.movie_reservation_system.application.movie.MovieController
 import com.cli.fancy.movie_reservation_system.application.movie.dto.MovieBrowseInformationDTO
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie.MovieEntity
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie.MovieRepository
