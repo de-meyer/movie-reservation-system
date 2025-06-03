@@ -1,0 +1,114 @@
+
+databaseChangeLog:
+  - changeSet:
+      id: insert-program
+      author: de-meyer
+      changes:
+        - insert:
+            tableName: program
+            columns:
+              - column: { name: movie_id, value: "ceb9370c-e8e9-423f-bce0-8d13322e55eb" }
+              - column: { name: start_time, value: "12:00:00" }
+              - column: { name: date, value: "2025-10-01" }
+        - insert:
+            tableName: program
+            columns:
+              - column: { name: movie_id, value: "ceb9370c-e8e9-423f-bce0-8d13322e55eb" }
+              - column: { name: start_time, value: "14:00:00" }
+              - column: { name: date, value: "2025-10-01" }
+        - insert:
+            tableName: program
+            columns:
+              - column: { name: movie_id, value: "ceb9370c-e8e9-423f-bce0-8d13322e55eb" }
+              - column: { name: start_time, value: "20:00:00" }
+              - column: { name: date, value: "2025-10-01" }
+        - insert:
+            tableName: program
+            columns:
+              - column: { name: movie_id, value: "986ace32-7d3e-4cc7-ba5a-eec52b50a505" }
+              - column: { name: start_time, value: "10:20:00" }
+              - column: { name: date, value: "2025-10-01" }
+        - insert:
+            tableName: program
+            columns:
+              - column: { name: movie_id, value: "986ace32-7d3e-4cc7-ba5a-eec52b50a505" }
+              - column: { name: start_time, value: "15:45:00" }
+              - column: { name: date, value: "2025-10-01" }
+        - insert:
+            tableName: program
+            columns:
+              - column: { name: movie_id, value: "986ace32-7d3e-4cc7-ba5a-eec52b50a505" }
+              - column: { name: start_time, value: "12:00:00" }
+              - column: { name: date, value: "2025-10-01" }
+        - insert:
+            tableName: program
+            columns:
+              - column: { name: movie_id, value: "e4f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: start_time, value: "13:05:00" }
+              - column: { name: date, value: "2025-10-01" }
+        - insert:
+            tableName: program
+            columns:
+              - column: { name: movie_id, value: "e4f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: start_time, value: "15:45:00" }
+              - column: { name: date, value: "2025-10-01" }
+        - insert:
+            tableName: program
+            columns:
+              - column: { name: movie_id, value: "e4f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: start_time, value: "19:15:00" }
+              - column: { name: date, value: "2025-10-01" }
+        - insert:
+            tableName: program
+            columns:
+              - column: { name: movie_id, value: "ceb9370c-e8e9-423f-bce0-8d13322e55eb" }
+              - column: { name: start_time, value: "09:35:00" }
+              - column: { name: date, value: "2025-10-02" }
+        - insert:
+            tableName: program
+            columns:
+              - column: { name: movie_id, value: "ceb9370c-e8e9-423f-bce0-8d13322e55eb" }
+              - column: { name: start_time, value: "13:00:00" }
+              - column: { name: date, value: "2025-10-02" }
+        - insert:
+            tableName: program
+            columns:
+              - column: { name: movie_id, value: "ceb9370c-e8e9-423f-bce0-8d13322e55eb" }
+              - column: { name: start_time, value: "21:10:00" }
+              - column: { name: date, value: "2025-10-02" }
+        - insert:
+            tableName: program
+            columns:
+              - column: { name: movie_id, value: "986ace32-7d3e-4cc7-ba5a-eec52b50a505" }
+              - column: { name: start_time, value: "11:45:00" }
+              - column: { name: date, value: "2025-10-02" }
+        - insert:
+            tableName: program
+            columns:
+              - column: { name: movie_id, value: "986ace32-7d3e-4cc7-ba5a-eec52b50a505" }
+              - column: { name: start_time, value: "17:25:00" }
+              - column: { name: date, value: "2025-10-02" }
+        - insert:
+            tableName: program
+            columns:
+              - column: { name: movie_id, value: "986ace32-7d3e-4cc7-ba5a-eec52b50a505" }
+              - column: { name: start_time, value: "22:00:00" }
+              - column: { name: date, value: "2025-10-02" }
+        - insert:
+            tableName: program
+            columns:
+              - column: { name: movie_id, value: "e4f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: start_time, value: "10:15:00" }
+              - column: { name: date, value: "2025-10-02" }
+        - insert:
+            tableName: program
+            columns:
+              - column: { name: movie_id, value: "e4f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: start_time, value: "16:35:00" }
+              - column: { name: date, value: "2025-10-02" }
+        - insert:
+            tableName: program
+            columns:
+              - column: { name: movie_id, value: "e4f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: start_time, value: "19:20:00" }
+              - column: { name: date, value: "2025-10-02" }
