@@ -19,13 +19,8 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: start_time
-                  type: TIME
-                  constraints:
-                    nullable: false
-              - column:
                   name: date
-                  type: DATE
+                  type: TIMESTAMP WITH TIME ZONE
                   constraints:
                     nullable: false
         - addForeignKeyConstraint:
