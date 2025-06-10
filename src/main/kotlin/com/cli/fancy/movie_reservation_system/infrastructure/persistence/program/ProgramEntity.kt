@@ -9,7 +9,7 @@ import java.util.*
 data class ProgramEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: UUID? = null,
+    val id: UUID,
     val movieId: UUID,
     val date: Instant,
 ) {
