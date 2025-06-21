@@ -10,3 +10,4 @@ enum class RoleEnum {
             return values().find { it.name.equals(role, ignoreCase = true) }
         }
     }
+}
