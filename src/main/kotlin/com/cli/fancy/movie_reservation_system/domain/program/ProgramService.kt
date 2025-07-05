@@ -29,6 +29,7 @@ class ProgramService(val programRepository: ProgramRepository) {
         val startOfWeek = Instant.now()
         // Calculate the end of the next 14 days (2 weeks))
         val endOfWeek = startOfWeek.plusSeconds(15 * 24 * 60 * 60)
+        /// TODO: use builder to map to a Program Movie Model which should be returned instead of monvieId
         return programRepository.findAll()
             .filter { it.date in startOfWeek..endOfWeek }
             .map { it.toDTO() }
