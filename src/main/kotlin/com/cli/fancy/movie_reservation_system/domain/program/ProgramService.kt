@@ -4,6 +4,7 @@ import com.cli.fancy.movie_reservation_system.application.program.ProgramDTO
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.program.ProgramEntity
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.program.ProgramRepository
 import org.springframework.stereotype.Service
+import java.time.Instant
 import java.util.*
 
 @Service
@@ -19,9 +20,24 @@ class ProgramService(val programRepository: ProgramRepository) {
             .orElse(null)?.toDTO()
     }
 
+    /**
+     * Retrieves the program.
+     * Starting from the current date, it fetches all programs scheduled within the next 14 days.
+     */
+    fun getProgramForTheWeek(): List<ProgramDTO> {
+        // Assuming we want to get programs for the current week
+        val startOfWeek = Instant.now()
+        // Calculate the end of the next 14 days (2 weeks))
+        val endOfWeek = startOfWeek.plusSeconds(15 * 24 * 60 * 60)
+        return programRepository.findAll()
+            .filter { it.date in startOfWeek..endOfWeek }
+            .map { it.toDTO() }
+    }
+
     fun deleteById(id: UUID) {
         programRepository.deleteById(id)
     }
+
     private fun ProgramEntity.toDTO(): ProgramDTO {
         return ProgramDTO(
             id = this.id,
