@@ -7,14 +7,12 @@ databaseChangeLog:
             tableName: program
             columns:
               - column:
-                  name: id
+                  name: movie_id
                   type: UUID
-                  defaultValueComputed: uuid_generate_v4()
                   constraints:
-                    primaryKey: true
                     nullable: false
               - column:
-                  name: movie_id
+                  name: theater_id
                   type: UUID
                   constraints:
                     nullable: false
@@ -23,9 +21,31 @@ databaseChangeLog:
                   type: TIMESTAMP WITH TIME ZONE
                   constraints:
                     nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+        - addPrimaryKey:
+            tableName: program
+            columnNames: movie_id, theater_id, date
+            constraintName: program_pk
         - addForeignKeyConstraint:
             constraintName: movie_fk
             baseTableName: program
             baseColumnNames: movie_id
             referencedTableName: movies
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            constraintName: theater_fk
+            baseTableName: program
+            baseColumnNames: theater_id
+            referencedTableName: theater
             referencedColumnNames: id

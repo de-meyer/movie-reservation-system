@@ -47,6 +47,10 @@ databaseChangeLog:
   - include:
       file: db/changelog/db.changelog-update-movie-images-default-decode-base64.yaml
   - include:
+      file: db/changelog/db.changelog-create-theater-table.yaml
+  - include:
+      file: db/changelog/db.changelog-insert-theaters.yaml
+  - include:
       file: db/changelog/db.changelog-create-program-table.yaml
   - include:
       file: db/changelog/db.changelog-insert-program.yaml
