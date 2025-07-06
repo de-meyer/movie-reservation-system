@@ -3,28 +3,20 @@ package com.cli.fancy.movie_reservation_system.infrastructure.persistence.progra
 import jakarta.persistence.*
 import java.time.Instant
 import java.util.*
+import kotlin.hashCode
 
 @Entity
 @Table(name = "program")
 data class ProgramEntity(
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: UUID,
-    val movieId: UUID,
-    val date: Instant,
+    @EmbeddedId
+    val id: ProgramId
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is ProgramEntity) return false
 
-        if (movieId != other.movieId) return false
-        if (date != other.date) return false
-        return true
+        return id == other.id
     }
 
-    override fun hashCode(): Int {
-        var result = movieId.hashCode()
-        result = 31 * result + date.hashCode()
-        return result
-    }
+    override fun hashCode(): Int = id.hashCode()
 }

@@ -1,6 +1,5 @@
 package com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie
 
-import com.cli.fancy.movie_reservation_system.application.movie.dto.MovieBrowseInformationDTO
 import jakarta.persistence.*
 import java.time.LocalDateTime
 import java.util.*

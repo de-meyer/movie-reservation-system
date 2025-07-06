@@ -1,13 +1,13 @@
 package com.cli.fancy.movie_reservation_system.application.movie.dto
 
-data class MovieBrowseInformationDTO (
+data class MovieBrowseInformationDto(
     val name: String,
     val image: ByteArray,
     val url: String
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other !is MovieBrowseInformationDTO) return false
+        if (other !is MovieBrowseInformationDto) return false
 
         if (name != other.name) return false
         if (!image.contentEquals(other.image)) return false
