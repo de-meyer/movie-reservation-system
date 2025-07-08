@@ -1,25 +1,28 @@
 package com.cli.fancy.movie_reservation_system.domain.movie
 
+import java.util.UUID
+
 data class MovieBrowserInformation(
-    val name: String,
+    val title: String,
     val image: ByteArray,
-    val url: String
+    val id: UUID
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is MovieBrowserInformation) return false
 
-        if (name != other.name) return false
+        if (title != other.title) return false
         if (!image.contentEquals(other.image)) return false
-        if (url != other.url) return false
+        if (id != other.id) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        var result = name.hashCode()
+        var result = title.hashCode()
         result = 31 * result + image.contentHashCode()
-        result = 31 * result + url.hashCode()
+        result = 31 * result + id.hashCode()
         return result
     }
+
 }
