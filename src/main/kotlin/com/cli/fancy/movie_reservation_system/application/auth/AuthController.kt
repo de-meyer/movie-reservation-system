@@ -1,5 +1,6 @@
 package com.cli.fancy.movie_reservation_system.application.auth
 
+import com.cli.fancy.movie_reservation_system.application.user.dto.UserLoginRequestDto
 import com.cli.fancy.movie_reservation_system.domain.user.UserService
 import com.cli.fancy.movie_reservation_system.infrastructure.security.JwtService
 import org.springframework.http.HttpHeaders
@@ -15,9 +16,9 @@ import org.springframework.web.bind.annotation.RestController
 class AuthController(private val userService: UserService, private val jwtService: JwtService) {
 
     @PostMapping("/oauth/discord")
-    fun oAuth(@RequestBody oAuthLoginRequest: OAuthLoginRequest): ResponseEntity<String> {
-        val user = userService.getUserByEmail( oAuthLoginRequest.email)
-            ?: userService.registerUser(oAuthLoginRequest)
+    fun oAuth(@RequestBody userLoginRequestDto: UserLoginRequestDto): ResponseEntity<String> {
+        val user = userService.getUserByEmail(userLoginRequestDto.email)
+            ?: userService.registerUser(userLoginRequestDto)
         val token = jwtService.generateToken(user)
         val cookie = ResponseCookie.from("user_jwt", token)
             .httpOnly(true)

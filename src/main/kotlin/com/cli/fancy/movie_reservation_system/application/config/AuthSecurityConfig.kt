@@ -1,6 +1,6 @@
 package com.cli.fancy.movie_reservation_system.application.config
 
-import com.cli.fancy.movie_reservation_system.application.user.User
+import com.cli.fancy.movie_reservation_system.domain.user.User
 import com.cli.fancy.movie_reservation_system.domain.user.UserService
 import com.cli.fancy.movie_reservation_system.infrastructure.security.JwtService
 import jakarta.servlet.FilterChain
@@ -37,14 +37,15 @@ class AuthSecurityConfig(
                 .anyRequest().permitAll()
         }
             .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter::class.java)
-            .sessionManagement{it.sessionCreationPolicy(SessionCreationPolicy.STATELESS)} // Disable session creation
-            .csrf{csrf -> csrf.disable()} // Disable CSRF
-            .formLogin{it.disable()} // Disable form login
-            .httpBasic{} // Enable basic authentication
-            .cors{} // Enable CORS
+            .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) } // Disable session creation
+            .csrf { csrf -> csrf.disable() } // Disable CSRF
+            .formLogin { it.disable() } // Disable form login
+            .httpBasic {} // Enable basic authentication
+            .cors {} // Enable CORS
         return http.build()
     }
 }
+
 class JwtAuthFilter(
     private val jwtService: JwtService,
     private val userService: UserService,
@@ -57,7 +58,7 @@ class JwtAuthFilter(
         filterChain: FilterChain
     ) {
         val cookie = request.cookies?.find { it.name == "jwt" }?.value
-        if (cookie != null ) {
+        if (cookie != null) {
             if (jwtService.validateToken(cookie)) {
                 val principleUser: User = jwtService.getUserFromToken(cookie) // User ID = email in this context
                 val user = userService.getUserByEmail(principleUser.email)
