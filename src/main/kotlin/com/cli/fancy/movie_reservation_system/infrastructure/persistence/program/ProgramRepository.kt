@@ -1,8 +1,8 @@
 package com.cli.fancy.movie_reservation_system.infrastructure.persistence.program
 
-import org.springframework.data.repository.CrudRepository
-import java.util.UUID
+import org.springframework.data.jpa.repository.JpaRepository
+import java.util.*
 
-interface ProgramRepository: CrudRepository<ProgramEntity, UUID> {
+interface ProgramRepository : JpaRepository<ProgramEntity, UUID> {
 
 }
