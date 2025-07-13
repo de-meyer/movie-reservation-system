@@ -1,45 +1,6 @@
 databaseChangeLog:
-  - changeSet:
-      id: 1
-      author: de-meyer
-      changes:
-        - createSequence:
-            sequenceName: users_id_seq
-            startValue: 1
-            incrementBy: 1
-        - createTable:
-            tableName: users
-            columns:
-              - column:
-                  name: id
-                  type: BIGINT
-                  constraints:
-                    primaryKey: true
-                    nullable: false
-              - column:
-                  name: name
-                  type: VARCHAR(255)
-                  constraints:
-                    nullable: false
-                    unique: true
-              - column:
-                  name: email
-                  type: VARCHAR(255)
-                  constraints:
-                    nullable: false
-                    unique: true
-              - column:
-                  name: role
-                  type: VARCHAR(255)
-                  defaultValue: GUEST
-                  constraints:
-                    nullable: false
-                    unique: false
-        - addAutoIncrement:
-            tableName: users
-            columnName: id
-            generationType: SEQUENCE
-            defaultValueSequenceNext: users_id_seq
+  - include:
+      file: db/changelog/db.changelog-create-user-table.yaml
   - include:
       file: db/changelog/db.changelog-create-movie-table.yaml
   - include:
@@ -54,3 +15,5 @@ databaseChangeLog:
       file: db/changelog/db.changelog-create-program-table.yaml
   - include:
       file: db/changelog/db.changelog-insert-program.yaml
+  - include:
+      file: db/changelog/db.changelog-create-reservation-table.yaml

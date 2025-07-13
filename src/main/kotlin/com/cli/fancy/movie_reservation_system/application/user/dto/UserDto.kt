@@ -1,7 +1,9 @@
 package com.cli.fancy.movie_reservation_system.application.user.dto
 
+import java.util.*
+
 data class UserDto(
-    val id: Long? = null,
+    val id: UUID? = null,
     val name: String,
     val email: String,
     val role: String,

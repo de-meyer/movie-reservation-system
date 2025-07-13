@@ -6,7 +6,11 @@ import com.cli.fancy.movie_reservation_system.domain.user.UserService
 import com.cli.fancy.movie_reservation_system.infrastructure.security.JwtService
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
+import java.util.*
 
 
 @RestController
@@ -21,7 +25,7 @@ class UserController(
     fun getUsers(): List<UserDto> = userService.getAllUsers().map { userMapper.toDto(it) }
 
     @GetMapping("/{id}")
-    fun getUser(@PathVariable id: Long): UserDto? = userService.getUserById(id).let { userMapper.toDto(it) }
+    fun getUser(@PathVariable id: UUID): UserDto? = userService.getUserById(id).let { userMapper.toDto(it) }
 
 
     @GetMapping("/me")

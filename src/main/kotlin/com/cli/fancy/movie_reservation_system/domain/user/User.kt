@@ -1,6 +1,8 @@
 package com.cli.fancy.movie_reservation_system.domain.user
 
-data class User(val id: Long? = null, val name: String, val role: String, val email: String) {
+import java.util.*
+
+data class User(val id: UUID? = null, val name: String, val role: String, val email: String) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is User) return false

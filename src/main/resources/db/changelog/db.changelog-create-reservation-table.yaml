@@ -1,0 +1,70 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-reservation-table
+      author: de-meyer
+      changes:
+        - sql:
+            splitStatements: false
+            sql: CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+        - createTable:
+            tableName: reservation
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+              - column:
+                  name: movie_id
+                  type: UUID
+                  constraints:
+                    nullable: true
+              - column:
+                  name: theater_id
+                  type: UUID
+              - column:
+                  name: seat_number
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: date
+                  type: TIMESTAMP
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            constraintName: movie_fk
+            baseTableName: reservation
+            baseColumnNames: movie_id
+            referencedTableName: movies
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            constraintName: theater_fk
+            baseTableName: reservation
+            baseColumnNames: theater_id
+            referencedTableName: theater
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            constraintName: user_fk
+            baseTableName: reservation
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: id

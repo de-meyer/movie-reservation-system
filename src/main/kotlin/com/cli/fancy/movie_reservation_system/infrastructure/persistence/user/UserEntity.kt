@@ -1,15 +1,15 @@
 package com.cli.fancy.movie_reservation_system.infrastructure.persistence.user
 
 import jakarta.persistence.*
+import java.util.UUID
 
 @Entity
 @Table(name = "users")
- class UserEntity {
+class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_id_gen")
-    @SequenceGenerator(name = "users_id_gen", sequenceName = "users_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    var id: Long? = null
+    var id: UUID? = null
 
     @Column(name = "name", nullable = false, length = Integer.MAX_VALUE)
     var name: String? = null
@@ -19,5 +19,5 @@ import jakarta.persistence.*
 
     @Column(name = "role", nullable = false, length = Integer.MAX_VALUE)
     var role: String? = "GUEST"
-   
+
 }

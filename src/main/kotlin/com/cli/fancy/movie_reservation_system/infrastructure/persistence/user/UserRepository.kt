@@ -8,4 +8,5 @@ interface AuthRepository : JpaRepository<UserEntity, Long> {
     fun getUserEntityByName(name: String): UserEntity
     fun getUserByEmail(email: String): Optional<UserEntity>
     fun existsByEmail(email: String): Boolean
+    fun findById(id: UUID): Optional<UserEntity>
 }
