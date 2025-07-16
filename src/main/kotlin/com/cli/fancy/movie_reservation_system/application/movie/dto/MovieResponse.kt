@@ -2,7 +2,7 @@ package com.cli.fancy.movie_reservation_system.application.movie.dto
 
 import java.util.UUID
 
-data class MovieDto(
+data class MovieResponse(
     val id: UUID? = null,
     val title: String,
     val description: String,
@@ -15,7 +15,7 @@ data class MovieDto(
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other !is MovieDto) return false
+        if (other !is MovieResponse) return false
 
         if (durationMinutes != other.durationMinutes) return false
         if (releaseYear != other.releaseYear) return false

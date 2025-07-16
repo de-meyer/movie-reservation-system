@@ -1,6 +1,5 @@
 package com.cli.fancy.movie_reservation_system.infrastructure.security
 
-import com.cli.fancy.movie_reservation_system.application.user.dto.UserDto
 import com.cli.fancy.movie_reservation_system.domain.user.User
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jws

@@ -1,6 +1,6 @@
 package com.cli.fancy.movie_reservation_system.domain.user
 
-import com.cli.fancy.movie_reservation_system.application.user.dto.UserLoginRequestDto
+import com.cli.fancy.movie_reservation_system.application.user.dto.UserLoginRequest
 import com.cli.fancy.movie_reservation_system.application.user.mapper.UserMapper
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.user.AuthRepository
 import jakarta.transaction.Transactional
@@ -27,11 +27,11 @@ open class UserService(private val authRepository: AuthRepository, private val u
     }
 
     @Transactional
-    open fun registerUser(userLoginRequestDto: UserLoginRequestDto): User {
-        if (authRepository.existsByEmail(userLoginRequestDto.email)) {
+    open fun registerUser(userLoginRequest: UserLoginRequest): User {
+        if (authRepository.existsByEmail(userLoginRequest.email)) {
             throw IllegalArgumentException("Email is already in use")
         }
-        val user = userMapper.toLoginRequestEntity(userLoginRequestDto)
+        val user = userMapper.toLoginRequestEntity(userLoginRequest)
         val savedUser = authRepository.save(user)
         return userMapper.toUserDomain(savedUser)
     }

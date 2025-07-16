@@ -5,7 +5,7 @@ import com.cli.fancy.movie_reservation_system.infrastructure.persistence.program
 import java.time.Instant
 import java.util.*
 
-data class ProgramDto(
+data class ProgramResponse(
     val id: ProgramId,
 ) {
     /// TODO: Do I really need to expose these properties? For the sake of not access those properties via `id`

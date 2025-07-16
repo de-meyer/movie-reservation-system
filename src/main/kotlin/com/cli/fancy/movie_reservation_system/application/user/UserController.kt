@@ -1,6 +1,6 @@
 package com.cli.fancy.movie_reservation_system.application.user
 
-import com.cli.fancy.movie_reservation_system.application.user.dto.UserDto
+import com.cli.fancy.movie_reservation_system.application.user.dto.UserResponse
 import com.cli.fancy.movie_reservation_system.application.user.mapper.UserMapper
 import com.cli.fancy.movie_reservation_system.domain.user.UserService
 import com.cli.fancy.movie_reservation_system.infrastructure.security.JwtService
@@ -22,14 +22,14 @@ class UserController(
 ) {
 
     @GetMapping
-    fun getUsers(): List<UserDto> = userService.getAllUsers().map { userMapper.toDto(it) }
+    fun getUsers(): List<UserResponse> = userService.getAllUsers().map { userMapper.toDto(it) }
 
     @GetMapping("/{id}")
-    fun getUser(@PathVariable id: UUID): UserDto? = userService.getUserById(id).let { userMapper.toDto(it) }
+    fun getUser(@PathVariable id: UUID): UserResponse? = userService.getUserById(id).let { userMapper.toDto(it) }
 
 
     @GetMapping("/me")
-    fun me(@AuthenticationPrincipal user: UserDto): ResponseEntity<UserDto> {
+    fun me(@AuthenticationPrincipal user: UserResponse): ResponseEntity<UserResponse> {
         return ResponseEntity.ok(user)
     }
 }

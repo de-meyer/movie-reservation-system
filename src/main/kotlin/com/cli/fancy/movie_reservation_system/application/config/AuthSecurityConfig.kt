@@ -19,18 +19,18 @@ import org.springframework.web.filter.OncePerRequestFilter
 
 @Configuration
 @EnableWebSecurity
-class AuthSecurityConfig(
+open class AuthSecurityConfig(
     private val jwtService: JwtService,
     private val userService: UserService,
 ) {
 
     @Bean
-    fun jwtAuthFilter(): JwtAuthFilter {
+    open fun jwtAuthFilter(): JwtAuthFilter {
         return JwtAuthFilter(jwtService, userService)
     }
 
     @Bean
-    fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
+    open fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http.authorizeHttpRequests { authorizeRequests ->
             authorizeRequests
                 .requestMatchers("/user/me").authenticated()
