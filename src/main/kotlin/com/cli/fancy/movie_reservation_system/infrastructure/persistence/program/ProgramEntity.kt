@@ -1,9 +1,8 @@
 package com.cli.fancy.movie_reservation_system.infrastructure.persistence.program
 
-import jakarta.persistence.*
-import java.time.Instant
-import java.util.*
-import kotlin.hashCode
+import jakarta.persistence.EmbeddedId
+import jakarta.persistence.Entity
+import jakarta.persistence.Table
 
 @Entity
 @Table(name = "program")
