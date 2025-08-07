@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: create-program-table
+      id: create-show-table
       author: de-meyer
       changes:
         - createTable:
-            tableName: program
+            tableName: show
             columns:
               - column:
                   name: movie_id
@@ -34,18 +34,18 @@ databaseChangeLog:
                   constraints:
                     nullable: false
         - addPrimaryKey:
-            tableName: program
+            tableName: show
             columnNames: movie_id, theater_id, date
-            constraintName: program_pk
+            constraintName: show
         - addForeignKeyConstraint:
             constraintName: movie_fk
-            baseTableName: program
+            baseTableName: show
             baseColumnNames: movie_id
             referencedTableName: movies
             referencedColumnNames: id
         - addForeignKeyConstraint:
             constraintName: theater_fk
-            baseTableName: program
+            baseTableName: show
             baseColumnNames: theater_id
             referencedTableName: theater
             referencedColumnNames: id

@@ -3,7 +3,7 @@ package com.cli.fancy.movie_reservation_system.application.movie.dto
 import java.util.UUID
 
 data class MovieResponse(
-    val id: UUID? = null,
+    val id: UUID,
     val title: String,
     val description: String,
     val durationMinutes: Int,
@@ -34,7 +34,7 @@ data class MovieResponse(
         var result = durationMinutes
         result = 31 * result + (releaseYear ?: 0)
         result = 31 * result + (rating?.hashCode() ?: 0)
-        result = 31 * result + (id?.hashCode() ?: 0)
+        result = 31 * result + id.hashCode()
         result = 31 * result + title.hashCode()
         result = 31 * result + description.hashCode()
         result = 31 * result + (director?.hashCode() ?: 0)

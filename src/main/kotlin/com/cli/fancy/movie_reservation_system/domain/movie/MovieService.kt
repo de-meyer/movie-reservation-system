@@ -1,7 +1,9 @@
 package com.cli.fancy.movie_reservation_system.domain.movie
 
+import com.cli.fancy.movie_reservation_system.application.movie.dto.MovieResponse
 import com.cli.fancy.movie_reservation_system.application.movie.mapper.MovieMapper
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie.MovieRepository
+import org.springframework.data.jpa.domain.AbstractPersistable_.id
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -18,5 +20,11 @@ class MovieService(val movieRepository: MovieRepository, val movieMapper: MovieM
         } else {
             null
         }
+    }
+
+    fun updateMovie(movie: MovieResponse): Movie {
+        val movieEntity =
+            movieRepository.findById(movie.id).orElseThrow { NoSuchElementException("Movie with id $id not found") }
+        return movieMapper.toMovie(movieRepository.save(movieEntity))
     }
 }

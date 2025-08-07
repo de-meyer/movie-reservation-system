@@ -1,0 +1,13 @@
+package com.cli.fancy.movie_reservation_system.application.show.mapper
+
+import com.cli.fancy.movie_reservation_system.application.show.dto.ShowResponse
+import com.cli.fancy.movie_reservation_system.domain.show.Show
+import com.cli.fancy.movie_reservation_system.infrastructure.persistence.show.ShowEntity
+import org.mapstruct.Mapper
+
+@Mapper(componentModel = "spring")
+interface ShowMapper {
+    fun toDto(show: Show): ShowResponse
+    fun toEntity(showResponse: ShowResponse): ShowEntity
+    fun toProgram(showEntity: ShowEntity): Show
+}

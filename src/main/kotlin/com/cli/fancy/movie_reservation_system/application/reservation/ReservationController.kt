@@ -30,6 +30,4 @@ class ReservationController(
         val reservations = reservationService.getAllReservations()
         return ResponseEntity.ok(reservations.map { reservationMapper.toDto(it) })
     }
-
-    // Other endpoints can be added similarly) {
 }

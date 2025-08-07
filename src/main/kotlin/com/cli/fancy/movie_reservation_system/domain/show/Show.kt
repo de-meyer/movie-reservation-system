@@ -1,13 +1,13 @@
-package com.cli.fancy.movie_reservation_system.domain.program
+package com.cli.fancy.movie_reservation_system.domain.show
 
-import com.cli.fancy.movie_reservation_system.infrastructure.persistence.program.ProgramId
+import com.cli.fancy.movie_reservation_system.infrastructure.persistence.show.ShowId
 
-data class Program(
-    val id: ProgramId,
+data class Show(
+    val id: ShowId,
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other !is Program) return false
+        if (other !is Show) return false
 
         if (id != other.id) return false
 
