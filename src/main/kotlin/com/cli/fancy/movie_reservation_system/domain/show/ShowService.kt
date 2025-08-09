@@ -10,7 +10,7 @@ import java.util.*
 class ShowService(val showRepository: ShowRepository, val showMapper: ShowMapper) {
 
     fun findAll(): List<Show> {
-        return showRepository.findAll().map { showMapper.toProgram(it) }
+        return showRepository.findAll().map { showMapper.toShow(it) }
             .toList()
     }
 
@@ -18,10 +18,18 @@ class ShowService(val showRepository: ShowRepository, val showMapper: ShowMapper
         val showEntity = showRepository.findById(id)
             .orElseThrow { NoSuchElementException("Show with id $id not found") }
 
-        return showMapper.toProgram(showEntity)
+        return showMapper.toShow(showEntity)
 
     }
 
+    fun save(show: Show): Show {
+        // Convert the Show domain object to the entity type expected by the repository
+        val showEntity = showMapper.toShowEntity(show)
+        // Save the entity using the repository
+        val savedEntity = showRepository.save(showEntity)
+        // Convert the saved entity back to the domain object and return it
+        return showMapper.toShow(savedEntity)
+    }
 
     /**
      * Retrieves the program.
@@ -34,7 +42,7 @@ class ShowService(val showRepository: ShowRepository, val showMapper: ShowMapper
         val endOfWeek = startOfWeek.plusSeconds(15 * 24 * 60 * 60)
         return showRepository.findAll()
             .filter { it.id.date in startOfWeek..endOfWeek }
-            .map { showMapper.toProgram(it) }
+            .map { showMapper.toShow(it) }
     }
 
     fun deleteById(id: UUID) {

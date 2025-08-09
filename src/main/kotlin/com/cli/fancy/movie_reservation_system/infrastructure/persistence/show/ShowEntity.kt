@@ -5,7 +5,7 @@ import jakarta.persistence.Entity
 import jakarta.persistence.Table
 
 @Entity
-@Table(name = "program")
+@Table(name = "show")
 data class ShowEntity(
     @EmbeddedId
     val id: ShowId

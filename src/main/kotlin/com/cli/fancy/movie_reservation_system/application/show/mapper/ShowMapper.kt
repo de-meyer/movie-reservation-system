@@ -9,5 +9,5 @@ import org.mapstruct.Mapper
 interface ShowMapper {
     fun toDto(show: Show): ShowResponse
     fun toEntity(showResponse: ShowResponse): ShowEntity
-    fun toProgram(showEntity: ShowEntity): Show
+    fun toShow(showEntity: ShowEntity): Show
 }
