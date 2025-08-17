@@ -8,6 +8,6 @@ import org.mapstruct.Mapper
 @Mapper(componentModel = "spring")
 interface ShowMapper {
     fun toDto(show: Show): ShowResponse
-    fun toEntity(showResponse: ShowResponse): ShowEntity
+    fun toShowEntity(show: Show): ShowEntity
     fun toShow(showEntity: ShowEntity): Show
 }

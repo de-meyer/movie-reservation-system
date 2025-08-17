@@ -12,10 +12,10 @@ class UserEntity {
     var id: UUID? = null
 
     @Column(name = "name", nullable = false, length = Integer.MAX_VALUE)
-    var name: String
+    var name: String? = null
 
     @Column(name = "email", nullable = false, length = Integer.MAX_VALUE)
-    var email: String
+    var email: String? = null
 
     @Column(name = "role", nullable = false, length = Integer.MAX_VALUE)
     var role: String? = "GUEST"

@@ -36,7 +36,7 @@ databaseChangeLog:
         - addPrimaryKey:
             tableName: show
             columnNames: movie_id, theater_id, date
-            constraintName: show
+            constraintName: show_pk
         - addForeignKeyConstraint:
             constraintName: movie_fk
             baseTableName: show
