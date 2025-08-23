@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 import java.util.*
 
 @RestController
-@RequestMapping("/program")
+@RequestMapping("/shows")
 class ShowController(val showService: ShowService, val showMapper: ShowMapper) {
     @GetMapping("/current")
     fun getProgramForTheWeek(): List<ShowResponse> {
@@ -20,6 +20,7 @@ class ShowController(val showService: ShowService, val showMapper: ShowMapper) {
         return showService.findById(id)?.let { showMapper.toDto(it) }
     }
 
+    @GetMapping("/all")
     fun getAllPrograms(): List<ShowResponse> {
         return showService.findAll().map { showMapper.toDto(it) }
     }

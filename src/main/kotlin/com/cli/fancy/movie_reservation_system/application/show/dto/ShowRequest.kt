@@ -4,6 +4,6 @@ import com.cli.fancy.movie_reservation_system.infrastructure.persistence.show.Sh
 
 class ShowRequest(
     val id: ShowId,
-    
+
     ) {
 }
