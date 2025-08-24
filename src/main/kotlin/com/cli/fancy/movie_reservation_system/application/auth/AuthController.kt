@@ -17,8 +17,11 @@ class AuthController(private val userService: UserService, private val jwtServic
 
     @PostMapping("/oauth/discord")
     fun oAuth(@RequestBody userLoginRequest: UserLoginRequest): ResponseEntity<String> {
-        val user = userService.getUserByEmail(userLoginRequest.email)
-            ?: userService.registerUser(userLoginRequest)
+        val user = try {
+            userService.getUserByEmail(userLoginRequest.email)
+        } catch (e: NoSuchElementException) {
+            userService.registerUser(userLoginRequest)
+        }
         val token = jwtService.generateToken(user)
         val cookie = ResponseCookie.from("user_jwt", token)
             .httpOnly(true)
