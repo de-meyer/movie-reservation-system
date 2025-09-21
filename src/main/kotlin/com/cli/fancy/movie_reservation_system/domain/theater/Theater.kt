@@ -1,15 +1,15 @@
-package com.cli.fancy.movie_reservation_system.application.theater.dto
+package com.cli.fancy.movie_reservation_system.domain.theater
 
 import java.util.UUID
 
-class TheaterResponse(
-    val id: UUID,
+data class Theater(
+    val id: UUID? = null,
     val name: String,
-    val capacity: Number,
+    val capacity: Int,
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other !is TheaterResponse) return false
+        if (other !is Theater) return false
 
         if (id != other.id) return false
         if (name != other.name) return false
@@ -19,9 +19,9 @@ class TheaterResponse(
     }
 
     override fun hashCode(): Int {
-        var result = id.hashCode()
+        var result = id?.hashCode() ?: 0
         result = 31 * result + name.hashCode()
-        result = 31 * result + capacity.hashCode()
+        result = 31 * result + capacity
         return result
     }
 }

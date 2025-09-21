@@ -18,12 +18,12 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: room_number
-                  type: INT
+                  name: name
+                  type: VARCHAR(255)
                   constraints:
                     nullable: false
               - column:
-                  name: seat_count
+                  name: capacity
                   type: INT
               - column:
                   name: created_at
