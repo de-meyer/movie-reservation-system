@@ -1,6 +1,5 @@
 package com.cli.fancy.movie_reservation_system.domain.show
 
-import com.cli.fancy.movie_reservation_system.application.show.dto.ShowCreateRequest
 import com.cli.fancy.movie_reservation_system.application.show.mapper.ShowMapper
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.show.ShowRepository
 import org.springframework.stereotype.Service
@@ -14,18 +13,13 @@ class ShowService(val showRepository: ShowRepository, val showMapper: ShowMapper
         return showRepository.findAll().map { showMapper.toShow(it) }
             .toList()
     }
+
     fun createShow(show: Show): Show {
-        mergeDateTime(show)
         val showEntity = showMapper.toShowEntity(show)
         return showMapper.toShow(showRepository.save(showEntity))
 
     }
-    fun  mergeDateTime(showCreateRequest: ShowCreateRequest){
-        val date = showCreateRequest.date
-        val time = showCreateRequest.timestamp
-        val mergedDateTime = java.time.LocalDateTime.of(date, time)
-        val date2 = mergedDateTime.toInstant(java.time.ZoneOffset.UTC)
-    }
+
     fun findById(id: UUID): Show? {
         val showEntity = showRepository.findById(id)
             .orElseThrow { NoSuchElementException("Show with id $id not found") }
@@ -44,7 +38,7 @@ class ShowService(val showRepository: ShowRepository, val showMapper: ShowMapper
         // Calculate the end of the next 14 days (2 weeks))
         val endOfWeek = startOfWeek.plusSeconds(15 * 24 * 60 * 60)
         return showRepository.findAll()
-            .filter { it.id.date in startOfWeek..endOfWeek }
+            .filter { it.date in startOfWeek..endOfWeek }
             .map { showMapper.toShow(it) }
     }
 

@@ -7,6 +7,13 @@ databaseChangeLog:
             tableName: show
             columns:
               - column:
+                  name: id
+                  type: UUID
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
                   name: movie_id
                   type: UUID
                   constraints:
@@ -33,10 +40,6 @@ databaseChangeLog:
                   defaultValueComputed: CURRENT_TIMESTAMP
                   constraints:
                     nullable: false
-        - addPrimaryKey:
-            tableName: show
-            columnNames: movie_id, theater_id, date
-            constraintName: show_pk
         - addForeignKeyConstraint:
             constraintName: movie_fk
             baseTableName: show
