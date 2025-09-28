@@ -1,5 +1,6 @@
 package com.cli.fancy.movie_reservation_system.domain.show
 
+import com.cli.fancy.movie_reservation_system.application.show.dto.ShowCreateRequest
 import com.cli.fancy.movie_reservation_system.application.show.mapper.ShowMapper
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.show.ShowRepository
 import org.springframework.stereotype.Service
@@ -13,22 +14,24 @@ class ShowService(val showRepository: ShowRepository, val showMapper: ShowMapper
         return showRepository.findAll().map { showMapper.toShow(it) }
             .toList()
     }
+    fun createShow(show: Show): Show {
+        mergeDateTime(show)
+        val showEntity = showMapper.toShowEntity(show)
+        return showMapper.toShow(showRepository.save(showEntity))
 
+    }
+    fun  mergeDateTime(showCreateRequest: ShowCreateRequest){
+        val date = showCreateRequest.date
+        val time = showCreateRequest.timestamp
+        val mergedDateTime = java.time.LocalDateTime.of(date, time)
+        val date2 = mergedDateTime.toInstant(java.time.ZoneOffset.UTC)
+    }
     fun findById(id: UUID): Show? {
         val showEntity = showRepository.findById(id)
             .orElseThrow { NoSuchElementException("Show with id $id not found") }
 
         return showMapper.toShow(showEntity)
 
-    }
-
-    fun save(show: Show): Show {
-        // Convert the Show domain object to the entity type expected by the repository
-        val showEntity = showMapper.toShowEntity(show)
-        // Save the entity using the repository
-        val savedEntity = showRepository.save(showEntity)
-        // Convert the saved entity back to the domain object and return it
-        return showMapper.toShow(savedEntity)
     }
 
     /**
