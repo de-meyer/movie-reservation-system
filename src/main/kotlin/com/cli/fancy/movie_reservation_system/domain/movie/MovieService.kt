@@ -9,8 +9,8 @@ import java.util.*
 
 @Service
 class MovieService(val movieRepository: MovieRepository, val movieMapper: MovieMapper) {
-    fun getAllMovies(): List<MovieBrowserInformation> = movieRepository.findAll()
-        .map { movieMapper.toBrowserInformationDomain(it) }
+    fun getAllMovies(): List<Movie> = movieRepository.findAll()
+        .map { movieMapper.toMovie(it) }
         .toList()
 
     fun getMovieById(id: UUID): Movie? {
