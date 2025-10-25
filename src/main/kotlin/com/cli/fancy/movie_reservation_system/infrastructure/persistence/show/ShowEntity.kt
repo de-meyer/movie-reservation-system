@@ -14,13 +14,13 @@ class ShowEntity private constructor() { // Hibernate only
     val id: UUID = UUID.randomUUID()
 
     lateinit var movieId: UUID
-        protected set
+        private set
 
     lateinit var theaterId: UUID
-        protected set
+        private set
 
     lateinit var date: Instant
-        protected set
+        private set
 
     constructor(movieId: UUID, theaterId: UUID, date: Instant) : this() {
         this.movieId = movieId
