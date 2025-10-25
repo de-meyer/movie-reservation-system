@@ -1,9 +1,6 @@
 package com.cli.fancy.movie_reservation_system.infrastructure.persistence.show
 
-import jakarta.persistence.Column
 import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
 import java.time.Instant
@@ -11,35 +8,26 @@ import java.util.*
 
 @Entity
 @Table(name = "show")
-data class ShowEntity(
+class ShowEntity private constructor() { // Hibernate only
+
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    val id: UUID? = null,
-    @Column(name = "movie_id")
-    val movieId: UUID,
-    @Column(name = "theater_id")
-    val theaterId: UUID,
-    val date: Instant
-) {
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
+    val id: UUID = UUID.randomUUID()
 
-        other as ShowEntity
+    lateinit var movieId: UUID
+        protected set
 
-        if (id != other.id) return false
-        if (movieId != other.movieId) return false
-        if (theaterId != other.theaterId) return false
-        if (date != other.date) return false
+    lateinit var theaterId: UUID
+        protected set
 
-        return true
+    lateinit var date: Instant
+        protected set
+
+    constructor(movieId: UUID, theaterId: UUID, date: Instant) : this() {
+        this.movieId = movieId
+        this.theaterId = theaterId
+        this.date = date
     }
 
-    override fun hashCode(): Int {
-        var result = id.hashCode()
-        result = 31 * result + movieId.hashCode()
-        result = 31 * result + theaterId.hashCode()
-        result = 31 * result + date.hashCode()
-        return result
-    }
+    override fun equals(other: Any?): Boolean = (other is ShowEntity) && id == other.id
+    override fun hashCode(): Int = id.hashCode()
 }

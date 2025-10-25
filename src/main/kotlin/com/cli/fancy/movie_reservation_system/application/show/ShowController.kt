@@ -18,9 +18,10 @@ class ShowController(val showService: ShowService, val showMapper: ShowMapper) {
     }*/
 
     @PostMapping("/create")
-    fun createShow(@RequestBody showCreateRequest: ShowCreateRequest): ResponseEntity<String> {
+    fun createShow(@RequestBody request: ShowCreateRequest): ResponseEntity<String> {
         try {
-            showService.createShow(showMapper.toShowFromCreate(showCreateRequest))
+            val showEntity = showMapper.toEntityFromCreateRequest(request)
+            showService.createShow(showEntity = showEntity)
             return ResponseEntity.ok().body("Success")
         } catch (ex: Exception) {
             return ResponseEntity.badRequest().body(ex.message)

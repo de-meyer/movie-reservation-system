@@ -1,6 +1,7 @@
 package com.cli.fancy.movie_reservation_system.domain.show
 
 import com.cli.fancy.movie_reservation_system.application.show.mapper.ShowMapper
+import com.cli.fancy.movie_reservation_system.infrastructure.persistence.show.ShowEntity
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.show.ShowRepository
 import org.springframework.stereotype.Service
 import java.time.Instant
@@ -14,13 +15,12 @@ class ShowService(val showRepository: ShowRepository, val showMapper: ShowMapper
             .toList()
     }
 
-    fun createShow(show: Show): Show {
-        val showEntity = showMapper.toShowEntity(show)
+    fun createShow(showEntity: ShowEntity): Show {
         return showMapper.toShow(showRepository.save(showEntity))
 
     }
 
-    fun findById(id: UUID): Show? {
+    fun findById(id: UUID): Show {
         val showEntity = showRepository.findById(id)
             .orElseThrow { NoSuchElementException("Show with id $id not found") }
 
