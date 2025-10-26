@@ -9,7 +9,7 @@ data class Movie(
     val durationMinutes: Int,
     val director: String?,
     val genre: String?,
-    val releaseYear: Int?,
+    val releaseYear: Int,
     val rating: Double?,
     val image: ByteArray,
 ) {

@@ -1,32 +1,27 @@
 package com.cli.fancy.movie_reservation_system.infrastructure.persistence.theater
 
+import com.cli.fancy.movie_reservation_system.infrastructure.persistence.show.ShowEntity
 import jakarta.persistence.*
 import java.util.*
 
 @Entity
 @Table(name = "theater")
-data class TheaterEntity(
+@Access(AccessType.FIELD)
+class TheaterEntity private constructor() {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: UUID? = null,
-    val name: String,
-    val capacity: Int? = null,
-) {
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other !is TheaterEntity) return false
+    val id: UUID = UUID.randomUUID()
 
-        if (id != other.id) return false
-        if (name != other.name) return false
-        if (capacity != other.capacity) return false
+    @Column(name = "name")
+    var name: String = ""
 
-        return true
+    @Column(name = "capacity")
+    var capacity: Int = 0
+
+    constructor(name: String, capacity: Int) : this() {
+        this.name = name
+        this.capacity = capacity
     }
 
-    override fun hashCode(): Int {
-        var result = id?.hashCode() ?: 0
-        result = 31 * result + name.hashCode()
-        result = 31 * result + (capacity ?: 0)
-        return result
-    }
+    override fun equals(other: Any?): Boolean = (other is TheaterEntity) && id == other.id
+    override fun hashCode(): Int = id.hashCode()
 }

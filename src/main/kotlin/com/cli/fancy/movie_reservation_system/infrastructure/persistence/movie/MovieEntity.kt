@@ -1,55 +1,67 @@
 package com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie
 
 import jakarta.persistence.*
-import java.time.LocalDateTime
+import java.util.*
+
+import jakarta.persistence.*
 import java.util.*
 
 @Entity
 @Table(name = "movies")
-data class MovieEntity(
+@Access(AccessType.FIELD)
+class MovieEntity private constructor() { // no-arg constructor for Hibernate/KAPT
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: UUID? = null,
-    @Column(nullable = false)
-    val title: String,
-    val description: String? = null,
-    val releaseYear: Int? = null,
-    val director: String? = null,
-    val genre: String? = null,
-    val durationMinutes: Int? = null,
-    val rating: Double? = null,
-    val image: ByteArray,
-    val createdAt: LocalDateTime = LocalDateTime.now()
-) {
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other !is MovieEntity) return false
+    @Column(name = "id", nullable = false, updatable = false)
+    val id: UUID = UUID.randomUUID()
 
-        if (releaseYear != other.releaseYear) return false
-        if (durationMinutes != other.durationMinutes) return false
-        if (rating != other.rating) return false
-        if (id != other.id) return false
-        if (title != other.title) return false
-        if (description != other.description) return false
-        if (director != other.director) return false
-        if (genre != other.genre) return false
-        if (!image.contentEquals(other.image)) return false
-        if (createdAt != other.createdAt) return false
+    @Column(name = "title", nullable = false)
+    var title: String = ""
 
-        return true
+    @Column(name = "description", nullable = false)
+    var description: String = ""
+
+    @Column(name = "release_year", nullable = false)
+    var releaseYear: Int = 0
+
+    @Column(name = "director", nullable = false)
+    var director: String = ""
+
+    @Column(name = "genre", nullable = false)
+    var genre: String = ""
+
+    @Column(name = "duration_minutes", nullable = false)
+    var durationMinutes: Int = 0
+
+    @Column(name = "rating", nullable = false)
+    var rating: Double = 0.0
+
+    @Column(name = "image", nullable = false)
+    var image: ByteArray = ByteArray(0)
+
+    /** Secondary constructor for convenient creation */
+    constructor(
+        title: String,
+        description: String,
+        releaseYear: Int,
+        director: String,
+        genre: String,
+        durationMinutes: Int,
+        rating: Double,
+        image: ByteArray
+    ) : this() {
+        this.title = title
+        this.description = description
+        this.releaseYear = releaseYear
+        this.director = director
+        this.genre = genre
+        this.durationMinutes = durationMinutes
+        this.rating = rating
+        this.image = image
     }
 
-    override fun hashCode(): Int {
-        var result = releaseYear ?: 0
-        result = 31 * result + (durationMinutes ?: 0)
-        result = 31 * result + (rating?.hashCode() ?: 0)
-        result = 31 * result + (id?.hashCode() ?: 0)
-        result = 31 * result + title.hashCode()
-        result = 31 * result + (description?.hashCode() ?: 0)
-        result = 31 * result + (director?.hashCode() ?: 0)
-        result = 31 * result + (genre?.hashCode() ?: 0)
-        result = 31 * result + image.contentHashCode()
-        result = 31 * result + createdAt.hashCode()
-        return result
-    }
+    override fun equals(other: Any?): Boolean =
+        this === other || (other is MovieEntity && id == other.id)
+
+    override fun hashCode(): Int = id.hashCode()
 }

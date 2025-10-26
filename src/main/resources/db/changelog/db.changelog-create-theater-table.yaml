@@ -3,17 +3,12 @@ databaseChangeLog:
       id: create-theater-table
       author: de-meyer
       changes:
-        - sql:
-            splitStatements: false
-            sql: CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
         - createTable:
             tableName: theater
             columns:
               - column:
                   name: id
                   type: UUID
-                  defaultValueComputed: uuid_generate_v4()
                   constraints:
                     primaryKey: true
                     nullable: false

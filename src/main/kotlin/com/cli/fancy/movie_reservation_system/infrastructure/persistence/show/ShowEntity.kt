@@ -2,6 +2,7 @@ package com.cli.fancy.movie_reservation_system.infrastructure.persistence.show
 
 import jakarta.persistence.Access
 import jakarta.persistence.AccessType
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
 import jakarta.persistence.Table
@@ -16,8 +17,13 @@ class ShowEntity private constructor() { // Hibernate only
     @Id
     val id: UUID = UUID.randomUUID()
 
+    @Column(name = "movie_id")
     lateinit var movieId: UUID
+
+    @Column(name = "theater_id")
     lateinit var theaterId: UUID
+
+    @Column(name = "date")
     lateinit var date: Instant
 
     constructor(movieId: UUID, theaterId: UUID, date: Instant) : this() {

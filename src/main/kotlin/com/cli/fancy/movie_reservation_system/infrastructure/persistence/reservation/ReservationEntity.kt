@@ -1,43 +1,36 @@
 package com.cli.fancy.movie_reservation_system.infrastructure.persistence.reservation
 
+import com.cli.fancy.movie_reservation_system.infrastructure.persistence.show.ShowEntity
 import jakarta.persistence.*
-import jakarta.validation.constraints.NotNull
 import java.util.*
 
 @Entity
 @Table(name = "reservation")
-data class ReservationEntity(
+@Access(AccessType.FIELD)
+class ReservationEntity private constructor() {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: UUID? = null,
-    @NotNull
-    val userId: UUID,
-    @NotNull
-    val seatNumber: String,
-    @NotNull
-    val theaterId: UUID,
-    @NotNull
-    val movieId: UUID,
-) {
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other !is ReservationEntity) return false
+    val id: UUID = UUID.randomUUID()
 
-        if (id != other.id) return false
-        if (userId != other.userId) return false
-        if (seatNumber != other.seatNumber) return false
-        if (theaterId != other.theaterId) return false
-        if (movieId != other.movieId) return false
+    @Column(name = "user_id")
+    lateinit var userId: UUID
 
-        return true
+    @Column(name = "seat_number")
+    lateinit var seatNumber: String
+
+    @Column(name = "theater_id")
+    lateinit var theaterId: UUID
+
+    @Column(name = "movie_id")
+    lateinit var movieId: UUID
+
+    constructor(userId: UUID, seatNumber: String, showEntity: ShowEntity) : this() {
+        this.userId = userId
+        this.seatNumber = seatNumber
+        this.theaterId = showEntity.theaterId
+        this.movieId = showEntity.movieId
     }
 
-    override fun hashCode(): Int {
-        var result = id?.hashCode() ?: 0
-        result = 31 * result + userId.hashCode()
-        result = 31 * result + seatNumber.hashCode()
-        result = 31 * result + theaterId.hashCode()
-        result = 31 * result + movieId.hashCode()
-        return result
-    }
+    override fun equals(other: Any?): Boolean = (other is ReservationEntity) && id == other.id
+    override fun hashCode(): Int = id.hashCode()
+
 }
