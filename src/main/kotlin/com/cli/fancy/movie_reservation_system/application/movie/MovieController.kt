@@ -1,8 +1,7 @@
 package com.cli.fancy.movie_reservation_system.application.movie
 
-import com.cli.fancy.movie_reservation_system.application.movie.dto.MovieBrowseInformationResponse
+import com.cli.fancy.movie_reservation_system.application.movie.dto.MovieBrowseResponse
 import com.cli.fancy.movie_reservation_system.application.movie.dto.MovieCreateShowResponse
-import com.cli.fancy.movie_reservation_system.application.movie.dto.MovieResponse
 import com.cli.fancy.movie_reservation_system.application.movie.mapper.MovieMapper
 import com.cli.fancy.movie_reservation_system.domain.movie.MovieService
 import org.springframework.web.bind.annotation.GetMapping
@@ -18,7 +17,7 @@ class MovieController(val movieService: MovieService, val movieMapper: MovieMapp
     // Add your movie-related endpoints here
     // For example:
     @GetMapping("/browse")
-    fun getAllMovies(): List<MovieBrowseInformationResponse> {
+    fun getAllMovies(): List<MovieBrowseResponse> {
         return movieService.getAllMovies().map { movieMapper.toBrowseInformationDto(it) }
     }
 
