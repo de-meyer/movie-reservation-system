@@ -21,11 +21,13 @@ class MovieController(val movieService: MovieService, val movieMapper: MovieMapp
     fun getAllMovies(): List<MovieBrowseInformationResponse> {
         return movieService.getAllMovies().map { movieMapper.toBrowseInformationDto(it) }
     }
+
     @GetMapping("/createShowInformation")
     fun getAllMovieInformationsForShowCreation(): List<MovieCreateShowResponse> {
         return movieService.getAllMovies().map { movieMapper.toShowCreationInformation(it) }
     }
+
     @GetMapping("/{id}")
-    fun getMovieById(@PathVariable id: UUID): MovieResponse? =
-        movieService.getMovieById(id).let { movieMapper.toDto(it) }
+    fun getMovieById(@PathVariable id: UUID): MovieCreateShowResponse? =
+        movieService.getMovieById(id).let { movieMapper.toMovieCreateShowSelection(it) }
 }

@@ -16,4 +16,5 @@ interface MovieMapper {
     fun toEntity(movieResponse: MovieResponse): MovieEntity
     fun toBrowserInformationDomain(movieEntity: MovieEntity): MovieBrowserInformation
     fun toMovie(movieEntity: MovieEntity): Movie
+    fun toMovieCreateShowSelection(movie: Movie?): MovieCreateShowResponse
 }
