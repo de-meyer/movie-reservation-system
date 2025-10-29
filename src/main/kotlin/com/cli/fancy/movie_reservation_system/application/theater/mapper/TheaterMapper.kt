@@ -11,5 +11,5 @@ interface TheaterMapper {
     // Define mapping methods here
     fun toDto(theater: Theater): TheaterResponse
     fun toEntity(theaterRequest: TheaterRequest): TheaterEntity
-    fun toDomain(theaterEntity: TheaterEntity): Theater
+    fun toTheater(theaterEntity: TheaterEntity): Theater
 }

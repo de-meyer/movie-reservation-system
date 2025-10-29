@@ -6,14 +6,18 @@ import com.cli.fancy.movie_reservation_system.application.show.dto.ShowResponse
 import com.cli.fancy.movie_reservation_system.application.show.mapper.ShowMapper
 import com.cli.fancy.movie_reservation_system.domain.show.ShowService
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/show")
 class ShowController(val showService: ShowService, val showMapper: ShowMapper) {
+
+    @GetMapping("/findAll")
+    fun findAllShows(): ResponseEntity<List<ShowResponse>> {
+        val shows = showService.findAll().map { showMapper.toShowResponse(it) }
+        return ResponseEntity.ok(shows)
+    }
+
     @PostMapping("/find")
     fun findShowById(@RequestBody request: ShowIdRequest): ShowResponse {
         val show = showMapper.toShowResponse(showService.findById(request.id))

@@ -2,7 +2,7 @@ package com.cli.fancy.movie_reservation_system.application.movie.dto
 
 import java.util.*
 
-class MovieCreateShowResponse(
+data class MovieCreateShowResponse(
     val id: UUID,
     val title: String,
     val durationMinutes: Int

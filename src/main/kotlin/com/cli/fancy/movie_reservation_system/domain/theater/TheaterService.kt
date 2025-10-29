@@ -12,12 +12,12 @@ class TheaterService(
     val theaterMapper: TheaterMapper
 ) {
     fun getAllTheaters(): List<Theater> =
-        theaterRepository.findAll().map { theaterMapper.toDomain(it) }.toList()
+        theaterRepository.findAll().map { theaterMapper.toTheater(it) }.toList()
 
     fun getTheaterById(id: UUID): Theater? {
         val theaterEntity = theaterRepository.findById(id)
         return if (theaterEntity.isPresent) {
-            theaterMapper.toDomain(theaterEntity.get())
+            theaterMapper.toTheater(theaterEntity.get())
         } else {
             null
         }
