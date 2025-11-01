@@ -16,7 +16,7 @@ class ProgramController(val service: ProgramService, val programMapper: ProgramM
     @GetMapping("/current")
     fun getCurrentProgram(): ResponseEntity<List<ProgramResponse>> {
         // Implementation to retrieve current program with shows and movies
-        val response = service.getPrograms().map { programMapper.toProgramResponse(it) }
+        val response = service.getProgramList().map { programMapper.toProgramResponse(it) }
 
         return ResponseEntity.ok(response)
     }
