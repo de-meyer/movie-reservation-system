@@ -10,13 +10,13 @@ import java.util.*
 @Service
 class MovieService(val movieRepository: MovieRepository, val movieMapper: MovieMapper) {
     fun getAllMovies(): List<Movie> = movieRepository.findAll()
-        .map { movieMapper.toMovie(it) }
+        .map { movieMapper.toMovieFromEntity(it) }
         .toList()
 
     fun getMovieById(id: UUID): Movie? {
         val movieEntity = movieRepository.findById(id)
         return if (movieEntity.isPresent) {
-            movieMapper.toMovie(movieEntity.get())
+            movieMapper.toMovieFromEntity(movieEntity.get())
         } else {
             null
         }
@@ -25,6 +25,6 @@ class MovieService(val movieRepository: MovieRepository, val movieMapper: MovieM
     fun updateMovie(movie: MovieResponse): Movie {
         val movieEntity =
             movieRepository.findById(movie.id).orElseThrow { NoSuchElementException("Movie with id $id not found") }
-        return movieMapper.toMovie(movieRepository.save(movieEntity))
+        return movieMapper.toMovieFromEntity(movieRepository.save(movieEntity))
     }
 }

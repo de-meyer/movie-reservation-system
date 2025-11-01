@@ -13,6 +13,6 @@ interface MovieMapper {
     fun toShowCreationInformation(movie: Movie?): MovieCreateShowResponse
     fun toBrowseInformationDto(movie: Movie?): MovieBrowseResponse
     fun toEntity(movieResponse: MovieResponse): MovieEntity
-    fun toMovie(movieEntity: MovieEntity): Movie
+    fun toMovieFromEntity(movieEntity: MovieEntity): Movie
     fun toMovieCreateShowSelection(movie: Movie?): MovieCreateShowResponse
 }
