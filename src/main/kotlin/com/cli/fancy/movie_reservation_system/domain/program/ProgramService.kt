@@ -49,6 +49,7 @@ class ProgramService(
             val showSchedules = movieShows.mapNotNull { show ->
                 val theater = theaters[show.theaterId] ?: return@mapNotNull null
                 ShowSchedule(
+                    id = show.id,
                     theaterName = theater.name,
                     date = show.date
                 )
