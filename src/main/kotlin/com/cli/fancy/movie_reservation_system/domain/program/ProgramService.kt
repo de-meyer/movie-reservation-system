@@ -56,7 +56,7 @@ class ProgramService(
             }
             Program(
                 movie = movie,
-                shows = showSchedules
+                shows = showSchedules.sortedWith(compareBy { it.date })
             )
         }
         return PageImpl(programs, pageable, showsPage.totalElements)
