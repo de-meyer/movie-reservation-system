@@ -9,5 +9,6 @@ import java.util.*
 
 interface ShowRepository : JpaRepository<ShowEntity, UUID> {
     override fun findAll(pageable: Pageable): Page<ShowEntity>
+    fun findByDateGreaterThanEqual(date: Instant, pageable: Pageable): Page<ShowEntity>
     fun findByDateBetween(startDate: Instant, endDate: Instant, pageable: Pageable): Page<ShowEntity>
 }
