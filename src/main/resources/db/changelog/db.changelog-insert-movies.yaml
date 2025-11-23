@@ -28,8 +28,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Comedy" }
               - column: { name: duration_minutes, value: 102 }
               - column: { name: rating, value: 8.1 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'shrektok-profile.jpg' }
+              - column: { name: image_landscape, value: 'shrektok-landscape.jpg' }
 
         - insert:
             tableName: movies
