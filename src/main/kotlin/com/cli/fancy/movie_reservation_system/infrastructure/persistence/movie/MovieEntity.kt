@@ -36,8 +36,11 @@ class MovieEntity private constructor() { // no-arg constructor for Hibernate/KA
     @Column(name = "rating", nullable = false)
     var rating: Double = 0.0
 
-    @Column(name = "image", nullable = false)
-    var image: ByteArray = ByteArray(0)
+    @Column(name = "image_profile", nullable = false)
+    var imageProfile: String = ""
+
+    @Column(name = "image_landscape", nullable = false)
+    var imageLandscape: String = ""
 
     /** Secondary constructor for convenient creation */
     constructor(
@@ -48,7 +51,8 @@ class MovieEntity private constructor() { // no-arg constructor for Hibernate/KA
         genre: String,
         durationMinutes: Int,
         rating: Double,
-        image: ByteArray
+        imageProfile: String,
+        imageLandscape: String
     ) : this() {
         this.title = title
         this.description = description
@@ -57,7 +61,8 @@ class MovieEntity private constructor() { // no-arg constructor for Hibernate/KA
         this.genre = genre
         this.durationMinutes = durationMinutes
         this.rating = rating
-        this.image = image
+        this.imageProfile = imageProfile
+        this.imageLandscape = imageLandscape
     }
 
     override fun equals(other: Any?): Boolean =

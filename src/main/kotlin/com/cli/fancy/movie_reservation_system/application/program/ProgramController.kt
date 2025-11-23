@@ -23,7 +23,6 @@ class ProgramController(val service: ProgramService, val programMapper: ProgramM
         @RequestParam(defaultValue = "0") page: Int,
         @RequestParam(defaultValue = "30") size: Int
     ): ResponseEntity<Page<ProgramResponse>> {
-        // Implementation to retrieve todays program with shows and movies
         val response = service.getProgramList(page, size, Instant.now()).map { programMapper.toProgramResponse(it) }
         return ResponseEntity.ok(response)
     }

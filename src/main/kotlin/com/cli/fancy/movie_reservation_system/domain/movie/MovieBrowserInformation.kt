@@ -4,7 +4,8 @@ import java.util.UUID
 
 data class MovieBrowserInformation(
     val title: String,
-    val image: ByteArray,
+    val imageProfile: String,
+    val imageLandscape: String,
     val id: UUID
 ) {
     override fun equals(other: Any?): Boolean {
@@ -12,7 +13,8 @@ data class MovieBrowserInformation(
         if (other !is MovieBrowserInformation) return false
 
         if (title != other.title) return false
-        if (!image.contentEquals(other.image)) return false
+        if (imageProfile != other.imageProfile) return false
+        if (imageLandscape != other.imageLandscape) return false
         if (id != other.id) return false
 
         return true
@@ -20,7 +22,8 @@ data class MovieBrowserInformation(
 
     override fun hashCode(): Int {
         var result = title.hashCode()
-        result = 31 * result + image.contentHashCode()
+        result = 31 * result + imageProfile.hashCode()
+        result = 31 * result + imageLandscape.hashCode()
         result = 31 * result + id.hashCode()
         return result
     }

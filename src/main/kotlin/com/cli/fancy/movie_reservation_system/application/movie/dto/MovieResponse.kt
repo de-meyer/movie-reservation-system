@@ -11,8 +11,10 @@ data class MovieResponse(
     val genre: String?,
     val releaseYear: Int,
     val rating: Double?,
-    val image: ByteArray,
+    val imageProfile: String?,
+    val imageLandscape: String?
 ) {
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is MovieResponse) return false
@@ -25,21 +27,23 @@ data class MovieResponse(
         if (description != other.description) return false
         if (director != other.director) return false
         if (genre != other.genre) return false
-        if (!image.contentEquals(other.image)) return false
+        if (imageProfile != other.imageProfile) return false
+        if (imageLandscape != other.imageLandscape) return false
 
         return true
     }
 
     override fun hashCode(): Int {
         var result = durationMinutes
-        result = 31 * result + (releaseYear ?: 0)
+        result = 31 * result + releaseYear
         result = 31 * result + (rating?.hashCode() ?: 0)
         result = 31 * result + id.hashCode()
         result = 31 * result + title.hashCode()
         result = 31 * result + description.hashCode()
         result = 31 * result + (director?.hashCode() ?: 0)
         result = 31 * result + (genre?.hashCode() ?: 0)
-        result = 31 * result + image.contentHashCode()
+        result = 31 * result + (imageProfile?.hashCode() ?: 0)
+        result = 31 * result + (imageLandscape?.hashCode() ?: 0)
         return result
     }
 

@@ -21,8 +21,13 @@ databaseChangeLog:
                   name: description
                   type: TEXT
               - column:
-                  name: image
-                  type: BYTEA
+                  name: image_profile
+                  type: TEXT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: image_landscape
+                  type: TEXT
                   constraints:
                     nullable: true
               - column:
