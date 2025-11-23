@@ -1,0 +1,26 @@
+language: yaml
+databaseChangeLog:
+  - changeSet:
+      id: update-show-dates
+      author: de-meyer
+      changes:
+        - sql:
+            dbms: postgresql
+            splitStatements: false
+            stripComments: false
+            sql: |
+              WITH cte AS (
+               SELECT id,
+                      date,
+                      row_number() OVER (ORDER BY id) AS rn,
+                      count(*) OVER () AS cnt
+               FROM "show"
+              )
+              UPDATE "show" s
+              SET date = CASE
+               WHEN cte.rn <= (cte.cnt/2)::int
+                 THEN date_trunc('day', now()) + (s.date - date_trunc('day', s.date))
+               ELSE date_trunc('day', now()) + interval '1 day' + (s.date - date_trunc('day', s.date))
+              END
+              FROM cte
+              WHERE s.id = cte.id;

@@ -16,4 +16,6 @@ databaseChangeLog:
   - include:
       file: db/changelog/db.changelog-insert-show.yaml
   - include:
+      file: db/changelog/db.changelog-update-show.yaml
+  - include:
       file: db/changelog/db.changelog-create-reservation-table.yaml
