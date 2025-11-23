@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import java.time.Instant
+import java.time.temporal.ChronoUnit
+import kotlin.time.Duration
+import kotlin.time.DurationUnit
 
 @RestController
 @RequestMapping("/program")
@@ -16,11 +20,37 @@ class ProgramController(val service: ProgramService, val programMapper: ProgramM
 
     @GetMapping("/current")
     fun getCurrentProgram(
-        @RequestParam(defaultValue = "1") page: Int,
+        @RequestParam(defaultValue = "0") page: Int,
         @RequestParam(defaultValue = "30") size: Int
     ): ResponseEntity<Page<ProgramResponse>> {
-        // Implementation to retrieve current program with shows and movies
-        val response = service.getProgramList(page, size).map { programMapper.toProgramResponse(it) }
+        // Implementation to retrieve todays program with shows and movies
+        val response = service.getProgramList(page, size, Instant.now()).map { programMapper.toProgramResponse(it) }
         return ResponseEntity.ok(response)
     }
+
+    @GetMapping("/today")
+    fun getTodayProgram(
+        @RequestParam(defaultValue = "0") page: Int,
+        @RequestParam(defaultValue = "30") size: Int
+    ): ResponseEntity<Page<ProgramResponse>> {
+        // Implementation to retrieve todays program with shows and movies
+        val startOfDay = Instant.now().truncatedTo(ChronoUnit.DAYS)
+        val response =
+            service.getDaySpecificProgramList(startOfDay, page, size).map { programMapper.toProgramResponse(it) }
+        return ResponseEntity.ok(response)
+    }
+
+    @GetMapping("/tomorrow")
+    fun getTomorrowsProgram(
+        @RequestParam(defaultValue = "0") page: Int,
+        @RequestParam(defaultValue = "30") size: Int
+    ): ResponseEntity<Page<ProgramResponse>> {
+        // Implementation to retrieve todays program with shows and movies
+        val startOfDay = Instant.now().truncatedTo(ChronoUnit.DAYS).plus(1, ChronoUnit.DAYS)
+
+        val response =
+            service.getDaySpecificProgramList(startOfDay, page, size).map { programMapper.toProgramResponse(it) }
+        return ResponseEntity.ok(response)
+    }
+
 }
