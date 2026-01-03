@@ -56,8 +56,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Fantasy" }
               - column: { name: duration_minutes, value: 140 }
               - column: { name: rating, value: 9.0 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'lord_of_the_rees-profile.jpg' }
+              - column: { name: image_landscape, value: 'lord_of_the_rees-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -84,8 +84,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Horror" }
               - column: { name: duration_minutes, value: 88 }
               - column: { name: rating, value: 6.2 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'karen-profile.jpg' }
+              - column: { name: image_landscape, value: 'karen-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -98,8 +98,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Fantasy" }
               - column: { name: duration_minutes, value: 113 }
               - column: { name: rating, value: 8.4 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'naania-profile.jpg' }
+              - column: { name: image_landscape, value: 'naania-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -112,8 +112,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Parody" }
               - column: { name: duration_minutes, value: 122 }
               - column: { name: rating, value: 5.9 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'bored-profile.jpg' }
+              - column: { name: image_landscape, value: 'bored-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -126,8 +126,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Action" }
               - column: { name: duration_minutes, value: 108 }
               - column: { name: rating, value: 7.4 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'slay-profile.jpg' }
+              - column: { name: image_landscape, value: 'slay-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -140,8 +140,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Romance" }
               - column: { name: duration_minutes, value: 89 }
               - column: { name: rating, value: 5.5 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'fifty_shades_of_Ehh-profile.jpg' }
+              - column: { name: image_landscape, value: 'fifty_shades_of_Ehh-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -168,8 +168,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Horror" }
               - column: { name: duration_minutes, value: 106 }
               - column: { name: rating, value: 6.9 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'simping_dead-profile.jpg' }
+              - column: { name: image_landscape, value: 'simping_dead-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -182,8 +182,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Drama" }
               - column: { name: duration_minutes, value: 112 }
               - column: { name: rating, value: 8.2 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'breaking_bread-profile.jpg' }
+              - column: { name: image_landscape, value: 'breaking_bread-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -196,8 +196,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Animated" }
               - column: { name: duration_minutes, value: 94 }
               - column: { name: rating, value: 7.3 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'finding_emo-profile.jpg' }
+              - column: { name: image_landscape, value: 'finding_emo-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -210,8 +210,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Fantasy" }
               - column: { name: duration_minutes, value: 110 }
               - column: { name: rating, value: 8.0 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'wizards-profile.jpg' }
+              - column: { name: image_landscape, value: 'wizards-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -224,8 +224,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Experimental" }
               - column: { name: duration_minutes, value: 99 }
               - column: { name: rating, value: 6.1 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'no_thoughts-profile.jpg' }
+              - column: { name: image_landscape, value: 'no_thoughts-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -238,8 +238,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Sci-Fi" }
               - column: { name: duration_minutes, value: 117 }
               - column: { name: rating, value: 9.1 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'meowtrix-profile.jpg' }
+              - column: { name: image_landscape, value: 'meowtrix-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -252,8 +252,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Action" }
               - column: { name: duration_minutes, value: 129 }
               - column: { name: rating, value: 9.1 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'barbenheimer-profile.jpg' }
+              - column: { name: image_landscape, value: 'barbenheimer-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -308,8 +308,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Sci-Fi" }
               - column: { name: duration_minutes, value: 132 }
               - column: { name: rating, value: 8.6 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'dune-profile.jpg' }
+              - column: { name: image_landscape, value: 'dune-landscape.jpg' }
 
         - insert:
             tableName: movies

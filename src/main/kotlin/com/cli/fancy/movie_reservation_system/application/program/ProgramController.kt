@@ -21,7 +21,7 @@ class ProgramController(val service: ProgramService, val programMapper: ProgramM
     @GetMapping("/current")
     fun getCurrentProgram(
         @RequestParam(defaultValue = "0") page: Int,
-        @RequestParam(defaultValue = "30") size: Int
+        @RequestParam(defaultValue = "1") size: Int
     ): ResponseEntity<Page<ProgramResponse>> {
         val response = service.getProgramList(page, size, Instant.now()).map { programMapper.toProgramResponse(it) }
         return ResponseEntity.ok(response)

@@ -7,10 +7,12 @@ import com.cli.fancy.movie_reservation_system.domain.show.ShowSchedule
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie.MovieRepository
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.show.ShowRepository
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.theater.TheaterRepository
+
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
+
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 
@@ -68,8 +70,9 @@ class ProgramService(
     }
 
     fun getProgramList(page: Int, size: Int, date: Instant): Page<Program> {
-        val pageable = PageRequest.of(page, size)
-        val nowTruncated = date.truncatedTo(ChronoUnit.MINUTES)
+        val firstPage = showRepository.findByDateGreaterThanEqual(date, PageRequest.of(0, 1))
+        val total = firstPage.totalElements.toInt()
+        val pageable = PageRequest.of(0, if (total > 0) total else 1)
         val showsPage = showRepository.findByDateGreaterThanEqual(date, pageable)
         val showsEntity = showsPage.content
         if (showsEntity.isEmpty()) return Page.empty(pageable)
