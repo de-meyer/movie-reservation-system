@@ -52,42 +52,42 @@ databaseChangeLog:
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "1a2c9e2a-7b4d-7a53-9c2e-8d6f5a1b2c3d" }
+              - column: { name: id, value: "1a2c9e2a-7b4d-7a53-9c2e-8d6f5a1b2c4d" }
               - column: { name: movie_id, value: "c4f3c041-8dd6-4197-8d56-8d6cb5e1496e" }
               - column: { name: theater_id, value: "b1a2c3d4-e5f6-7890-ab12-cd34ef56ab78" }
               - column: { name: date, value: "2025-10-03T09:30:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "1b3c9e2a-7b4d-7a53-9c2e-8d6f5a1b2c3d" }
+              - column: { name: id, value: "1b3c9e2a-7b4d-7a53-9c2e-8d6f5a1b2c3e" }
               - column: { name: movie_id, value: "c4f3c041-8dd6-4197-8d56-8d6cb5e1496e" }
               - column: { name: theater_id, value: "b1a2c3d4-e5f6-7890-ab12-cd34ef56ab78" }
               - column: { name: date, value: "2025-10-03T12:00:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "1c4c9e2a-7b4d-7a53-9c2e-8d6f5a1b2c3d" }
+              - column: { name: id, value: "1c4c9e2a-7b4d-7a53-9c2e-8d6f5a1b2c3f" }
               - column: { name: movie_id, value: "c4f3c041-8dd6-4197-8d56-8d6cb5e1496e" }
               - column: { name: theater_id, value: "b1a2c3d4-e5f6-7890-ab12-cd34ef56ab78" }
               - column: { name: date, value: "2025-10-03T14:30:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "1d5c9e2a-7b4d-7a53-9c2e-8d6f5a1b2c3d" }
+              - column: { name: id, value: "1d5c9e2a-7b4d-7a53-9c2e-8d6f5a1b2c4a" }
               - column: { name: movie_id, value: "c4f3c041-8dd6-4197-8d56-8d6cb5e1496e" }
               - column: { name: theater_id, value: "0a1b2c3d-4e5f-6789-abcd-ef0123456789" }
               - column: { name: date, value: "2025-10-03T16:45:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "1e6c9e2a-7b4d-7a53-9c2e-8d6f5a1b2c3d" }
+              - column: { name: id, value: "1e6c9e2a-7b4d-7a53-9c2e-8d6f5a1b2c4b" }
               - column: { name: movie_id, value: "c4f3c041-8dd6-4197-8d56-8d6cb5e1496e" }
               - column: { name: theater_id, value: "0a1b2c3d-4e5f-6789-abcd-ef0123456789" }
               - column: { name: date, value: "2025-10-03T19:15:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "1f7c9e2a-7b4d-7a53-9c2e-8d6f5a1b2c3d" }
+              - column: { name: id, value: "1f7c9e2a-7b4d-7a53-9c2e-8d6f5a1b2c4c" }
               - column: { name: movie_id, value: "c4f3c041-8dd6-4197-8d56-8d6cb5e1496e" }
               - column: { name: theater_id, value: "0a1b2c3d-4e5f-6789-abcd-ef0123456789" }
               - column: { name: date, value: "2025-10-03T21:45:00Z" }
@@ -96,14 +96,14 @@ databaseChangeLog:
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "3a7e6d4c-1a3f-4c2c-9d5e-6f7a8b9c0d1e" }
+              - column: { name: id, value: "3a7e6d4c-1a3f-4c2c-9d5e-6f7a8b9c0d1a" }
               - column: { name: movie_id, value: "13f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "123e4567-e89b-12d3-a456-426614174000" }
               - column: { name: date, value: "2025-10-03T15:00:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "3b7e6d4c-1a3f-4d2c-9d5e-6f7a8b9c0d1e" }
+              - column: { name: id, value: "3b7e6d4c-1a3f-4d2c-9d5e-6f7a8b9c0d1b" }
               - column: { name: movie_id, value: "13f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "123e4567-e89b-12d3-a456-426614174000" }
               - column: { name: date, value: "2025-10-03T16:45:00Z" }
@@ -112,14 +112,14 @@ databaseChangeLog:
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "3f1c9e2a-7b4d-4a53-9c2e-1d6f5a1b2c3d" }
+              - column: { name: id, value: "3f1c9e2a-7b4d-4a53-9c2e-1d6f5a1b3c3d" }
               - column: { name: movie_id, value: "33f3c041-8dd6-2199-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "abcdefab-cdef-abcd-efab-cdefabcdefab" }
               - column: { name: date, value: "2025-10-03T13:00:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "6a2d4f9b-5c1e-4f3a-8b7d-2e0f1a2b3c4d" }
+              - column: { name: id, value: "6a2d4f9b-5c1e-4f3a-8b7d-2e0f1a2b4c4d" }
               - column: { name: movie_id, value: "33f3c041-8dd6-2199-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "abcdefab-cdef-abcd-efab-cdefabcdefab" }
               - column: { name: date, value: "2025-10-03T15:30:00Z" }
@@ -128,28 +128,28 @@ databaseChangeLog:
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "8c3d5b7a-2f1e-4c9b-8a6d-5b2c3d4e5f6a" }
+              - column: { name: id, value: "8c3d5b7a-2f1e-4c9b-8a6d-5b2a3d4e5f6a" }
               - column: { name: movie_id, value: "43f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "123e4567-e89b-12d3-a456-426614174000" }
               - column: { name: date, value: "2025-10-03T11:00:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "9d4a7b6c-3e2f-4a1b-9c8d-6e6f5a4b3c2d" }
+              - column: { name: id, value: "9d4a7b6c-3e2f-4a1b-9c8d-6e6b5a4b3c2d" }
               - column: { name: movie_id, value: "43f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "123e4567-e89b-12d3-a456-426614174000" }
               - column: { name: date, value: "2025-10-03T13:00:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "f1e2d3c4-b5a6-4f7e-8d9c-9a1b2c3d4e5f" }
+              - column: { name: id, value: "f1e2d3c4-b5a6-4f7e-8d9c-9a1c2c3d4e5f" }
               - column: { name: movie_id, value: "43f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "0a1b2c3d-4e5f-6789-abcd-ef0123456789" }
               - column: { name: date, value: "2025-10-03T09:45:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "f2e2d3c4-b5a6-4f7e-8d9c-2a1b2c3d4e5f" }
+              - column: { name: id, value: "f2e2d3c4-b5a6-4f7e-8d9c-2a1d2c3d4e5f" }
               - column: { name: movie_id, value: "43f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "0a1b2c3d-4e5f-6789-abcd-ef0123456789" }
               - column: { name: date, value: "2025-10-03T11:45:00Z" }
@@ -158,28 +158,28 @@ databaseChangeLog:
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "b3d4d5e6-f7a8-4b9c-8d1e-2f3a4b5c6d7e" }
+              - column: { name: id, value: "b3d4d5e6-f7a8-4b9c-8d1a-2f3a4b5c6d7e" }
               - column: { name: movie_id, value: "73f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "b1a2c3d4-e5f6-7890-ab12-cd34ef56ab78" }
               - column: { name: date, value: "2025-10-03T17:00:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "c4e5e6f7-a8b9-4c0d-8e2f-3a4b5c6d7e8f" }
+              - column: { name: id, value: "c4e5e6f7-a8b9-4c0d-8e2b-3a4b5c6d7e8f" }
               - column: { name: movie_id, value: "73f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "b1a2c3d4-e5f6-7890-ab12-cd34ef56ab78" }
               - column: { name: date, value: "2025-10-03T19:00:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "c5f5e6f7-a8b9-4c0d-8e2f-3a4b5c6d7e8f" }
+              - column: { name: id, value: "c5f5e6f7-a8b9-4c0d-8e2c-3a4b5c6d7e8f" }
               - column: { name: movie_id, value: "73f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "abcdefab-cdef-abcd-efab-cdefabcdefab" }
               - column: { name: date, value: "2025-10-03T09:00:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "c6a5e6f7-a8b9-4c0d-8e2f-3a4b5c6d7e8f" }
+              - column: { name: id, value: "c6a5e6f7-a8b9-4c01-8e2f-3a4b5c6d7e8f" }
               - column: { name: movie_id, value: "73f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "abcdefab-cdef-abcd-efab-cdefabcdefab" }
               - column: { name: date, value: "2025-10-03T11:00:00Z" }
@@ -188,28 +188,28 @@ databaseChangeLog:
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "d516f7a8-b9c0-4d1e-8f3a-4b5c6d7e8f90" }
+              - column: { name: id, value: "d516f7a8-b9c0-4d12-8f3a-4b5c6d7e8f90" }
               - column: { name: movie_id, value: "d3f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "f7e6d5c4-b3a2-1908-7654-3210fedcba98" }
               - column: { name: date, value: "2025-10-03T09:00:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "e627a8b9-c0d1-4e2f-8a4b-5c6d7e8f901e" }
+              - column: { name: id, value: "e627a8b9-c0d1-4e23-8a4b-5c6d7e8f901e" }
               - column: { name: movie_id, value: "d3f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "f7e6d5c4-b3a2-1908-7654-3210fedcba98" }
               - column: { name: date, value: "2025-10-03T11:00:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "f738b9c0-d1e2-4f3a-8b5c-6d7e8f901234" }
+              - column: { name: id, value: "f738b9c0-d1e2-4f34-8b5c-6d7e8f901234" }
               - column: { name: movie_id, value: "d3f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "f7e6d5c4-b3a2-1908-7654-3210fedcba98" }
               - column: { name: date, value: "2025-10-03T13:00:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "01434567-89ab-4cde-8f01-23456789abcd" }
+              - column: { name: id, value: "01434567-89ab-4cd5-8f01-23456789abcd" }
               - column: { name: movie_id, value: "d3f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "abcdefab-cdef-abcd-efab-cdefabcdefab" }
               - column: { name: date, value: "2025-10-03T18:00:00Z" }
@@ -218,28 +218,28 @@ databaseChangeLog:
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "895bcdef-0123-4a56-8b8c-9d0e1f2a3b4c" }
+              - column: { name: id, value: "895bcdaf-0123-4a56-8b8c-9d0e1f2a3b4c" }
               - column: { name: movie_id, value: "c3f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "123e4567-e89b-12d3-a456-426614174000" }
               - column: { name: date, value: "2025-10-03T09:00:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "ab6def01-2345-4b67-8c9d-0e1f2a3b4c5d" }
+              - column: { name: id, value: "ab6defb1-2345-4b67-8c9d-0e1f2a3b4c5d" }
               - column: { name: movie_id, value: "c3f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "123e4567-e89b-12d3-a456-426614174000" }
               - column: { name: date, value: "2025-10-03T18:30:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "897bcdef-0123-4a56-8b8c-9d0e1f2a3b4c" }
+              - column: { name: id, value: "897bcdcf-0123-4a56-8b8c-9d0e1f2a3b4c" }
               - column: { name: movie_id, value: "c3f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "9f8e7d6c-5b4a-3c2d-1e0f-9a8b7c6d5e4f" }
               - column: { name: date, value: "2025-10-03T14:15:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "ab8def01-2345-4b67-8c9d-0e1f2a3b4c5d" }
+              - column: { name: id, value: "ab8defd1-2345-4b67-8c9d-0e1f2a3b4c5d" }
               - column: { name: movie_id, value: "c3f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "9f8e7d6c-5b4a-3c2d-1e0f-9a8b7c6d5e4f" }
               - column: { name: date, value: "2025-10-03T16:00:00Z" }
@@ -249,14 +249,14 @@ databaseChangeLog:
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "1cdef012-3456-4c78-9d0e-1f2a3b4c5d6e" }
+              - column: { name: id, value: "1cdef0e2-3456-4c78-9d0e-1f2a3b4c5d6e" }
               - column: { name: movie_id, value: "caf3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "b1a2c3d4-e5f6-7890-ab12-cd34ef56ab78" }
               - column: { name: date, value: "2025-10-03T21:00:00Z" }
         - insert:
             tableName: show
             columns:
-              - column: { name: id, value: "2def0123-4567-4d89-8e1f-2a3b4c5d6e7f" }
+              - column: { name: id, value: "2def01f3-4567-4d89-8e1f-2a3b4c5d6e7f" }
               - column: { name: movie_id, value: "caf3c041-8dd6-4197-8d56-5d6cb5e1496e" }
               - column: { name: theater_id, value: "abcdefab-cdef-abcd-efab-cdefabcdefab" }
               - column: { name: date, value: "2025-10-03T20:00:00Z" }
