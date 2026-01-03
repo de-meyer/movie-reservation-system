@@ -1,0 +1,262 @@
+language: yaml
+databaseChangeLog:
+  - changeSet:
+      id: insert-show-tomorrow-2025-10-02
+      author: de-meyer
+      changes:
+        # Karen: The Final Refund
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "3a2b3c4d-5a6f-7a8b-9c0d-1e2f3a4b5c6d" }
+              - column: { name: movie_id, value: "987ace32-7d3e-4cc7-ba5a-eec52b50a505" }
+              - column: { name: theater_id, value: "9f8e7d6c-5b4a-3c2d-1e0f-9a8b7c6d5e4f" }
+              - column: { name: date, value: "2025-10-02T09:00:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "4a2b3c4d-5b6f-7a8b-9c0d-1e2f3a4b5c6d" }
+              - column: { name: movie_id, value: "987ace32-7d3e-4cc7-ba5a-eec52b50a505" }
+              - column: { name: theater_id, value: "9f8e7d6c-5b4a-3c2d-1e0f-9a8b7c6d5e4f" }
+              - column: { name: date, value: "2025-10-02T10:45:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "5a2b3c4d-5c6f-7a8b-9c0d-1e2f3a4b5c6d" }
+              - column: { name: movie_id, value: "987ace32-7d3e-4cc7-ba5a-eec52b50a505" }
+              - column: { name: theater_id, value: "9f8e7d6c-5b4a-3c2d-1e0f-9a8b7c6d5e4f" }
+              - column: { name: date, value: "2025-10-02T12:30:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "6a2b3c4d-5d6f-7a8b-9c0d-1e2f3a4b5c6d" }
+              - column: { name: movie_id, value: "987ace32-7d3e-4cc7-ba5a-eec52b50a505" }
+              - column: { name: theater_id, value: "f7e6d5c4-b3a2-1908-7654-3210fedcba98" }
+              - column: { name: date, value: "2025-10-02T16:00:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "7a2b3c4d-5d6f-7b8b-9c0d-1e2f3a4b5c6d" }
+              - column: { name: movie_id, value: "987ace32-7d3e-4cc7-ba5a-eec52b50a505" }
+              - column: { name: theater_id, value: "f7e6d5c4-b3a2-1908-7654-3210fedcba98" }
+              - column: { name: date, value: "2025-10-02T17:45:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "8a2b3c4d-5d6f-7c8b-9c0d-1e2f3a4b5c6d" }
+              - column: { name: movie_id, value: "987ace32-7d3e-4cc7-ba5a-eec52b50a505" }
+              - column: { name: theater_id, value: "f7e6d5c4-b3a2-1908-7654-3210fedcba98" }
+              - column: { name: date, value: "2025-10-02T19:00:00Z" }
+
+        # GigaChad Origins
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "1a2c9e2a-7b4d-7a53-9c2e-8d6f5a1b2c3d" }
+              - column: { name: movie_id, value: "b2f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "b1a2c3d4-e5f6-7890-ab12-cd34ef56ab78" }
+              - column: { name: date, value: "2025-10-02T09:30:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "1b3c9e2a-7b4d-7a53-9c2e-8d6f5a1b2c3d" }
+              - column: { name: movie_id, value: "b2f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "b1a2c3d4-e5f6-7890-ab12-cd34ef56ab78" }
+              - column: { name: date, value: "2025-10-02T12:00:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "1c4c9e2a-7b4d-7a53-9c2e-8d6f5a1b2c3d" }
+              - column: { name: movie_id, value: "b2f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "b1a2c3d4-e5f6-7890-ab12-cd34ef56ab78" }
+              - column: { name: date, value: "2025-10-02T14:30:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "1d5c9e2a-7b4d-7a53-9c2e-8d6f5a1b2c3d" }
+              - column: { name: movie_id, value: "b2f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "0a1b2c3d-4e5f-6789-abcd-ef0123456789" }
+              - column: { name: date, value: "2025-10-02T16:45:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "1e6c9e2a-7b4d-7a53-9c2e-8d6f5a1b2c3d" }
+              - column: { name: movie_id, value: "b2f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "0a1b2c3d-4e5f-6789-abcd-ef0123456789" }
+              - column: { name: date, value: "2025-10-02T19:15:00+01:00" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "1f7c9e2a-7b4d-7a53-9c2e-8d6f5a1b2c3d" }
+              - column: { name: movie_id, value: "b2f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "0a1b2c3d-4e5f-6789-abcd-ef0123456789" }
+              - column: { name: date, value: "2025-10-02T21:45:00Z" }
+
+        # Meowtrix: Fur Loaded
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "3a7e6d4c-1a3f-4c2c-9d5e-6f7a8b9c0d1e" }
+              - column: { name: movie_id, value: "f3f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "123e4567-e89b-12d3-a456-426614174000" }
+              - column: { name: date, value: "2025-10-02T15:00:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "3b7e6d4c-1a3f-4d2c-9d5e-6f7a8b9c0d1e" }
+              - column: { name: movie_id, value: "f3f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "123e4567-e89b-12d3-a456-426614174000" }
+              - column: { name: date, value: "2025-10-02T16:45:00Z" }
+
+        #Swipe Left for Doom
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "3f1c9e2a-7b4d-4a53-9c2e-1d6f5a1b2c3d" }
+              - column: { name: movie_id, value: "b3f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "abcdefab-cdef-abcd-efab-cdefabcdefab" }
+              - column: { name: date, value: "2025-10-02T13:00:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "6a2d4f9b-5c1e-4f3a-8b7d-2e0f1a2b3c4d" }
+              - column: { name: movie_id, value: "b3f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "abcdefab-cdef-abcd-efab-cdefabcdefab" }
+              - column: { name: date, value: "2025-10-02T15:30:00Z" }
+
+        # Netflix and Bequiet
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "8c3d5b7a-2f1e-4c9b-8a6d-5b2c3d4e5f6a" }
+              - column: { name: movie_id, value: "fff3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "123e4567-e89b-12d3-a456-426614174000" }
+              - column: { name: date, value: "2025-10-02T11:00:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "9d4a7b6c-3e2f-4a1b-9c8d-6e6f5a4b3c2d" }
+              - column: { name: movie_id, value: "fff3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "123e4567-e89b-12d3-a456-426614174000" }
+              - column: { name: date, value: "2025-10-02T13:00:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "f1e2d3c4-b5a6-4f7e-8d9c-9a1b2c3d4e5f" }
+              - column: { name: movie_id, value: "fff3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "0a1b2c3d-4e5f-6789-abcd-ef0123456789" }
+              - column: { name: date, value: "2025-10-02T09:45:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "f2e2d3c4-b5a6-4f7e-8d9c-2a1b2c3d4e5f" }
+              - column: { name: movie_id, value: "fff3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "0a1b2c3d-4e5f-6789-abcd-ef0123456789" }
+              - column: { name: date, value: "2025-10-02T11:45:00Z" }
+
+        # WALL-E-Girl
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "b3d4d5e6-f7a8-4b9c-8d1e-2f3a4b5c6d7e" }
+              - column: { name: movie_id, value: "3ff3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "b1a2c3d4-e5f6-7890-ab12-cd34ef56ab78" }
+              - column: { name: date, value: "2025-10-02T17:00:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "c4e5e6f7-a8b9-4c0d-8e2f-3a4b5c6d7e8f" }
+              - column: { name: movie_id, value: "3ff3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "b1a2c3d4-e5f6-7890-ab12-cd34ef56ab78" }
+              - column: { name: date, value: "2025-10-02T19:00:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "c5f5e6f7-a8b9-4c0d-8e2f-3a4b5c6d7e8f" }
+              - column: { name: movie_id, value: "3ff3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "abcdefab-cdef-abcd-efab-cdefabcdefab" }
+              - column: { name: date, value: "2025-10-02T09:00:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "c6a5e6f7-a8b9-4c0d-8e2f-3a4b5c6d7e8f" }
+              - column: { name: movie_id, value: "3ff3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "abcdefab-cdef-abcd-efab-cdefabcdefab" }
+              - column: { name: date, value: "2025-10-02T11:00:00Z" }
+
+        # NPCs: The Untold Lore
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "d516f7a8-b9c0-4d1e-8f3a-4b5c6d7e8f90" }
+              - column: { name: movie_id, value: "93f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "f7e6d5c4-b3a2-1908-7654-3210fedcba98" }
+              - column: { name: date, value: "2025-10-02T09:00:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "e627a8b9-c0d1-4e2f-8a4b-5c6d7e8f901e" }
+              - column: { name: movie_id, value: "93f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "f7e6d5c4-b3a2-1908-7654-3210fedcba98" }
+              - column: { name: date, value: "2025-10-02T11:00:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "f738b9c0-d1e2-4f3a-8b5c-6d7e8f901234" }
+              - column: { name: movie_id, value: "93f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "f7e6d5c4-b3a2-1908-7654-3210fedcba98" }
+              - column: { name: date, value: "2025-10-02T13:00:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "01434567-89ab-4cde-8f01-23456789abcd" }
+              - column: { name: movie_id, value: "93f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "abcdefab-cdef-abcd-efab-cdefabcdefab" }
+              - column: { name: date, value: "2025-10-02T18:00:00Z" }
+
+        # No Thoughts, Just Vibes
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "895bcdef-0123-4a56-8b8c-9d0e1f2a3b4c" }
+              - column: { name: movie_id, value: "83f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "123e4567-e89b-12d3-a456-426614174000" }
+              - column: { name: date, value: "2025-10-02T09:00:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "ab6def01-2345-4b67-8c9d-0e1f2a3b4c5d" }
+              - column: { name: movie_id, value: "83f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "123e4567-e89b-12d3-a456-426614174000" }
+              - column: { name: date, value: "2025-10-02T18:30:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "897bcdef-0123-4a56-8b8c-9d0e1f2a3b4c" }
+              - column: { name: movie_id, value: "83f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "9f8e7d6c-5b4a-3c2d-1e0f-9a8b7c6d5e4f" }
+              - column: { name: date, value: "2025-10-02T14:15:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "ab8def01-2345-4b67-8c9d-0e1f2a3b4c5d" }
+              - column: { name: movie_id, value: "83f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "9f8e7d6c-5b4a-3c2d-1e0f-9a8b7c6d5e4f" }
+              - column: { name: date, value: "2025-10-02T16:00:00Z" }
+
+
+        # Breaking Bread
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "1cdef012-3456-4c78-9d0e-1f2a3b4c5d6e" }
+              - column: { name: movie_id, value: "53f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "b1a2c3d4-e5f6-7890-ab12-cd34ef56ab78" }
+              - column: { name: date, value: "2025-10-02T21:00:00Z" }
+        - insert:
+            tableName: show
+            columns:
+              - column: { name: id, value: "2def0123-4567-4d89-8e1f-2a3b4c5d6e7f" }
+              - column: { name: movie_id, value: "53f3c041-8dd6-4197-8d56-5d6cb5e1496e" }
+              - column: { name: theater_id, value: "abcdefab-cdef-abcd-efab-cdefabcdefab" }
+              - column: { name: date, value: "2025-10-02T20:00:00Z" }

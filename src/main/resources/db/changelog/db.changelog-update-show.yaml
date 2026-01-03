@@ -18,9 +18,11 @@ databaseChangeLog:
               )
               UPDATE "show" s
               SET date = CASE
-               WHEN cte.rn <= (cte.cnt/2)::int
-                 THEN date_trunc('day', now()) + (s.date - date_trunc('day', s.date))
-               ELSE date_trunc('day', now()) + interval '1 day' + (s.date - date_trunc('day', s.date))
+                WHEN (date_trunc('day', s.date AT TIME ZONE 'UTC')::date) = '2025-10-01'::date
+                  THEN (date_trunc('day', now() AT TIME ZONE 'UTC') + (s.date AT TIME ZONE 'UTC')::time) AT TIME ZONE 'UTC'
+                WHEN (date_trunc('day', s.date AT TIME ZONE 'UTC')::date) = '2025-10-02'::date
+                  THEN ((date_trunc('day', now() AT TIME ZONE 'UTC') + interval '1 day') + (s.date AT TIME ZONE 'UTC')::time) AT TIME ZONE 'UTC'
+                ELSE s.date
               END
               FROM cte
               WHERE s.id = cte.id;

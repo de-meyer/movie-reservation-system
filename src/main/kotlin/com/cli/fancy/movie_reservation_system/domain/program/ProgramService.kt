@@ -1,7 +1,6 @@
 package com.cli.fancy.movie_reservation_system.domain.program
 
 import com.cli.fancy.movie_reservation_system.application.movie.mapper.MovieMapper
-import com.cli.fancy.movie_reservation_system.application.program.dto.ProgramResponse
 import com.cli.fancy.movie_reservation_system.application.show.mapper.ShowMapper
 import com.cli.fancy.movie_reservation_system.application.theater.mapper.TheaterMapper
 import com.cli.fancy.movie_reservation_system.domain.show.ShowSchedule
