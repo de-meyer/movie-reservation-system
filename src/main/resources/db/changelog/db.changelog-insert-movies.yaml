@@ -266,8 +266,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Animated" }
               - column: { name: duration_minutes, value: 96 }
               - column: { name: rating, value: 7.4 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'ratatooote-profile.jpg' }
+              - column: { name: image_landscape, value: 'ratatooote-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -280,8 +280,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Rom-Com" }
               - column: { name: duration_minutes, value: 98 }
               - column: { name: rating, value: 6.9 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'the_notebook-profile.jpg' }
+              - column: { name: image_landscape, value: 'the_notebook-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -294,8 +294,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Horror" }
               - column: { name: duration_minutes, value: 89 }
               - column: { name: rating, value: 7.1 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'swipe-profile.jpg' }
+              - column: { name: image_landscape, value: 'swipe-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -322,8 +322,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Documentary" }
               - column: { name: duration_minutes, value: 83 }
               - column: { name: rating, value: 8.0 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'gigachad-profile.jpg' }
+              - column: { name: image_landscape, value: 'gigachad-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -336,8 +336,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Animated" }
               - column: { name: duration_minutes, value: 101 }
               - column: { name: rating, value: 7.7 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'wall_E-profile.jpg' }
+              - column: { name: image_landscape, value: 'wall_E-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -350,8 +350,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Holiday" }
               - column: { name: duration_minutes, value: 90 }
               - column: { name: rating, value: 6.5 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'grinch-profile.jpg' }
+              - column: { name: image_landscape, value: 'grinch-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -364,8 +364,8 @@ databaseChangeLog:
               - column: { name: genre, value: "Horror" }
               - column: { name: duration_minutes, value: 93 }
               - column: { name: rating, value: 7.0 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'netflix-profile.jpg' }
+              - column: { name: image_landscape, value: 'netflix-landscape.jpg' }
 
         - insert:
             tableName: movies
@@ -378,5 +378,5 @@ databaseChangeLog:
               - column: { name: genre, value: "Mockumentary" }
               - column: { name: duration_minutes, value: 99 }
               - column: { name: rating, value: 8.3 }
-              - column: { name: image_profile, value: '' }
-              - column: { name: image_landscape, value: '' }
+              - column: { name: image_profile, value: 'npc-profile.jpg' }
+              - column: { name: image_landscape, value: 'npc-landscape.jpg' }
