@@ -30,12 +30,12 @@ dependencies {
 
     // R2DBC
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
-    implementation("org.postgresql:r2dbc-postgresql:1.0.2.RELEASE")
+    implementation("org.postgresql:r2dbc-postgresql:1.1.1.RELEASE")
 
     // Coroutines support TODO: verify if needed
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
-    
+
     implementation("io.jsonwebtoken:jjwt-api:0.11.5")
     implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
     implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
