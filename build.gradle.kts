@@ -1,10 +1,10 @@
 plugins {
     kotlin("jvm") version "1.9.25"
     kotlin("plugin.spring") version "1.9.25"
-    id("org.springframework.boot") version "3.4.3"
+    id("org.springframework.boot") version "4.0.1"
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("plugin.jpa") version "1.9.25"
-    kotlin("kapt") version "1.9.10"
+    kotlin("kapt") version "2.1.0"
 }
 
 group = "com.cli.fancy"
@@ -21,8 +21,8 @@ repositories {
 }
 
 dependencies {
-    implementation("org.mapstruct:mapstruct:1.5.5.Final")
-    kapt("org.mapstruct:mapstruct-processor:1.5.5.Final")
+    implementation("org.mapstruct:mapstruct:1.6.3")
+    kapt("org.mapstruct:mapstruct-processor:1.6.3")
 
     // WebFlux
     implementation("org.springframework.boot:spring-boot-starter-webflux")
@@ -30,7 +30,8 @@ dependencies {
 
     // R2DBC
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
-    implementation("org.postgresql:r2dbc-postgresql:1.1.1.RELEASE")
+    implementation("org.postgresql:r2dbc-postgresql")
+
 
     // Coroutines support TODO: verify if needed
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
@@ -61,7 +62,7 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("io.projectreactor:reactor-test")
+    // H2 for testing
     testImplementation("io.r2dbc:r2dbc-h2")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }

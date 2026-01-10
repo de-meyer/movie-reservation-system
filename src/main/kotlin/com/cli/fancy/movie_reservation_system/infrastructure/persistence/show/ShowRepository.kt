@@ -12,3 +12,4 @@ interface ShowRepository : JpaRepository<ShowEntity, UUID> {
     fun findByDateGreaterThanEqual(date: Instant, pageable: Pageable): Page<ShowEntity>
     fun findByDateBetween(startDate: Instant, endDate: Instant, pageable: Pageable): Page<ShowEntity>
 }
+// TODO: update repositories from JPA -> R2DBC
