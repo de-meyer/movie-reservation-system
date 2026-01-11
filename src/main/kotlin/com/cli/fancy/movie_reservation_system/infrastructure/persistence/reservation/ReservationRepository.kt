@@ -1,8 +1,7 @@
 package com.cli.fancy.movie_reservation_system.infrastructure.persistence.reservation
 
-import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.stereotype.Repository
+import org.springframework.data.r2dbc.repository.R2dbcRepository
 import java.util.*
 
-interface ReservationRepository : JpaRepository<ReservationEntity, UUID> {
+interface ReservationRepository : R2dbcRepository<ReservationEntity, UUID> {
 }

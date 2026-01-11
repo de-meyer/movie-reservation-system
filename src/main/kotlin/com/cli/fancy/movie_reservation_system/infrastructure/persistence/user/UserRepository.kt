@@ -1,12 +1,12 @@
 package com.cli.fancy.movie_reservation_system.infrastructure.persistence.user
 
-import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.stereotype.Repository
+import org.springframework.data.r2dbc.repository.R2dbcRepository
+import reactor.core.publisher.Mono
 import java.util.*
 
-interface AuthRepository : JpaRepository<UserEntity, Long> {
-    fun getUserEntityByName(name: String): UserEntity
-    fun getUserByEmail(email: String): Optional<UserEntity>
-    fun existsByEmail(email: String): Boolean
-    fun findById(id: UUID): Optional<UserEntity>
+interface AuthRepository : R2dbcRepository<UserEntity, Long> {
+    fun getUserEntityByName(name: String): Mono<UserEntity>
+    fun getUserByEmail(email: String): Mono<UserEntity>
+    fun existsByEmail(email: String): Mono<Boolean>
+    fun findById(id: UUID): Mono<UserEntity>
 }

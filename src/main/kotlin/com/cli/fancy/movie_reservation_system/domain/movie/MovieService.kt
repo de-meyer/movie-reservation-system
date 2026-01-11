@@ -5,15 +5,19 @@ import com.cli.fancy.movie_reservation_system.application.movie.mapper.MovieMapp
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie.MovieRepository
 import org.springframework.data.jpa.domain.AbstractPersistable_.id
 import org.springframework.stereotype.Service
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
+import reactor.kotlin.core.publisher.toFlux
+import reactor.kotlin.core.publisher.toMono
 import java.util.*
 
 @Service
 class MovieService(val movieRepository: MovieRepository, val movieMapper: MovieMapper) {
-    fun getAllMovies(): List<Movie> = movieRepository.findAll()
+    fun getAllMovies(): Flux<Movie> = movieRepository.findAll()
         .map { movieMapper.toMovieFromEntity(it) }
-        .toList()
+        .toFlux()
 
-    fun getMovieById(id: UUID): Movie? {
+    fun getMovieById(id: UUID): Mono<Movie> {
         val movieEntity = movieRepository.findById(id)
         return if (movieEntity.isPresent) {
             movieMapper.toMovieFromEntity(movieEntity.get())

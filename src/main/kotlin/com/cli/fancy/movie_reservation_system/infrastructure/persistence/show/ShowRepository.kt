@@ -1,15 +1,14 @@
 package com.cli.fancy.movie_reservation_system.infrastructure.persistence.show
 
-import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
-import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.r2dbc.repository.R2dbcRepository
+import reactor.core.publisher.Flux
 import java.time.Instant
-import java.time.LocalDate
 import java.util.*
 
-interface ShowRepository : JpaRepository<ShowEntity, UUID> {
-    override fun findAll(pageable: Pageable): Page<ShowEntity>
-    fun findByDateGreaterThanEqual(date: Instant, pageable: Pageable): Page<ShowEntity>
-    fun findByDateBetween(startDate: Instant, endDate: Instant, pageable: Pageable): Page<ShowEntity>
+interface ShowRepository : R2dbcRepository<ShowEntity, UUID> {
+    fun findAll(pageable: Pageable): Flux<ShowEntity>
+    fun findByDateGreaterThanEqual(date: Instant, pageable: Pageable): Flux<ShowEntity>
+    fun findByDateBetween(startDate: Instant, endDate: Instant, pageable: Pageable): Flux<ShowEntity>
 }
 // TODO: update repositories from JPA -> R2DBC
