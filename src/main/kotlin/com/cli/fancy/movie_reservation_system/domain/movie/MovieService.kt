@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import reactor.kotlin.core.publisher.toFlux
-import reactor.kotlin.core.publisher.toMono
 import java.util.*
 
 @Service
@@ -17,18 +16,29 @@ class MovieService(val movieRepository: MovieRepository, val movieMapper: MovieM
         .map { movieMapper.toMovieFromEntity(it) }
         .toFlux()
 
-    fun getMovieById(id: UUID): Mono<Movie> {
-        val movieEntity = movieRepository.findById(id)
-        return if (movieEntity.isPresent) {
-            movieMapper.toMovieFromEntity(movieEntity.get())
-        } else {
-            null
-        }
-    }
+    fun getMovieById(id: UUID): Mono<Movie> =
+        movieRepository.findById(id)
+            .switchIfEmpty(Mono.error(NoSuchElementException("FIND: Movie not found with id: $id")))
+            .map { movieMapper.toMovieFromEntity(it) }
 
-    fun updateMovie(movie: MovieResponse): Movie {
-        val movieEntity =
-            movieRepository.findById(movie.id).orElseThrow { NoSuchElementException("Movie with id $id not found") }
-        return movieMapper.toMovieFromEntity(movieRepository.save(movieEntity))
-    }
+    fun updateMovie(movie: MovieResponse): Mono<Movie> =
+        movieRepository.findById(movie.id)
+            .switchIfEmpty(Mono.error(NoSuchElementException("UPDATE: Movie not found with id: $id")))
+            .flatMap { existingEntity ->
+                val updatedEntity = existingEntity.copy(
+                    title = movie.title,
+                    description = movie.description,
+                    releaseYear = movie.releaseYear,
+                    director = movie.director,
+                    genre = movie.genre,
+                    durationMinutes = movie.durationMinutes,
+                    rating = movie.rating,
+                    imageProfile = movie.imageProfile,
+                    imageLandscape = movie.imageLandscape
+                )
+                movieRepository.save(updatedEntity)
+            }
+            .map { movieMapper.toMovieFromEntity(it) }
+
+
 }
