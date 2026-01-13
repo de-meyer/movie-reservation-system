@@ -13,7 +13,6 @@ databaseChangeLog:
               - column: { name: director, value: "Hans Meatball" }
               - column: { name: genre, value: "Action" }
               - column: { name: duration_minutes, value: 119 }
-              - column: { name: rating, value: 7.5 }
               - column: { name: image_profile, value: 'fast_and_flurious-profile.jpg' }
               - column: { name: image_landscape, value: 'fast_and_flurious-landscape.jpg' }
 
@@ -27,7 +26,6 @@ databaseChangeLog:
               - column: { name: director, value: "Memelord Studios" }
               - column: { name: genre, value: "Comedy" }
               - column: { name: duration_minutes, value: 102 }
-              - column: { name: rating, value: 8.1 }
               - column: { name: image_profile, value: 'shrektok-profile.jpg' }
               - column: { name: image_landscape, value: 'shrektok-landscape.jpg' }
 
@@ -41,7 +39,6 @@ databaseChangeLog:
               - column: { name: director, value: "Impostor Vibes" }
               - column: { name: genre, value: "Thriller" }
               - column: { name: duration_minutes, value: 91 }
-              - column: { name: rating, value: 6.6 }
               - column: { name: image_profile, value: 'among_us-profile.jpg' }
               - column: { name: image_landscape, value: 'among_us-landscape.jpg' }
 
@@ -55,7 +52,6 @@ databaseChangeLog:
               - column: { name: director, value: "Kermit V" }
               - column: { name: genre, value: "Fantasy" }
               - column: { name: duration_minutes, value: 140 }
-              - column: { name: rating, value: 9.0 }
               - column: { name: image_profile, value: 'lord_of_the_rees-profile.jpg' }
               - column: { name: image_landscape, value: 'lord_of_the_rees-landscape.jpg' }
 
@@ -69,7 +65,6 @@ databaseChangeLog:
               - column: { name: director, value: "Troy Lagborn" }
               - column: { name: genre, value: "Musical" }
               - column: { name: duration_minutes, value: 97 }
-              - column: { name: rating, value: 7.0 }
               - column: { name: image_profile, value: 'zoom_highschool-profile.jpg' }
               - column: { name: image_landscape, value: 'zoom_highschool-landscape.jpg' }
 
@@ -83,7 +78,6 @@ databaseChangeLog:
               - column: { name: director, value: "Chad Cashier" }
               - column: { name: genre, value: "Horror" }
               - column: { name: duration_minutes, value: 88 }
-              - column: { name: rating, value: 6.2 }
               - column: { name: image_profile, value: 'karen-profile.jpg' }
               - column: { name: image_landscape, value: 'karen-landscape.jpg' }
 
@@ -97,7 +91,6 @@ databaseChangeLog:
               - column: { name: director, value: "Dip Patel" }
               - column: { name: genre, value: "Fantasy" }
               - column: { name: duration_minutes, value: 113 }
-              - column: { name: rating, value: 8.4 }
               - column: { name: image_profile, value: 'naania-profile.jpg' }
               - column: { name: image_landscape, value: 'naania-landscape.jpg' }
 
@@ -111,7 +104,6 @@ databaseChangeLog:
               - column: { name: director, value: "Sir Procrastino" }
               - column: { name: genre, value: "Parody" }
               - column: { name: duration_minutes, value: 122 }
-              - column: { name: rating, value: 5.9 }
               - column: { name: image_profile, value: 'bored-profile.jpg' }
               - column: { name: image_landscape, value: 'bored-landscape.jpg' }
 
@@ -125,7 +117,6 @@ databaseChangeLog:
               - column: { name: director, value: "Fierce McQueen" }
               - column: { name: genre, value: "Action" }
               - column: { name: duration_minutes, value: 108 }
-              - column: { name: rating, value: 7.4 }
               - column: { name: image_profile, value: 'slay-profile.jpg' }
               - column: { name: image_landscape, value: 'slay-landscape.jpg' }
 
@@ -139,7 +130,6 @@ databaseChangeLog:
               - column: { name: director, value: "Indie Cringe" }
               - column: { name: genre, value: "Romance" }
               - column: { name: duration_minutes, value: 89 }
-              - column: { name: rating, value: 5.5 }
               - column: { name: image_profile, value: 'fifty_shades_of_Ehh-profile.jpg' }
               - column: { name: image_landscape, value: 'fifty_shades_of_Ehh-landscape.jpg' }
 
@@ -153,7 +143,6 @@ databaseChangeLog:
               - column: { name: director, value: "Obi-Wan KenVobi" }
               - column: { name: genre, value: "Sci-Fi" }
               - column: { name: duration_minutes, value: 115 }
-              - column: { name: rating, value: 7.7 }
               - column: { name: image_profile, value: 'yeet_of_jedi-profile.jpg' }
               - column: { name: image_landscape, value: 'yeet_of_jedi-landscape.jpg' }
 
@@ -167,7 +156,6 @@ databaseChangeLog:
               - column: { name: director, value: "Rick Swole" }
               - column: { name: genre, value: "Horror" }
               - column: { name: duration_minutes, value: 106 }
-              - column: { name: rating, value: 6.9 }
               - column: { name: image_profile, value: 'simping_dead-profile.jpg' }
               - column: { name: image_landscape, value: 'simping_dead-landscape.jpg' }
 
@@ -181,7 +169,6 @@ databaseChangeLog:
               - column: { name: director, value: "Walter Whitebread" }
               - column: { name: genre, value: "Drama" }
               - column: { name: duration_minutes, value: 112 }
-              - column: { name: rating, value: 8.2 }
               - column: { name: image_profile, value: 'breaking_bread-profile.jpg' }
               - column: { name: image_landscape, value: 'breaking_bread-landscape.jpg' }
 
@@ -195,7 +182,6 @@ databaseChangeLog:
               - column: { name: director, value: "Tim Burtonfish" }
               - column: { name: genre, value: "Animated" }
               - column: { name: duration_minutes, value: 94 }
-              - column: { name: rating, value: 7.3 }
               - column: { name: image_profile, value: 'finding_emo-profile.jpg' }
               - column: { name: image_landscape, value: 'finding_emo-landscape.jpg' }
 
@@ -209,7 +195,6 @@ databaseChangeLog:
               - column: { name: director, value: "Cardi Pottah" }
               - column: { name: genre, value: "Fantasy" }
               - column: { name: duration_minutes, value: 110 }
-              - column: { name: rating, value: 8.0 }
               - column: { name: image_profile, value: 'wizards-profile.jpg' }
               - column: { name: image_landscape, value: 'wizards-landscape.jpg' }
 
@@ -223,7 +208,6 @@ databaseChangeLog:
               - column: { name: director, value: "Chillax Daniels" }
               - column: { name: genre, value: "Experimental" }
               - column: { name: duration_minutes, value: 99 }
-              - column: { name: rating, value: 6.1 }
               - column: { name: image_profile, value: 'no_thoughts-profile.jpg' }
               - column: { name: image_landscape, value: 'no_thoughts-landscape.jpg' }
 
@@ -237,7 +221,6 @@ databaseChangeLog:
               - column: { name: director, value: "Fluffy Wachowsky" }
               - column: { name: genre, value: "Sci-Fi" }
               - column: { name: duration_minutes, value: 117 }
-              - column: { name: rating, value: 9.1 }
               - column: { name: image_profile, value: 'meowtrix-profile.jpg' }
               - column: { name: image_landscape, value: 'meowtrix-landscape.jpg' }
 
@@ -251,7 +234,6 @@ databaseChangeLog:
               - column: { name: director, value: "Greta Nolan" }
               - column: { name: genre, value: "Action" }
               - column: { name: duration_minutes, value: 129 }
-              - column: { name: rating, value: 9.1 }
               - column: { name: image_profile, value: 'barbenheimer-profile.jpg' }
               - column: { name: image_landscape, value: 'barbenheimer-landscape.jpg' }
 
@@ -265,7 +247,6 @@ databaseChangeLog:
               - column: { name: director, value: "Chef Boyardee" }
               - column: { name: genre, value: "Animated" }
               - column: { name: duration_minutes, value: 96 }
-              - column: { name: rating, value: 7.4 }
               - column: { name: image_profile, value: 'ratatooote-profile.jpg' }
               - column: { name: image_landscape, value: 'ratatooote-landscape.jpg' }
 
@@ -279,7 +260,6 @@ databaseChangeLog:
               - column: { name: director, value: "Spreadsheet Spielberg" }
               - column: { name: genre, value: "Rom-Com" }
               - column: { name: duration_minutes, value: 98 }
-              - column: { name: rating, value: 6.9 }
               - column: { name: image_profile, value: 'the_notebook-profile.jpg' }
               - column: { name: image_landscape, value: 'the_notebook-landscape.jpg' }
 
@@ -293,7 +273,6 @@ databaseChangeLog:
               - column: { name: director, value: "Tinderella" }
               - column: { name: genre, value: "Horror" }
               - column: { name: duration_minutes, value: 89 }
-              - column: { name: rating, value: 7.1 }
               - column: { name: image_profile, value: 'swipe-profile.jpg' }
               - column: { name: image_landscape, value: 'swipe-landscape.jpg' }
 
@@ -307,7 +286,6 @@ databaseChangeLog:
               - column: { name: director, value: "Dennis Blingeneuve" }
               - column: { name: genre, value: "Sci-Fi" }
               - column: { name: duration_minutes, value: 132 }
-              - column: { name: rating, value: 8.6 }
               - column: { name: image_profile, value: 'dune-profile.jpg' }
               - column: { name: image_landscape, value: 'dune-landscape.jpg' }
 
@@ -321,7 +299,6 @@ databaseChangeLog:
               - column: { name: director, value: "Chad Brosef IV" }
               - column: { name: genre, value: "Documentary" }
               - column: { name: duration_minutes, value: 83 }
-              - column: { name: rating, value: 8.0 }
               - column: { name: image_profile, value: 'gigachad-profile.jpg' }
               - column: { name: image_landscape, value: 'gigachad-landscape.jpg' }
 
@@ -335,7 +312,6 @@ databaseChangeLog:
               - column: { name: director, value: "PixYass" }
               - column: { name: genre, value: "Animated" }
               - column: { name: duration_minutes, value: 101 }
-              - column: { name: rating, value: 7.7 }
               - column: { name: image_profile, value: 'wall_E-profile.jpg' }
               - column: { name: image_landscape, value: 'wall_E-landscape.jpg' }
 
@@ -349,7 +325,6 @@ databaseChangeLog:
               - column: { name: director, value: "Green Gobsmack" }
               - column: { name: genre, value: "Holiday" }
               - column: { name: duration_minutes, value: 90 }
-              - column: { name: rating, value: 6.5 }
               - column: { name: image_profile, value: 'grinch-profile.jpg' }
               - column: { name: image_landscape, value: 'grinch-landscape.jpg' }
 
@@ -363,7 +338,6 @@ databaseChangeLog:
               - column: { name: director, value: "Chill E. Murda" }
               - column: { name: genre, value: "Horror" }
               - column: { name: duration_minutes, value: 93 }
-              - column: { name: rating, value: 7.0 }
               - column: { name: image_profile, value: 'netflix-profile.jpg' }
               - column: { name: image_landscape, value: 'netflix-landscape.jpg' }
 
@@ -377,6 +351,5 @@ databaseChangeLog:
               - column: { name: director, value: "Todd Dialoguetree" }
               - column: { name: genre, value: "Mockumentary" }
               - column: { name: duration_minutes, value: 99 }
-              - column: { name: rating, value: 8.3 }
               - column: { name: image_profile, value: 'npc-profile.jpg' }
               - column: { name: image_landscape, value: 'npc-landscape.jpg' }

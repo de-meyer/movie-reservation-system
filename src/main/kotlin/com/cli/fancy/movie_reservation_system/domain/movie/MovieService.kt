@@ -32,7 +32,6 @@ class MovieService(val movieRepository: MovieRepository, val movieMapper: MovieM
                     director = movie.director,
                     genre = movie.genre,
                     durationMinutes = movie.durationMinutes,
-                    rating = movie.rating,
                     imageProfile = movie.imageProfile,
                     imageLandscape = movie.imageLandscape
                 )
