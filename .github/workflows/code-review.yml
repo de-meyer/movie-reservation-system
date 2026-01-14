@@ -1,0 +1,105 @@
+name: Code Review
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - 'feature/**'
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  code-review:
+    name: Build and Review Code
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      pull-requests: write
+      checks: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'gradle'
+      
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      
+      - name: Build with Gradle
+        run: ./gradlew assemble
+        
+      - name: Run tests
+        id: tests
+        run: ./gradlew test
+        continue-on-error: true
+      
+      - name: Publish test results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: '**/build/test-results/**/*.xml'
+          check_name: Test Results
+      
+      - name: Check if Detekt is configured
+        id: check-detekt
+        run: |
+          if ./gradlew tasks --all | grep -q "^detekt "; then
+            echo "configured=true" >> $GITHUB_OUTPUT
+          else
+            echo "configured=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Code quality check with Detekt
+        if: steps.check-detekt.outputs.configured == 'true'
+        id: detekt
+        run: ./gradlew detekt
+        continue-on-error: true
+      
+      - name: Comment PR with results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const testStatus = '${{ steps.tests.outcome }}';
+            const detektConfigured = '${{ steps.check-detekt.outputs.configured }}';
+            const detektStatus = '${{ steps.detekt.outcome }}';
+            
+            let comment = '## 🔍 Code Review Results\n\n';
+            comment += '✅ Build completed successfully\n';
+            
+            if (testStatus === 'success') {
+              comment += '✅ All tests passed\n';
+            } else if (testStatus === 'failure') {
+              comment += '❌ Some tests failed - please review the test results\n';
+            } else {
+              comment += '⚠️ Tests status: ' + testStatus + '\n';
+            }
+            
+            if (detektConfigured === 'true') {
+              if (detektStatus === 'success') {
+                comment += '✅ Code quality checks passed\n';
+              } else if (detektStatus === 'failure') {
+                comment += '⚠️ Code quality issues detected\n';
+              }
+            }
+            
+            comment += '\nYour code contribution has been reviewed automatically.\n';
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
