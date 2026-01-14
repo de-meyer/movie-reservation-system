@@ -25,15 +25,16 @@ class MovieService(val movieRepository: MovieRepository, val movieMapper: MovieM
         movieRepository.findById(movie.id)
             .switchIfEmpty(Mono.error(NoSuchElementException("UPDATE: Movie not found with id: $id")))
             .flatMap { existingEntity ->
+                // TODO: find a better way than non null assertion !! 
                 val updatedEntity = existingEntity.copy(
                     title = movie.title,
                     description = movie.description,
                     releaseYear = movie.releaseYear,
-                    director = movie.director,
-                    genre = movie.genre,
+                    director = movie.director!!,
+                    genre = movie.genre!!,
                     durationMinutes = movie.durationMinutes,
-                    imageProfile = movie.imageProfile,
-                    imageLandscape = movie.imageLandscape
+                    imageProfile = movie.imageProfile!!,
+                    imageLandscape = movie.imageLandscape!!
                 )
                 movieRepository.save(updatedEntity)
             }
