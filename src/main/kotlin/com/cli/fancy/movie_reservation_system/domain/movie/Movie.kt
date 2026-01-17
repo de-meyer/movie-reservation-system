@@ -3,14 +3,13 @@ package com.cli.fancy.movie_reservation_system.domain.movie
 import java.util.*
 
 data class Movie(
-    val id: UUID? = null,
+    val id: UUID,
     val title: String,
     val description: String,
     val durationMinutes: Int,
     val director: String?,
     val genre: String?,
     val releaseYear: Int,
-    val rating: Double?,
     val imageProfile: String?,
     val imageLandscape: String?
 ) {
@@ -20,7 +19,6 @@ data class Movie(
 
         if (durationMinutes != other.durationMinutes) return false
         if (releaseYear != other.releaseYear) return false
-        if (rating != other.rating) return false
         if (id != other.id) return false
         if (title != other.title) return false
         if (description != other.description) return false
@@ -35,8 +33,7 @@ data class Movie(
     override fun hashCode(): Int {
         var result = durationMinutes
         result = 31 * result + releaseYear
-        result = 31 * result + (rating?.hashCode() ?: 0)
-        result = 31 * result + (id?.hashCode() ?: 0)
+        result = 31 * result + (id.hashCode() ?: 0)
         result = 31 * result + title.hashCode()
         result = 31 * result + description.hashCode()
         result = 31 * result + (director?.hashCode() ?: 0)

@@ -5,14 +5,60 @@ import com.cli.fancy.movie_reservation_system.application.movie.dto.MovieCreateS
 import com.cli.fancy.movie_reservation_system.application.movie.dto.MovieResponse
 import com.cli.fancy.movie_reservation_system.domain.movie.Movie
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie.MovieEntity
-import org.mapstruct.Mapper
 
-@Mapper(componentModel = "spring")
-interface MovieMapper {
-    fun toDto(movie: Movie?): MovieResponse
-    fun toShowCreationInformation(movie: Movie?): MovieCreateShowResponse
-    fun toBrowseInformationDto(movie: Movie?): MovieBrowseResponse
+fun Movie.toMovieResponse(): MovieResponse = MovieResponse(
+    id = this.id,
+    title = this.title,
+    description = this.description,
+    durationMinutes = this.durationMinutes,
+    director = this.director,
+    genre = this.genre,
+    releaseYear = this.releaseYear,
+    imageProfile = this.imageProfile,
+    imageLandscape = this.imageLandscape,
+)
+
+fun Movie.toShowCreationInformation(): MovieCreateShowResponse = MovieCreateShowResponse(
+    id = this.id,
+    title = this.title,
+    durationMinutes = this.durationMinutes,
+)
+
+fun MovieEntity.toMovieFromEntity(): Movie = Movie(
+    id = this.id!!,
+    title = this.title,
+    description = this.description,
+    durationMinutes = this.durationMinutes,
+    director = this.director,
+    genre = this.genre,
+    releaseYear = this.releaseYear,
+    imageProfile = this.imageProfile,
+    imageLandscape = this.imageLandscape,
+)
+
+fun Movie.toBrowseInformationDto(): MovieBrowseResponse = MovieBrowseResponse(
+    id = this.id,
+    title = this.title,
+)
+
+fun Movie.toMovieCreateShowSelection(): MovieCreateShowResponse = MovieCreateShowResponse(
+    id = this.id,
+    title = this.title,
+    durationMinutes = this.durationMinutes,
+)
+
+fun MovieResponse.toEntity(): MovieEntity = MovieEntity(
+    id = this.id,
+    title = this.title,
+    description = this.description,
+    durationMinutes = this.durationMinutes,
+    director = this.director,
+    genre = this.genre,
+    releaseYear = this.releaseYear,
+    imageProfile = this.imageProfile,
+    imageLandscape = this.imageLandscape,
+
+    )
+/*{
     fun toEntity(movieResponse: MovieResponse): MovieEntity
-    fun toMovieFromEntity(movieEntity: MovieEntity?): Movie
-    fun toMovieCreateShowSelection(movie: Movie?): MovieCreateShowResponse
-}
+}*/
