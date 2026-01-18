@@ -3,7 +3,6 @@ package com.cli.fancy.movie_reservation_system.application.program
 import com.cli.fancy.movie_reservation_system.application.program.dto.ProgramResponse
 import com.cli.fancy.movie_reservation_system.application.program.mapper.toProgramResponse
 import com.cli.fancy.movie_reservation_system.domain.program.ProgramService
-import org.springframework.data.domain.Page
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -36,8 +35,6 @@ class ProgramController(val service: ProgramService) {
 
     @GetMapping("/tomorrow")
     fun getTomorrowsProgram(
-        @RequestParam(defaultValue = "0") page: Int,
-        @RequestParam(defaultValue = "30") size: Int
     ): ResponseEntity<Flux<ProgramResponse>> {
         // Implementation to retrieve todays program with shows and movies
         val startOfDay = Instant.now().truncatedTo(ChronoUnit.DAYS).plus(1, ChronoUnit.DAYS)
