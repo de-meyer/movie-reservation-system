@@ -1,37 +1,23 @@
 package com.cli.fancy.movie_reservation_system.infrastructure.persistence.show
 
-import jakarta.persistence.Access
-import jakarta.persistence.AccessType
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import org.springframework.data.annotation.Id
+import org.springframework.data.relational.core.mapping.Column
+import org.springframework.data.relational.core.mapping.Table
 import java.time.Instant
 import java.util.*
 
-@Entity
 @Table(name = "show")
-@Access(AccessType.FIELD)
-class ShowEntity private constructor() { // Hibernate only
+data class ShowEntity( // Hibernate only
 
     @Id
-    val id: UUID = UUID.randomUUID()
+    val id: UUID = UUID.randomUUID(),
 
-    @Column(name = "movie_id")
-    lateinit var movieId: UUID
+    @Column("movie_id")
+    val movieId: UUID,
 
-    @Column(name = "theater_id")
-    lateinit var theaterId: UUID
+    @Column("theater_id")
+    val theaterId: UUID,
 
-    @Column(name = "date")
-    lateinit var date: Instant
-
-    constructor(movieId: UUID, theaterId: UUID, date: Instant) : this() {
-        this.movieId = movieId
-        this.theaterId = theaterId
-        this.date = date
-    }
-
-    override fun equals(other: Any?): Boolean = (other is ShowEntity) && id == other.id
-    override fun hashCode(): Int = id.hashCode()
-}
+    @Column("date")
+    val date: Instant
+)
