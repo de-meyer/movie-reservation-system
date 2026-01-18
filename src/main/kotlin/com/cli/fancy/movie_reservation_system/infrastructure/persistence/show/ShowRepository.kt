@@ -8,7 +8,7 @@ import java.util.*
 
 interface ShowRepository : R2dbcRepository<ShowEntity, UUID> {
     fun findAll(pageable: Pageable): Flux<ShowEntity>
-    fun findByDateGreaterThanEqual(date: Instant, pageable: Pageable): Flux<ShowEntity>
-    fun findByDateBetween(startDate: Instant, endDate: Instant, pageable: Pageable): Flux<ShowEntity>
+    fun findByDateGreaterThanEqual(date: Instant): Flux<ShowEntity>
+    fun findByDateBetween(startDate: Instant, endDate: Instant): Flux<ShowEntity>
 }
 // TODO: update repositories from JPA -> R2DBC

@@ -5,10 +5,19 @@ import com.cli.fancy.movie_reservation_system.domain.movie.Movie
 import com.cli.fancy.movie_reservation_system.domain.program.Program
 import com.cli.fancy.movie_reservation_system.domain.show.Show
 import com.cli.fancy.movie_reservation_system.domain.theater.Theater
-import org.mapstruct.Mapper
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 
-@Mapper(componentModel = "spring")
-interface ProgramMapper {
+fun Program.toProgram(shows: Flux<Show>, movie: Mono<Movie>, theaters: Flux<Theater>): Program = Program(
+    movie = this.movie,
+    shows = this.shows,
+)
+
+fun Program.toProgramResponse(): ProgramResponse = ProgramResponse(
+    movie = this.movie,
+    shows = this.shows
+)
+/*{
     fun toProgram(shows: List<Show>, movie: Movie, theaters: List<Theater>): Program
     fun toProgramResponse(program: Program): ProgramResponse
-}
+}*/
