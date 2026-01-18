@@ -7,9 +7,6 @@ import com.cli.fancy.movie_reservation_system.domain.show.ShowSchedule
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie.MovieRepository
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.show.ShowRepository
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.theater.TheaterRepository
-import org.springframework.data.domain.Page
-import org.springframework.data.domain.PageImpl
-import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono

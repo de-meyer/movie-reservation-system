@@ -8,7 +8,7 @@ import com.cli.fancy.movie_reservation_system.domain.theater.Theater
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
-fun Program.toProgram(shows: Flux<Show>, movie: Mono<Movie>, theaters: Flux<Theater>): Program = Program(
+fun Program.toProgram(): Program = Program(
     movie = this.movie,
     shows = this.shows,
 )
@@ -17,7 +17,3 @@ fun Program.toProgramResponse(): ProgramResponse = ProgramResponse(
     movie = this.movie,
     shows = this.shows
 )
-/*{
-    fun toProgram(shows: List<Show>, movie: Movie, theaters: List<Theater>): Program
-    fun toProgramResponse(program: Program): ProgramResponse
-}*/

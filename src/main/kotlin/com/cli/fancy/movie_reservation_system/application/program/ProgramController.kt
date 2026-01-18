@@ -38,12 +38,12 @@ class ProgramController(val service: ProgramService) {
     fun getTomorrowsProgram(
         @RequestParam(defaultValue = "0") page: Int,
         @RequestParam(defaultValue = "30") size: Int
-    ): ResponseEntity<Page<ProgramResponse>> {
+    ): ResponseEntity<Flux<ProgramResponse>> {
         // Implementation to retrieve todays program with shows and movies
         val startOfDay = Instant.now().truncatedTo(ChronoUnit.DAYS).plus(1, ChronoUnit.DAYS)
 
         val response =
-            service.getDaySpecificProgramList(startOfDay, page, size).map { it.toProgramResponse() }
+            service.getDaySpecificProgramList(startOfDay).map { it.toProgramResponse() }
         return ResponseEntity.ok(response)
     }
 
