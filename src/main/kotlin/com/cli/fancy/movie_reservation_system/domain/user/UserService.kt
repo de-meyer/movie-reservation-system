@@ -11,20 +11,20 @@ import reactor.core.publisher.Mono
 import java.util.*
 
 @Service
-open class UserService(private val authRepository: AuthRepository) {
+class UserService(private val authRepository: AuthRepository) {
     fun getAllUsers(): Flux<User> = authRepository.findAll().map { it.toUserDomain() }
     fun getUserById(id: UUID): Mono<User> =
         authRepository.findById(id)
             .switchIfEmpty(Mono.error(NoSuchElementException("User with id $id not found")))
             .map { it.toUserDomain() }
-    
+
     fun getUserByEmail(email: String): Mono<User> =
         authRepository.getUserByEmail(email = email)
             .switchIfEmpty(Mono.error(NoSuchElementException("User with id $email not found")))
             .map { it.toUserDomain() }
 
     @Transactional
-    open fun registerUser(userLoginRequest: UserLoginRequest): Mono<User> =
+    fun registerUser(userLoginRequest: UserLoginRequest): Mono<User> =
         authRepository.existsByEmail(userLoginRequest.email)
             .flatMap { exists ->
                 if (exists) {
