@@ -31,7 +31,7 @@ class MovieController(val movieService: MovieService) {
 
 
     @GetMapping("/{id}")
-    fun getMovieById(@PathVariable id: UUID): Mono<MovieCreateShowResponse?> =
+    fun getMovieById(@PathVariable id: UUID): Mono<MovieCreateShowResponse> =
         movieService.getMovieById(id)
             .map { it.toMovieCreateShowSelection() }
 }

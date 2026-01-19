@@ -1,38 +1,40 @@
 package com.cli.fancy.movie_reservation_system.domain.user
 
 import com.cli.fancy.movie_reservation_system.application.user.dto.UserLoginRequest
-import com.cli.fancy.movie_reservation_system.application.user.mapper.UserMapper
+import com.cli.fancy.movie_reservation_system.application.user.mapper.toLoginRequestEntity
+import com.cli.fancy.movie_reservation_system.application.user.mapper.toUserDomain
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.user.AuthRepository
-import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 import java.util.*
 
 @Service
-open class UserService(private val authRepository: AuthRepository, private val userMapper: UserMapper) {
-    fun getAllUsers(): List<User> = authRepository.findAll().map { userMapper.toUserDomain(it) }
-    fun getUserById(id: UUID): User {
-        val user = authRepository.findById(id).orElse(null)
-        if (user == null) {
-            throw NoSuchElementException("User with id $id not found")
-        }
-        return userMapper.toUserDomain(user)
-    }
-
-    fun getUserByEmail(email: String): User {
-        val user = authRepository.getUserByEmail(email = email).orElse(null)
-        if (user == null) {
-            throw NoSuchElementException("User with email $email not found")
-        }
-        return userMapper.toUserDomain(user)
-    }
+open class UserService(private val authRepository: AuthRepository) {
+    fun getAllUsers(): Flux<User> = authRepository.findAll().map { it.toUserDomain() }
+    fun getUserById(id: UUID): Mono<User> =
+        authRepository.findById(id)
+            .switchIfEmpty(Mono.error(NoSuchElementException("User with id $id not found")))
+            .map { it.toUserDomain() }
+    
+    fun getUserByEmail(email: String): Mono<User> =
+        authRepository.getUserByEmail(email = email)
+            .switchIfEmpty(Mono.error(NoSuchElementException("User with id $email not found")))
+            .map { it.toUserDomain() }
 
     @Transactional
-    open fun registerUser(userLoginRequest: UserLoginRequest): User {
-        if (authRepository.existsByEmail(userLoginRequest.email)) {
-            throw IllegalArgumentException("Email is already in use")
-        }
-        val user = userMapper.toLoginRequestEntity(userLoginRequest)
-        val savedUser = authRepository.save(user)
-        return userMapper.toUserDomain(savedUser)
-    }
+    open fun registerUser(userLoginRequest: UserLoginRequest): Mono<User> =
+        authRepository.existsByEmail(userLoginRequest.email)
+            .flatMap { exists ->
+                if (exists) {
+                    Mono.error(IllegalArgumentException("Email is already in use"))
+                } else {
+                    val user = userLoginRequest.toLoginRequestEntity()
+                    authRepository.save(user)
+                }
+            }
+            .map { savedUser ->
+                savedUser.toUserDomain()
+            }
 }

@@ -10,30 +10,34 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import reactor.core.publisher.Mono
 
 @RestController
 @RequestMapping("/auth")
 class AuthController(private val userService: UserService, private val jwtService: JwtService) {
 
     @PostMapping("/oauth/discord")
-    fun oAuth(@RequestBody userLoginRequest: UserLoginRequest): ResponseEntity<String> {
-        val user = try {
-            userService.getUserByEmail(userLoginRequest.email)
-        } catch (e: NoSuchElementException) {
-            userService.registerUser(userLoginRequest)
-        }
-        val token = jwtService.generateToken(user)
+    fun oAuth(@RequestBody userLoginRequest: UserLoginRequest): Mono<ResponseEntity<String>> =
+        userService.getUserByEmail(userLoginRequest.email)
+            .onErrorResume(NoSuchElementException::class.java) {
+                userService.registerUser(userLoginRequest)
+            }
+            .map { user ->
+                val token = jwtService.generateToken(user)
+                createAuthResponse(token)
+            }
+
+    private fun createAuthResponse(token: String): ResponseEntity<String> {
         val cookie = ResponseCookie.from("user_jwt", token)
             .httpOnly(true)
-            .secure(true) // Use only over HTTPS
+            .secure(true)
             .path("/")
-            .maxAge((1 * 60 * 60).toLong()) // 1 hour
-            .sameSite("Strict") // Prevent CSRF
+            .maxAge(3600L)
+            .sameSite("Strict")
             .build()
 
         return ResponseEntity.ok()
             .header(HttpHeaders.SET_COOKIE, cookie.toString())
             .body("Login successful")
     }
-
 }
