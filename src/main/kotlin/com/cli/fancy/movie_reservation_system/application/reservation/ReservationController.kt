@@ -6,6 +6,8 @@ import com.cli.fancy.movie_reservation_system.application.reservation.mapper.toD
 import com.cli.fancy.movie_reservation_system.domain.reservation.ReservationService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 
 @RestController
 @RequestMapping("/reservations")
@@ -16,14 +18,12 @@ class ReservationController(
     // Define endpoints for reservation operations here
 
     @PostMapping
-    fun createReservation(@RequestBody reservationRequest: ReservationRequest): ResponseEntity<ReservationResponse> {
-        val reservation = reservationService.createReservation(reservationRequest)
-        return ResponseEntity.ok(reservation.toDto())
-    }
+    fun createReservation(@RequestBody reservationRequest: ReservationRequest): Mono<ResponseEntity<ReservationResponse>> =
+        reservationService.createReservation(reservationRequest)
+            .map { ResponseEntity.ok(it.toDto()) }
 
     @GetMapping
-    fun getReservations(): ResponseEntity<List<ReservationResponse>> {
-        val reservations = reservationService.getAllReservations()
-        return ResponseEntity.ok(reservations.map { it.toDto() })
-    }
+    fun getReservations(): Flux<ReservationResponse> =
+        reservationService.getAllReservations()
+            .map { it.toDto() }
 }
