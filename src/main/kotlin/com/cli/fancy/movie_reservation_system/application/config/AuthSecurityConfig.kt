@@ -19,18 +19,18 @@ import org.springframework.web.filter.OncePerRequestFilter
 
 @Configuration
 @EnableWebSecurity
-open class AuthSecurityConfig(
+class AuthSecurityConfig(
     private val jwtService: JwtService,
     private val userService: UserService,
 ) {
 
     @Bean
-    open fun jwtAuthFilter(): JwtAuthFilter {
+    fun jwtAuthFilter(): JwtAuthFilter {
         return JwtAuthFilter(jwtService, userService)
     }
 
     @Bean
-    open fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
+    fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http.authorizeHttpRequests { authorizeRequests ->
             authorizeRequests
                 .requestMatchers("/user/me").authenticated()
@@ -61,15 +61,9 @@ class JwtAuthFilter(
         if (cookie != null) {
             if (jwtService.validateToken(cookie)) {
                 val principleUser: User = jwtService.getUserFromToken(cookie) // User ID = email in this context
-                val user = userService.getUserByEmail(principleUser.email)
-                    ?: throw IllegalArgumentException("User not found")
-                val enrichedUser = User(
-                    name = user.name,
-                    email = user.email,
-                    role = user.role,
-                    id = user.id
-                )
-                val auth = UsernamePasswordAuthenticationToken(enrichedUser, null, emptyList())
+                val user = userService.getUserByEmail(principleUser.email).subscribe()
+
+                val auth = UsernamePasswordAuthenticationToken(user, null, emptyList())
                 SecurityContextHolder.getContext().authentication = auth
             }
         }
