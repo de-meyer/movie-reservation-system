@@ -5,7 +5,6 @@ import reactor.core.publisher.Mono
 import java.util.*
 
 interface AuthRepository : R2dbcRepository<UserEntity, Long> {
-    fun getUserEntityByName(name: String): Mono<UserEntity>
     fun getUserByEmail(email: String): Mono<UserEntity>
     fun existsByEmail(email: String): Mono<Boolean>
     fun findById(id: UUID): Mono<UserEntity>

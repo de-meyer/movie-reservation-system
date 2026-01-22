@@ -1,7 +1,7 @@
 package com.cli.fancy.movie_reservation_system.application.user
 
 import com.cli.fancy.movie_reservation_system.application.user.dto.UserResponse
-import com.cli.fancy.movie_reservation_system.application.user.mapper.UserMapper
+import com.cli.fancy.movie_reservation_system.application.user.mapper.toDto
 import com.cli.fancy.movie_reservation_system.domain.user.UserService
 import com.cli.fancy.movie_reservation_system.infrastructure.security.JwtService
 import org.springframework.http.ResponseEntity
@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 import java.util.*
 
 
@@ -18,14 +20,14 @@ import java.util.*
 class UserController(
     private val userService: UserService,
     private val jwtService: JwtService,
-    private val userMapper: UserMapper
 ) {
 
     @GetMapping
-    fun getUsers(): List<UserResponse> = userService.getAllUsers().map { userMapper.toDto(it) }
+    fun getUsers(): Flux<UserResponse> = userService.getAllUsers().map { it.toDto() }
 
     @GetMapping("/{id}")
-    fun getUser(@PathVariable id: UUID): UserResponse? = userService.getUserById(id).let { userMapper.toDto(it) }
+    fun getUser(@PathVariable id: UUID): Mono<UserResponse> = userService.getUserById(id)
+        .map { it.toDto() }
 
 
     @GetMapping("/me")

@@ -41,7 +41,10 @@ class JwtService {
         val name = claims.body["name"] as String
         val email = claims.body.subject
         val role = claims.body["role"] as String
-        return User(name = name, email = email, role = role)
+        val id = claims.body["id"] as UUID
+        return User(
+            name = name, email = email, role = role, id = id
+        )
     }
 
     private fun parseToken(token: String): Jws<Claims> {

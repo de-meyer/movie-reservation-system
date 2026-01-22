@@ -14,22 +14,22 @@ import org.springframework.web.bind.annotation.*
 class ShowController(val showService: ShowService) {
 
     @GetMapping("/findAll")
-    fun findAllShows(): ResponseEntity<List<ShowResponse>> {
+    fun findAllShows(): List<ShowResponse?>? {
         val shows = showService.findAll().map { it.toShowResponse() }
-        return ResponseEntity.ok(shows)
+        return shows.collectList().block()
     }
 
     @PostMapping("/find")
-    fun findShowById(@RequestBody request: ShowIdRequest): ShowResponse {
-        val show = showService.findById(request.id).toShowResponse()
-        return show
+    fun findShowById(@RequestBody request: ShowIdRequest): ShowResponse? {
+        val show = showService.findById(request.id).map { it.toShowResponse() }
+        return show.block()
     }
 
     @PostMapping("/create")
     fun createShow(@RequestBody request: ShowCreateRequest): ResponseEntity<String> {
         try {
             val showEntity = request.toEntity()
-            showService.createShow(showEntity = showEntity)
+            showService.createShow(showEntity = showEntity).block()
             return ResponseEntity.ok().body("Success")
         } catch (ex: Exception) {
             return ResponseEntity.badRequest().body(ex.message)
