@@ -1,11 +1,11 @@
 package com.cli.fancy.movie_reservation_system.infrastructure.persistence.show
 
-import org.springframework.data.r2dbc.repository.R2dbcRepository
+import org.springframework.data.repository.reactive.ReactiveCrudRepository
 import reactor.core.publisher.Flux
 import java.time.Instant
 import java.util.*
 
-interface ShowRepository : R2dbcRepository<ShowEntity, UUID> {
+interface ShowRepository : ReactiveCrudRepository<ShowEntity, UUID> {
     fun findByDateGreaterThanEqual(date: Instant): Flux<ShowEntity>
     fun findByDateBetween(startDate: Instant, endDate: Instant): Flux<ShowEntity>
 }
