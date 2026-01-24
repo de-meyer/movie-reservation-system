@@ -1,7 +1,7 @@
 package com.cli.fancy.movie_reservation_system.domain.show
 
 import com.cli.fancy.movie_reservation_system.application.show.mapper.toShow
-import com.cli.fancy.movie_reservation_system.infrastructure.persistence.show.ShowEntity
+import com.cli.fancy.movie_reservation_system.infrastructure.persistence.show.ShowsEntity
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.show.ShowRepository
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
@@ -16,8 +16,8 @@ class ShowService(val showRepository: ShowRepository) {
 
     }
 
-    fun createShow(showEntity: ShowEntity): Mono<Show> =
-        showRepository.save(showEntity)
+    fun createShow(showsEntity: ShowsEntity): Mono<Show> =
+        showRepository.save(showsEntity)
             .map { it.toShow() }
 
 

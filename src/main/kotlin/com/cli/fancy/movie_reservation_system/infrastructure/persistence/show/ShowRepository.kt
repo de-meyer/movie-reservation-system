@@ -5,8 +5,8 @@ import reactor.core.publisher.Flux
 import java.time.Instant
 import java.util.*
 
-interface ShowRepository : ReactiveCrudRepository<ShowEntity, UUID> {
-    fun findByDateGreaterThanEqual(date: Instant): Flux<ShowEntity>
-    fun findByDateBetween(startDate: Instant, endDate: Instant): Flux<ShowEntity>
+interface ShowRepository : ReactiveCrudRepository<ShowsEntity, UUID> {
+    fun findByDateGreaterThanEqual(date: Instant): Flux<ShowsEntity>
+    fun findByDateBetween(startDate: Instant, endDate: Instant): Flux<ShowsEntity>
 }
 // TODO: update repositories from JPA -> R2DBC

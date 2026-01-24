@@ -6,8 +6,8 @@ import org.springframework.data.relational.core.mapping.Table
 import java.time.Instant
 import java.util.*
 
-@Table(name = "show")
-data class ShowEntity( // Hibernate only
+@Table(name = "shows")
+data class ShowsEntity( // Hibernate only
 
     @Id
     val id: UUID = UUID.randomUUID(),
