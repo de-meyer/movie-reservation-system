@@ -1,6 +1,8 @@
 package com.cli.fancy.movie_reservation_system.domain.movie
 
+import com.cli.fancy.movie_reservation_system.application.movie.dto.MovieCreationRequest
 import com.cli.fancy.movie_reservation_system.application.movie.dto.MovieResponse
+import com.cli.fancy.movie_reservation_system.application.movie.mapper.toEntity
 import com.cli.fancy.movie_reservation_system.application.movie.mapper.toMovieFromEntity
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie.MovieRepository
 import org.springframework.stereotype.Service
@@ -39,5 +41,8 @@ class MovieService(val movieRepository: MovieRepository) {
             }
             .map { it.toMovieFromEntity() }
 
+    fun createMovieFromRequest(movieCreationRequest: MovieCreationRequest): Mono<Movie> =
+        movieRepository.save(movieCreationRequest.toEntity())
+            .map { it.toMovieFromEntity() }
 
 }
