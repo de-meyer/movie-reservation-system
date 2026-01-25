@@ -4,7 +4,6 @@ import com.cli.fancy.movie_reservation_system.application.movie.dto.MovieBrowseR
 import com.cli.fancy.movie_reservation_system.application.movie.dto.MovieCreateShowResponse
 import com.cli.fancy.movie_reservation_system.application.movie.dto.MovieCreationRequest
 import com.cli.fancy.movie_reservation_system.application.movie.dto.MovieCreationResponse
-import com.cli.fancy.movie_reservation_system.application.movie.dto.MovieResponse
 import com.cli.fancy.movie_reservation_system.domain.movie.Movie
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie.MovieEntity
 
@@ -48,18 +47,6 @@ fun Movie.toMovieCreateShowSelection(): MovieCreateShowResponse = MovieCreateSho
     title = this.title,
     durationMinutes = this.durationMinutes,
 )
-
-fun MovieResponse.toEntity(): MovieEntity = MovieEntity(
-    title = this.title,
-    description = this.description,
-    durationMinutes = this.durationMinutes,
-    director = this.director,
-    genre = this.genre,
-    releaseYear = this.releaseYear,
-    imageProfile = this.imageProfile,
-    imageLandscape = this.imageLandscape,
-
-    )
 
 fun MovieCreationRequest.toEntity(): MovieEntity = MovieEntity(
     title = this.title,

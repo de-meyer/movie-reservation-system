@@ -31,11 +31,11 @@ class MovieService(val movieRepository: MovieRepository) {
                     title = movie.title,
                     description = movie.description,
                     releaseYear = movie.releaseYear,
-                    director = movie.director!!,
-                    genre = movie.genre!!,
+                    director = movie.director,
+                    genre = movie.genre,
                     durationMinutes = movie.durationMinutes,
-                    imageProfile = movie.imageProfile!!,
-                    imageLandscape = movie.imageLandscape!!
+                    imageProfile = movie.imageProfile,
+                    imageLandscape = movie.imageLandscape
                 )
                 movieRepository.save(updatedEntity)
             }
