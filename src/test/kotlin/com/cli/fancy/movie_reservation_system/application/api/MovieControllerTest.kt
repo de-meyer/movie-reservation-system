@@ -1,18 +1,18 @@
-package com.cli.fancy.movie_reservation_system.application.reservation.api
+package com.cli.fancy.movie_reservation_system.application.api
 
 import com.cli.fancy.movie_reservation_system.AbstractIntegrationTest
 import org.springframework.http.MediaType
 import kotlin.test.Test
 
 class MovieControllerTest : AbstractIntegrationTest() {
-    
+
     @Test
     fun `should create movie`() {
         webTestClient.post()
             .uri("/movie/createShow")
             .bodyValue(
                 mapOf(
-                    "title" to "Inception",
+                    "title" to "Movie 1",
                     "description" to "foo bar",
                     "durationMinutes" to 90,
                     "director" to "Max Foo Bar",
@@ -28,7 +28,8 @@ class MovieControllerTest : AbstractIntegrationTest() {
             .expectHeader().valueMatches("Location", ".*/movie/.*") // Verify format
             .expectBody()
             .jsonPath("$.id").exists()
-            .jsonPath("$.title").isEqualTo("Inception")
+            .jsonPath("$.title").isEqualTo("Movie 1")
+        
     }
 
     @Test
@@ -38,6 +39,9 @@ class MovieControllerTest : AbstractIntegrationTest() {
             .accept(MediaType.APPLICATION_JSON)
             .exchange()
             .expectStatus().isOk
+            .expectBody()
+            .jsonPath("$.length()").isEqualTo(27)
+
 
     }
 }
