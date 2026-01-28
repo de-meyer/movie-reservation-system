@@ -13,6 +13,9 @@ class TestcontainersConfiguration {
     @ServiceConnection
     fun postgresContainer(): PostgreSQLContainer {
         return PostgreSQLContainer(DockerImageName.parse("postgres:latest"))
+            .withDatabaseName("postgres")
+            .withUsername("test")
+            .withPassword("test")
     }
 
 }
