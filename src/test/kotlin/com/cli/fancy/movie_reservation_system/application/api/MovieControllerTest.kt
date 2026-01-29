@@ -2,6 +2,7 @@ package com.cli.fancy.movie_reservation_system.application.api
 
 import com.cli.fancy.movie_reservation_system.AbstractIntegrationTest
 import org.springframework.http.MediaType
+import java.util.UUID
 import kotlin.test.Test
 
 class MovieControllerTest : AbstractIntegrationTest() {
@@ -34,6 +35,7 @@ class MovieControllerTest : AbstractIntegrationTest() {
 
     @Test
     fun `should get all movies`() {
+        testDataHelper.createMovies(5)
         webTestClient.get()
             .uri("/movie/browse")
             .accept(MediaType.APPLICATION_JSON)
@@ -43,5 +45,17 @@ class MovieControllerTest : AbstractIntegrationTest() {
             .jsonPath("$.length()").isEqualTo(27)
 
 
+    }
+
+    @Test
+    fun `should get movie by id`() {
+        testDataHelper.createMovieWithId(UUID.fromString("a7f3c4e2-8b1d-4f5a-9c6e-2d8b7a3f1e4c"))
+        webTestClient.get()
+        .uri("/movie/a7f3c4e2-8b1d-4f5a-9c6e-2d8b7a3f1e4c")
+            .accept(MediaType.APPLICATION_JSON)
+        .exchange()
+        .expectStatus().isOk
+        .expectBody()
+            .jsonPath() // FIXME Check for uuid
     }
 }
