@@ -58,4 +58,30 @@ class MovieControllerTest : AbstractIntegrationTest() {
         .expectBody()
             .jsonPath() // FIXME Check for uuid
     }
+
+    Here's how to rewrite the test to actually delete a movie and verify it's deleted:
+    kotlin
+
+    @Test
+    fun `should delete movie by id`() {
+        // Arrange - Create a movie
+        val movieId = UUID.fromString("a7f3c4e2-8b1d-4f5a-9c6e-2d8b7a3f1e4c")
+        testDataHelper.createMovieWithId(movieId)
+
+        webTestClient.get()
+            .uri("/movie/$movieId")
+            .accept(MediaType.APPLICATION_JSON)
+            .exchange()
+            .expectStatus().isOk
+
+        webTestClient.delete()
+            .uri("/movie/$movieId")
+            .exchange()
+            .expectStatus().isNoContent  // or .isOk depending on your API
+
+        webTestClient.get()
+            .uri("/movie/$movieId")
+            .exchange()
+            .expectStatus().isNotFound
+    }
 }
