@@ -1,0 +1,18 @@
+-- Update shows dates to current date
+WITH cte AS (SELECT id, date, row_number() OVER (ORDER BY id) AS rn, count(*) OVER () AS cnt
+             FROM shows)
+UPDATE shows s
+SET date = CASE
+               WHEN (date_trunc('day', s.date AT TIME ZONE 'UTC')::date) = '2025-10-01'::date
+                   THEN (date_trunc('day', now() AT TIME ZONE 'UTC') + (s.date AT TIME ZONE 'UTC')::time) AT TIME ZONE
+                        'UTC'
+               WHEN (date_trunc('day', s.date AT TIME ZONE 'UTC')::date) = '2025-10-02'::date
+                   THEN ((date_trunc('day', now() AT TIME ZONE 'UTC') + interval '1 day') +
+                         (s.date AT TIME ZONE 'UTC')::time) AT TIME ZONE 'UTC'
+               WHEN (date_trunc('day', s.date AT TIME ZONE 'UTC')::date) = '2025-10-03'::date
+                   THEN ((date_trunc('day', now() AT TIME ZONE 'UTC') + interval '2 day') +
+                         (s.date AT TIME ZONE 'UTC')::time) AT TIME ZONE 'UTC'
+               ELSE s.date
+    END
+FROM cte
+WHERE s.id = cte.id;
