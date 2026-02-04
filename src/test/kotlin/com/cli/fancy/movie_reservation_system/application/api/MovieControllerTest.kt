@@ -2,6 +2,7 @@ package com.cli.fancy.movie_reservation_system.application.api
 
 import com.cli.fancy.movie_reservation_system.AbstractIntegrationTest
 import org.springframework.http.MediaType
+import org.springframework.transaction.annotation.Transactional
 import java.util.UUID
 import kotlin.test.Test
 
@@ -42,23 +43,25 @@ class MovieControllerTest : AbstractIntegrationTest() {
             .exchange()
             .expectStatus().isOk
             .expectBody()
-            .jsonPath("$.length()").isEqualTo(27)
+            .jsonPath("$.length()").isEqualTo(5)
 
 
     }
 
+    // FIXME: 500 Internal server error
     @Test
     fun `should get movie by id`() {
-        testDataHelper.createMovieWithId(UUID.fromString("a7f3c4e2-8b1d-4f5a-9c6e-2d8b7a3f1e4c"))
+        testDataHelper.createMovieWithId(UUID.fromString("cab1370c-e8e9-423f-bce0-8d13322e55eb"))
         webTestClient.get()
-            .uri("/movie/a7f3c4e2-8b1d-4f5a-9c6e-2d8b7a3f1e4c")
+            .uri("/movie/cab1370c-e8e9-423f-bce0-8d13322e55eb")
             .accept(MediaType.APPLICATION_JSON)
             .exchange()
             .expectStatus().isOk
             .expectBody()
-            .jsonPath() // FIXME Check for uuid
+            .jsonPath("$.id").isEqualTo("cab1370c-e8e9-423f-bce0-8d13322e55eb")
     }
 
+    // FIXME: 500 Internal server error
     @Test
     fun `should delete movie by id`() {
         // Arrange - Create a movie

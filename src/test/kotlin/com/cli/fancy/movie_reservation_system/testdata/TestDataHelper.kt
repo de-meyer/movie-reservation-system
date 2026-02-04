@@ -23,7 +23,7 @@ class TestDataHelper(private val movieRepository: MovieRepository) {
 
     ).block()!!.toMovieFromEntity()
 
-    fun createMovieWithId(id: UUID){
+    fun createMovieWithId(id: UUID) = movieRepository.save(
         MovieEntity(
             id = id,
             title = "Movie",
@@ -35,7 +35,8 @@ class TestDataHelper(private val movieRepository: MovieRepository) {
             imageProfile = "profile.jpg",
             imageLandscape = "Landscape.jpg"
         )
-    }
+    ).block()!!
+
 
     fun createMovies(count: Int): List<Movie> {
         return (1..count).map {
