@@ -30,7 +30,7 @@ class MovieControllerTest : AbstractIntegrationTest() {
             .expectBody()
             .jsonPath("$.id").exists()
             .jsonPath("$.title").isEqualTo("Movie 1")
-        
+
     }
 
     @Test
@@ -51,16 +51,13 @@ class MovieControllerTest : AbstractIntegrationTest() {
     fun `should get movie by id`() {
         testDataHelper.createMovieWithId(UUID.fromString("a7f3c4e2-8b1d-4f5a-9c6e-2d8b7a3f1e4c"))
         webTestClient.get()
-        .uri("/movie/a7f3c4e2-8b1d-4f5a-9c6e-2d8b7a3f1e4c")
+            .uri("/movie/a7f3c4e2-8b1d-4f5a-9c6e-2d8b7a3f1e4c")
             .accept(MediaType.APPLICATION_JSON)
-        .exchange()
-        .expectStatus().isOk
-        .expectBody()
+            .exchange()
+            .expectStatus().isOk
+            .expectBody()
             .jsonPath() // FIXME Check for uuid
     }
-
-    Here's how to rewrite the test to actually delete a movie and verify it's deleted:
-    kotlin
 
     @Test
     fun `should delete movie by id`() {
