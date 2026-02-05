@@ -16,6 +16,7 @@ class MovieService(val movieRepository: MovieRepository) {
         .switchIfEmpty(Mono.error(NoSuchElementException("No movies found")))
         .map { it.toMovieFromEntity() }
 
+    fun deleteById(id: UUID): Mono<Void> = movieRepository.deleteById(id)
 
     fun getMovieById(id: UUID): Mono<Movie> =
         movieRepository.findById(id)

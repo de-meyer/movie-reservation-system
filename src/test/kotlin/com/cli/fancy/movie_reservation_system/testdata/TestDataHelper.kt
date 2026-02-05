@@ -35,7 +35,7 @@ class TestDataHelper(private val movieRepository: MovieRepository) {
             imageProfile = "profile.jpg",
             imageLandscape = "Landscape.jpg"
         )
-    ).block()!!
+    ).block()!!.toMovieFromEntity()
 
 
     fun createMovies(count: Int): List<Movie> {

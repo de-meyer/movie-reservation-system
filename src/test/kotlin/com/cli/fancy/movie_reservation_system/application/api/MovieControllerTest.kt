@@ -3,6 +3,7 @@ package com.cli.fancy.movie_reservation_system.application.api
 import com.cli.fancy.movie_reservation_system.AbstractIntegrationTest
 import org.springframework.http.MediaType
 import org.springframework.transaction.annotation.Transactional
+import reactor.test.StepVerifier
 import java.util.UUID
 import kotlin.test.Test
 
@@ -48,25 +49,25 @@ class MovieControllerTest : AbstractIntegrationTest() {
 
     }
 
-    // FIXME: 500 Internal server error
     @Test
     fun `should get movie by id`() {
-        testDataHelper.createMovieWithId(UUID.fromString("cab1370c-e8e9-423f-bce0-8d13322e55eb"))
+
+        val createdMovie = testDataHelper.createMovie(number = "1")
+        val movieId = createdMovie.id
+
         webTestClient.get()
-            .uri("/movie/cab1370c-e8e9-423f-bce0-8d13322e55eb")
+            .uri("/movie/$movieId")
             .accept(MediaType.APPLICATION_JSON)
             .exchange()
             .expectStatus().isOk
             .expectBody()
-            .jsonPath("$.id").isEqualTo("cab1370c-e8e9-423f-bce0-8d13322e55eb")
+            .jsonPath("$.id").isEqualTo("$movieId")
     }
 
-    // FIXME: 500 Internal server error
     @Test
     fun `should delete movie by id`() {
-        // Arrange - Create a movie
-        val movieId = UUID.fromString("a7f3c4e2-8b1d-4f5a-9c6e-2d8b7a3f1e4c")
-        testDataHelper.createMovieWithId(movieId)
+        val createdMovie = testDataHelper.createMovie(number = "1")
+        val movieId = createdMovie.id
 
         webTestClient.get()
             .uri("/movie/$movieId")

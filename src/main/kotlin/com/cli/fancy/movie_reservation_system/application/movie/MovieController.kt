@@ -10,6 +10,7 @@ import com.cli.fancy.movie_reservation_system.application.movie.mapper.toMovieCr
 import com.cli.fancy.movie_reservation_system.application.movie.mapper.toShowCreationInformation
 import com.cli.fancy.movie_reservation_system.domain.movie.MovieService
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -45,4 +46,11 @@ class MovieController(val movieService: MovieService) {
     fun getMovieById(@PathVariable id: UUID): Mono<MovieCreateShowResponse> =
         movieService.getMovieById(id)
             .map { it.toMovieCreateShowSelection() }
+    //FIXME: when not found errorhandling with controller advice
+
+    @DeleteMapping("/{id}")
+    fun deleteMovie(@PathVariable id: UUID): Mono<ResponseEntity<Void>> {
+        return movieService.deleteById(id)
+            .then(Mono.just(ResponseEntity.noContent().build()))
+    }
 }
