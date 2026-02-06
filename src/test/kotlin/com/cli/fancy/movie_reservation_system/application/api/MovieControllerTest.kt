@@ -2,9 +2,6 @@ package com.cli.fancy.movie_reservation_system.application.api
 
 import com.cli.fancy.movie_reservation_system.AbstractIntegrationTest
 import org.springframework.http.MediaType
-import org.springframework.transaction.annotation.Transactional
-import reactor.test.StepVerifier
-import java.util.UUID
 import kotlin.test.Test
 
 class MovieControllerTest : AbstractIntegrationTest() {
@@ -62,6 +59,31 @@ class MovieControllerTest : AbstractIntegrationTest() {
             .expectStatus().isOk
             .expectBody()
             .jsonPath("$.id").isEqualTo("$movieId")
+    }
+
+    @Test
+    fun `should get movie information's for the show creation page`() {
+        testDataHelper.createMovies(5)
+        webTestClient.get()
+            .uri("/movie/createShowInformation").accept(MediaType.APPLICATION_JSON)
+            .exchange()
+            .expectStatus().isOk
+            .expectBody()
+            .jsonPath("$.length()").isEqualTo(5)
+    }
+
+    @Test
+    fun `should get movie information's for the show creation page with all fields`() {
+        testDataHelper.createMovies(1)
+        webTestClient.get()
+            .uri("/movie/createShowInformation").accept(MediaType.APPLICATION_JSON)
+            .exchange()
+            .expectStatus().isOk
+            .expectBody()
+            .jsonPath("$.length()").isEqualTo(1)
+            .jsonPath("$[0].id").isNotEmpty
+            .jsonPath("$[0].durationMinutes").isNotEmpty
+            .jsonPath("$[0].title").isNotEmpty
     }
 
     @Test
