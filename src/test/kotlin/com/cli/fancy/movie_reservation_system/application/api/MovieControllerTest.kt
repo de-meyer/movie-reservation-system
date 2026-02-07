@@ -2,6 +2,7 @@ package com.cli.fancy.movie_reservation_system.application.api
 
 import com.cli.fancy.movie_reservation_system.AbstractIntegrationTest
 import org.springframework.http.MediaType
+import java.util.*
 import kotlin.test.Test
 
 class MovieControllerTest : AbstractIntegrationTest() {
