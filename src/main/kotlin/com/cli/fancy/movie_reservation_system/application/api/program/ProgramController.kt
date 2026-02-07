@@ -3,7 +3,6 @@ package com.cli.fancy.movie_reservation_system.application.api.program
 import com.cli.fancy.movie_reservation_system.application.api.program.dto.ProgramResponse
 import com.cli.fancy.movie_reservation_system.application.api.program.mapper.toProgramResponse
 import com.cli.fancy.movie_reservation_system.domain.program.ProgramService
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -17,30 +16,30 @@ class ProgramController(val service: ProgramService) {
 
     @GetMapping("/current")
     fun getCurrentProgram(
-    ): ResponseEntity<Flux<ProgramResponse>> {
+    ): Flux<ProgramResponse> {
         val response = service.getProgramList(Instant.now()).map { it.toProgramResponse() }
-        return ResponseEntity.ok(response)
+        return response
     }
 
     @GetMapping("/today")
     fun getTodayProgram(
-    ): ResponseEntity<Flux<ProgramResponse>> {
+    ): Flux<ProgramResponse> {
         // Implementation to retrieve todays program with shows and movies
         val startOfDay = Instant.now().truncatedTo(ChronoUnit.DAYS)
         val response =
             service.getDaySpecificProgramList(startOfDay).map { it.toProgramResponse() }
-        return ResponseEntity.ok(response)
+        return response
     }
 
     @GetMapping("/tomorrow")
     fun getTomorrowsProgram(
-    ): ResponseEntity<Flux<ProgramResponse>> {
+    ): Flux<ProgramResponse> {
         // Implementation to retrieve todays program with shows and movies
         val startOfDay = Instant.now().truncatedTo(ChronoUnit.DAYS).plus(1, ChronoUnit.DAYS)
 
         val response =
             service.getDaySpecificProgramList(startOfDay).map { it.toProgramResponse() }
-        return ResponseEntity.ok(response)
+        return response
     }
 
 }
