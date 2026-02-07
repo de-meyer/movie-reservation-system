@@ -1,11 +1,11 @@
 package com.cli.fancy.movie_reservation_system.testdata
 
-import com.cli.fancy.movie_reservation_system.application.movie.mapper.toMovieFromEntity
+import com.cli.fancy.movie_reservation_system.application.api.movie.mapper.toMovieFromEntity
 import com.cli.fancy.movie_reservation_system.domain.movie.Movie
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie.MovieEntity
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie.MovieRepository
 import org.springframework.stereotype.Component
-import java.util.UUID
+import java.util.*
 
 @Component
 class TestDataHelper(private val movieRepository: MovieRepository) {

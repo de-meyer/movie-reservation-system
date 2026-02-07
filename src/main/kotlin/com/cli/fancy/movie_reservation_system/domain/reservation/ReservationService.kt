@@ -1,8 +1,8 @@
 package com.cli.fancy.movie_reservation_system.domain.reservation
 
-import com.cli.fancy.movie_reservation_system.application.reservation.dto.ReservationRequest
-import com.cli.fancy.movie_reservation_system.application.reservation.mapper.toDomain
-import com.cli.fancy.movie_reservation_system.application.reservation.mapper.toEntity
+import com.cli.fancy.movie_reservation_system.application.api.reservation.dto.ReservationRequest
+import com.cli.fancy.movie_reservation_system.application.api.reservation.mapper.toDomain
+import com.cli.fancy.movie_reservation_system.application.api.reservation.mapper.toEntity
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.reservation.ReservationRepository
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux

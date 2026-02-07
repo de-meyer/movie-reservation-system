@@ -1,8 +1,8 @@
 package com.cli.fancy.movie_reservation_system.domain.user
 
-import com.cli.fancy.movie_reservation_system.application.user.dto.UserLoginRequest
-import com.cli.fancy.movie_reservation_system.application.user.mapper.toLoginRequestEntity
-import com.cli.fancy.movie_reservation_system.application.user.mapper.toUserDomain
+import com.cli.fancy.movie_reservation_system.application.api.user.dto.UserLoginRequest
+import com.cli.fancy.movie_reservation_system.application.api.user.mapper.toLoginRequestEntity
+import com.cli.fancy.movie_reservation_system.application.api.user.mapper.toUserDomain
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.user.AuthRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

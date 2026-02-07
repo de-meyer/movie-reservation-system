@@ -1,8 +1,8 @@
 package com.cli.fancy.movie_reservation_system.domain.show
 
-import com.cli.fancy.movie_reservation_system.application.show.mapper.toShow
-import com.cli.fancy.movie_reservation_system.infrastructure.persistence.show.ShowsEntity
+import com.cli.fancy.movie_reservation_system.application.api.show.mapper.toShow
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.show.ShowRepository
+import com.cli.fancy.movie_reservation_system.infrastructure.persistence.show.ShowsEntity
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono

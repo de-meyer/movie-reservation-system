@@ -42,8 +42,6 @@ class MovieControllerTest : AbstractIntegrationTest() {
             .expectStatus().isOk
             .expectBody()
             .jsonPath("$.length()").isEqualTo(5)
-
-
     }
 
     @Test
@@ -59,6 +57,20 @@ class MovieControllerTest : AbstractIntegrationTest() {
             .expectStatus().isOk
             .expectBody()
             .jsonPath("$.id").isEqualTo("$movieId")
+    }
+
+    @Test
+    fun `should return 404 when movie not found`() {
+        val nonExistentId = UUID.randomUUID()
+
+        webTestClient.get()
+            .uri("/movie/$nonExistentId")
+            .accept(MediaType.APPLICATION_JSON)
+            .exchange()
+            .expectStatus().isNotFound
+            .expectBody()
+            .jsonPath("$.message").exists()
+            .jsonPath("$.status").isEqualTo(404)
     }
 
     @Test

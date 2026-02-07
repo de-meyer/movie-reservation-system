@@ -1,8 +1,8 @@
 package com.cli.fancy.movie_reservation_system.domain.program
 
-import com.cli.fancy.movie_reservation_system.application.movie.mapper.toMovieFromEntity
-import com.cli.fancy.movie_reservation_system.application.show.mapper.toShow
-import com.cli.fancy.movie_reservation_system.application.theater.mapper.toTheater
+import com.cli.fancy.movie_reservation_system.application.api.movie.mapper.toMovieFromEntity
+import com.cli.fancy.movie_reservation_system.application.api.show.mapper.toShow
+import com.cli.fancy.movie_reservation_system.application.api.theater.mapper.toTheater
 import com.cli.fancy.movie_reservation_system.domain.show.ShowSchedule
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie.MovieRepository
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.show.ShowRepository
