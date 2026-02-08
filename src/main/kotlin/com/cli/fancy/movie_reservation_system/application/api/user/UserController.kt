@@ -30,13 +30,7 @@ class UserController(
 
 
     @GetMapping("/me")
-    fun me(@AuthenticationPrincipal oauth2User: OAuth2User): ResponseEntity<UserResponse> {
-        val user = UserResponse(
-            id = UUID.randomUUID(),
-            name = oauth2User.getAttribute<String>("username") ?: "",
-            email = oauth2User.getAttribute<String>("email") ?: "",
-            role = "ADMIN"
-        )
-        return ResponseEntity.ok(user)
+    fun me(@AuthenticationPrincipal oauth2User: OAuth2User): Mono<ResponseEntity<Map<String, Any?>>> {
+        return Mono.just(ResponseEntity.ok(oauth2User.attributes))
     }
 }

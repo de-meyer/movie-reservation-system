@@ -2,30 +2,54 @@ package com.cli.fancy.movie_reservation_system.application.api.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.security.config.annotation.web.builders.HttpSecurity
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
-import org.springframework.security.web.SecurityFilterChain
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity
+import org.springframework.security.config.web.server.ServerHttpSecurity
+import org.springframework.security.web.server.SecurityWebFilterChain
+import org.springframework.security.web.server.authentication.RedirectServerAuthenticationSuccessHandler
+import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.reactive.CorsConfigurationSource
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource
 
 @Configuration
-@EnableWebSecurity
+@EnableWebFluxSecurity
 class AuthSecurityConfig(
 ) {
 
 
     @Bean
-    fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
-        http.authorizeHttpRequests { authorizeRequests ->
-            authorizeRequests
-                .requestMatchers("/user/me").authenticated()
-                .anyRequest().permitAll()
-        }
-            .oauth2Login { oauth ->
-                oauth
-                    .defaultSuccessUrl("http://localhost:3000", true) // redirect to frontend
+    fun securityWebFilterChain(http: ServerHttpSecurity): SecurityWebFilterChain {
+        return http
+            .cors { cors ->
+                cors.configurationSource(corsConfigurationSource())
             }
-            .csrf { csrf -> csrf.disable() } // Disable CSRF
-            .httpBasic { it.disable() } // Disable basic authentication
-            .cors {} // Enable CORS
-        return http.build()
+            .csrf { it.disable() }
+            .authorizeExchange { exchanges ->
+                exchanges
+                    .pathMatchers("/oauth2/**", "/login/**", "/logout").permitAll()
+                    .anyExchange().authenticated()
+            }
+            .oauth2Login { oauth ->
+                oauth.authenticationSuccessHandler(
+                    RedirectServerAuthenticationSuccessHandler("http://localhost:3000")
+                )
+            }
+            .logout { logout ->
+                logout.logoutUrl("/logout")
+            }
+            .httpBasic { it.disable() }
+            .build()
+    }
+
+    @Bean
+    fun corsConfigurationSource(): CorsConfigurationSource {
+        val configuration = CorsConfiguration()
+        configuration.allowedOrigins = listOf("http://localhost:3000")
+        configuration.allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS")
+        configuration.allowedHeaders = listOf("*")
+        configuration.allowCredentials = true
+
+        val source = UrlBasedCorsConfigurationSource()
+        source.registerCorsConfiguration("/**", configuration)
+        return source
     }
 }
