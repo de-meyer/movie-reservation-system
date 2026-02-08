@@ -3,9 +3,9 @@ package com.cli.fancy.movie_reservation_system.application.api.user
 import com.cli.fancy.movie_reservation_system.application.api.user.dto.UserResponse
 import com.cli.fancy.movie_reservation_system.application.api.user.mapper.toDto
 import com.cli.fancy.movie_reservation_system.domain.user.UserService
-import com.cli.fancy.movie_reservation_system.infrastructure.security.JwtService
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
+import org.springframework.security.oauth2.core.user.OAuth2User
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -19,7 +19,6 @@ import java.util.*
 @RequestMapping("/user")
 class UserController(
     private val userService: UserService,
-    private val jwtService: JwtService,
 ) {
 
     @GetMapping
@@ -31,7 +30,13 @@ class UserController(
 
 
     @GetMapping("/me")
-    fun me(@AuthenticationPrincipal user: UserResponse): ResponseEntity<UserResponse> {
+    fun me(@AuthenticationPrincipal oauth2User: OAuth2User): ResponseEntity<UserResponse> {
+        val user = UserResponse(
+            id = UUID.randomUUID(),
+            name = oauth2User.getAttribute<String>("username") ?: "",
+            email = oauth2User.getAttribute<String>("email") ?: "",
+            role = "ADMIN"
+        )
         return ResponseEntity.ok(user)
     }
 }

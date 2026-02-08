@@ -24,7 +24,6 @@ class ProgramController(val service: ProgramService) {
     @GetMapping("/today")
     fun getTodayProgram(
     ): Flux<ProgramResponse> {
-        // Implementation to retrieve todays program with shows and movies
         val startOfDay = Instant.now().truncatedTo(ChronoUnit.DAYS)
         val response =
             service.getDaySpecificProgramList(startOfDay).map { it.toProgramResponse() }
@@ -34,7 +33,6 @@ class ProgramController(val service: ProgramService) {
     @GetMapping("/tomorrow")
     fun getTomorrowsProgram(
     ): Flux<ProgramResponse> {
-        // Implementation to retrieve todays program with shows and movies
         val startOfDay = Instant.now().truncatedTo(ChronoUnit.DAYS).plus(1, ChronoUnit.DAYS)
 
         val response =
