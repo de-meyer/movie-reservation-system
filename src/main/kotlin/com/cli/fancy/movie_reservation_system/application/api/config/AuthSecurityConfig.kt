@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity
 import org.springframework.security.config.web.server.ServerHttpSecurity
 import org.springframework.security.web.server.SecurityWebFilterChain
-import org.springframework.security.web.server.authentication.RedirectServerAuthenticationSuccessHandler
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.reactive.CorsConfigurationSource
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource
@@ -13,6 +12,7 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource
 @Configuration
 @EnableWebFluxSecurity
 class AuthSecurityConfig(
+    private val oAuth2LoginSuccessHandler: OAuth2LoginSuccessHandler
 ) {
 
 
@@ -29,9 +29,7 @@ class AuthSecurityConfig(
                     .anyExchange().authenticated()
             }
             .oauth2Login { oauth ->
-                oauth.authenticationSuccessHandler(
-                    RedirectServerAuthenticationSuccessHandler("http://localhost:3000")
-                )
+                oauth.authenticationSuccessHandler(oAuth2LoginSuccessHandler)
             }
             .logout { logout ->
                 logout.logoutUrl("/logout")

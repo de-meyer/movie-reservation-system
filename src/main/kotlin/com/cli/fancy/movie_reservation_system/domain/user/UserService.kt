@@ -1,40 +1,51 @@
 package com.cli.fancy.movie_reservation_system.domain.user
 
-import com.cli.fancy.movie_reservation_system.application.api.user.dto.UserLoginRequest
-import com.cli.fancy.movie_reservation_system.application.api.user.mapper.toLoginRequestEntity
 import com.cli.fancy.movie_reservation_system.application.api.user.mapper.toUserDomain
-import com.cli.fancy.movie_reservation_system.infrastructure.persistence.user.AuthRepository
+import com.cli.fancy.movie_reservation_system.infrastructure.persistence.user.UserEntity
+import com.cli.fancy.movie_reservation_system.infrastructure.persistence.user.UserRepository
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import java.util.*
 
 @Service
-class UserService(private val authRepository: AuthRepository) {
-    fun getAllUsers(): Flux<User> = authRepository.findAll().map { it.toUserDomain() }
-    fun getUserById(id: UUID): Mono<User> =
-        authRepository.findById(id)
+class UserService(private val userRepository: UserRepository) {
+    fun getAllUsers(): Flux<User> = userRepository.findAll().map { it.toUserDomain() }
+    fun getUserById(id: String): Mono<User> =
+        userRepository.findById(id)
             .switchIfEmpty(Mono.error(NoSuchElementException("User with id $id not found")))
             .map { it.toUserDomain() }
 
-    fun getUserByEmail(email: String): Mono<User> =
-        authRepository.getUserByEmail(email = email)
-            .switchIfEmpty(Mono.error(NoSuchElementException("User with id $email not found")))
-            .map { it.toUserDomain() }
-
-    @Transactional
-    fun registerUser(userLoginRequest: UserLoginRequest): Mono<User> =
-        authRepository.existsByEmail(userLoginRequest.email)
-            .flatMap { exists ->
-                if (exists) {
-                    Mono.error(IllegalArgumentException("Email is already in use"))
+    fun findOrCreateDiscordUser(
+        id: String,
+        name: String,
+        email: String,
+        avatar: String
+    ): Mono<UserEntity> {
+        return userRepository.findById(id)
+            .switchIfEmpty(
+                userRepository.save(
+                    UserEntity(
+                        id = id,
+                        email = email,
+                        name = name,
+                        avatar = avatar
+                    )
+                )
+            )
+            .flatMap { existingUser ->
+                // Update username/avatar if changed
+                if (existingUser.name != name || existingUser.avatar != avatar || existingUser.email != email) {
+                    userRepository.save(
+                        existingUser.copy(
+                            name = name,
+                            email = email,
+                            avatar = avatar
+                        )
+                    )
                 } else {
-                    val user = userLoginRequest.toLoginRequestEntity()
-                    authRepository.save(user)
+                    Mono.just(existingUser)
                 }
             }
-            .map { savedUser ->
-                savedUser.toUserDomain()
-            }
+    }
 }

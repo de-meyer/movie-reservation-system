@@ -14,10 +14,11 @@ CREATE OR REPLACE FUNCTION update_updated_at_column()
 -- 1. Independent tables (no foreign keys)
 CREATE TABLE IF NOT EXISTS users
 (
-    id    UUID PRIMARY KEY      DEFAULT uuid_generate_v4(),
-    name  VARCHAR(255) NOT NULL UNIQUE,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    role  VARCHAR(255) NOT NULL DEFAULT 'GUEST'
+    id     VARCHAR(255) PRIMARY KEY,
+    name   VARCHAR(255) NOT NULL UNIQUE,
+    email  VARCHAR(255) NOT NULL UNIQUE,
+    avatar VARCHAR(255),
+    role   VARCHAR(255) NOT NULL DEFAULT 'GUEST'
 );
 
 CREATE TABLE IF NOT EXISTS movies
@@ -60,14 +61,14 @@ CREATE TABLE IF NOT EXISTS shows
 
 CREATE TABLE IF NOT EXISTS reservation
 (
-    id          UUID PRIMARY KEY   DEFAULT uuid_generate_v4(),
-    user_id     UUID      NOT NULL,
+    id          UUID PRIMARY KEY     DEFAULT uuid_generate_v4(),
+    user_id     VARCHAR(50) NOT NULL,
     movie_id    UUID,
     theater_id  UUID,
-    seat_number INT       NOT NULL,
+    seat_number INT         NOT NULL,
     date        TIMESTAMP,
-    created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    created_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT reservation_user_fk FOREIGN KEY (user_id) REFERENCES users (id),
     CONSTRAINT reservation_movie_fk FOREIGN KEY (movie_id) REFERENCES movies (id),
     CONSTRAINT reservation_theater_fk FOREIGN KEY (theater_id) REFERENCES theater (id)

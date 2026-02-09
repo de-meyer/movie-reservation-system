@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
-import java.util.*
 
 
 @RestController
@@ -25,7 +24,7 @@ class UserController(
     fun getUsers(): Flux<UserResponse> = userService.getAllUsers().map { it.toDto() }
 
     @GetMapping("/{id}")
-    fun getUser(@PathVariable id: UUID): Mono<UserResponse> = userService.getUserById(id)
+    fun getUser(@PathVariable id: String): Mono<UserResponse> = userService.getUserById(id)
         .map { it.toDto() }
 
 
