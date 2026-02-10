@@ -5,7 +5,6 @@ import com.cli.fancy.movie_reservation_system.domain.movie.Movie
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie.MovieEntity
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie.MovieRepository
 import org.springframework.stereotype.Component
-import java.util.*
 
 @Component
 class TestDataHelper(private val movieRepository: MovieRepository) {
@@ -23,25 +22,9 @@ class TestDataHelper(private val movieRepository: MovieRepository) {
 
     ).block()!!.toMovieFromEntity()
 
-    fun createMovieWithId(id: UUID) = movieRepository.save(
-        MovieEntity(
-            id = id,
-            title = "Movie",
-            description = "foo bar",
-            durationMinutes = 90,
-            director = "Max Foo Bar",
-            genre = "Comedy",
-            releaseYear = 2025,
-            imageProfile = "profile.jpg",
-            imageLandscape = "Landscape.jpg"
-        )
-    ).block()!!.toMovieFromEntity()
-
-
     fun createMovies(count: Int): List<Movie> {
         return (1..count).map {
             createMovie(number = "$it")
         }
     }
-
 }

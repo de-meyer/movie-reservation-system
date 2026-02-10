@@ -44,5 +44,4 @@ class MovieService(val movieRepository: MovieRepository) {
     fun createMovieFromRequest(movieCreationRequest: MovieCreationRequest): Mono<Movie> =
         movieRepository.save(movieCreationRequest.toEntity())
             .map { it.toMovieFromEntity() }
-
 }

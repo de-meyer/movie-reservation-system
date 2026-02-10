@@ -13,17 +13,14 @@ class ShowService(val showRepository: ShowRepository) {
 
     fun findAll(): Flux<Show> {
         return showRepository.findAll().map { it.toShow() }
-
     }
 
     fun createShow(showsEntity: ShowsEntity): Mono<Show> =
         showRepository.save(showsEntity)
             .map { it.toShow() }
 
-
     fun findById(id: UUID): Mono<Show> =
         showRepository.findById(id)
             .switchIfEmpty(Mono.error(NoSuchElementException("No user found with id: $id ")))
             .map { it.toShow() }
 }
-

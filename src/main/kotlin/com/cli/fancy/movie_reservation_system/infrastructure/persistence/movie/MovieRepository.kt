@@ -5,5 +5,4 @@ import java.util.*
 
 interface MovieRepository : ReactiveCrudRepository<MovieEntity, UUID> {
     fun id(id: UUID): MutableList<MovieEntity>
-
 }

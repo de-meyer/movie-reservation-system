@@ -30,7 +30,9 @@ class MovieController(val movieService: MovieService) {
         movieService.getAllMovies().map { it.toShowCreationInformation() }
 
     @PostMapping("/createShow")
-    fun createMovie(@RequestBody movieCreationRequest: MovieCreationRequest): Mono<ResponseEntity<MovieCreationResponse>> =
+    fun createMovie(
+        @RequestBody movieCreationRequest: MovieCreationRequest
+    ): Mono<ResponseEntity<MovieCreationResponse>> =
         movieService.createMovieFromRequest(movieCreationRequest)
             .map { ResponseEntity.created(URI.create("/movie/${it.id}")).body(it.toMovieCreationResponse()) }
 

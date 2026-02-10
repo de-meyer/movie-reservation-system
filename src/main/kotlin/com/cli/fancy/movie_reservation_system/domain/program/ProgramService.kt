@@ -13,7 +13,6 @@ import reactor.core.publisher.Mono
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 
-
 @Service
 class ProgramService(
     val movieRepository: MovieRepository,
@@ -22,7 +21,6 @@ class ProgramService(
 ) {
 
     fun getDaySpecificProgramList(date: Instant): Flux<Program> {
-
         val startOfDay = date.truncatedTo(ChronoUnit.DAYS)
         val endOfDay = startOfDay.plus(1, ChronoUnit.DAYS)
 

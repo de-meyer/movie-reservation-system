@@ -15,15 +15,13 @@ import java.time.temporal.ChronoUnit
 class ProgramController(val service: ProgramService) {
 
     @GetMapping("/current")
-    fun getCurrentProgram(
-    ): Flux<ProgramResponse> {
+    fun getCurrentProgram(): Flux<ProgramResponse> {
         val response = service.getProgramList(Instant.now()).map { it.toProgramResponse() }
         return response
     }
 
     @GetMapping("/today")
-    fun getTodayProgram(
-    ): Flux<ProgramResponse> {
+    fun getTodayProgram(): Flux<ProgramResponse> {
         val startOfDay = Instant.now().truncatedTo(ChronoUnit.DAYS)
         val response =
             service.getDaySpecificProgramList(startOfDay).map { it.toProgramResponse() }
@@ -31,13 +29,11 @@ class ProgramController(val service: ProgramService) {
     }
 
     @GetMapping("/tomorrow")
-    fun getTomorrowsProgram(
-    ): Flux<ProgramResponse> {
+    fun getTomorrowsProgram(): Flux<ProgramResponse> {
         val startOfDay = Instant.now().truncatedTo(ChronoUnit.DAYS).plus(1, ChronoUnit.DAYS)
 
         val response =
             service.getDaySpecificProgramList(startOfDay).map { it.toProgramResponse() }
         return response
     }
-
 }

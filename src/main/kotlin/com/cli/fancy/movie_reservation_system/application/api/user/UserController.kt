@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
-
 @RestController
 @RequestMapping("/user")
 class UserController(
@@ -26,7 +25,6 @@ class UserController(
     @GetMapping("/{id}")
     fun getUser(@PathVariable id: String): Mono<UserResponse> = userService.getUserById(id)
         .map { it.toDto() }
-
 
     @GetMapping("/me")
     fun me(@AuthenticationPrincipal oauth2User: OAuth2User): Mono<ResponseEntity<Map<String, Any?>>> {

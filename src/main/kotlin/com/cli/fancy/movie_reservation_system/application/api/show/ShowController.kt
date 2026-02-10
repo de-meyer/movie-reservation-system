@@ -19,7 +19,6 @@ class ShowController(val showService: ShowService) {
     fun findAllShows(): Flux<ShowResponse> =
         showService.findAll().map { it.toShowResponse() }
 
-
     @PostMapping("/find")
     fun findShowById(@RequestBody request: ShowIdRequest): Mono<ShowResponse> =
         showService.findById(request.id).map { it.toShowResponse() }

@@ -15,7 +15,6 @@ class AuthSecurityConfig(
     private val oAuth2LoginSuccessHandler: OAuth2LoginSuccessHandler
 ) {
 
-
     @Bean
     fun securityWebFilterChain(http: ServerHttpSecurity): SecurityWebFilterChain {
         return http

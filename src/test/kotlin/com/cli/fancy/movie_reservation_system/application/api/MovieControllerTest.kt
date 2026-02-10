@@ -30,7 +30,6 @@ class MovieControllerTest : AbstractIntegrationTest() {
             .expectBody()
             .jsonPath("$.id").exists()
             .jsonPath("$.title").isEqualTo("Movie 1")
-
     }
 
     @Test
@@ -47,7 +46,6 @@ class MovieControllerTest : AbstractIntegrationTest() {
 
     @Test
     fun `should get movie by id`() {
-
         val createdMovie = testDataHelper.createMovie(number = "1")
         val movieId = createdMovie.id
 
@@ -113,7 +111,7 @@ class MovieControllerTest : AbstractIntegrationTest() {
         webTestClient.delete()
             .uri("/movie/$movieId")
             .exchange()
-            .expectStatus().isNoContent  // or .isOk depending on your API
+            .expectStatus().isNoContent // or .isOk depending on your API
 
         webTestClient.get()
             .uri("/movie/$movieId")

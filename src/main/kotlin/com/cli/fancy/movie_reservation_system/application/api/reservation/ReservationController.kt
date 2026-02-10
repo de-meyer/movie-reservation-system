@@ -16,7 +16,9 @@ class ReservationController(
 ) {
 
     @PostMapping
-    fun createReservation(@RequestBody reservationRequest: ReservationRequest): Mono<ResponseEntity<ReservationResponse>> =
+    fun createReservation(
+        @RequestBody reservationRequest: ReservationRequest
+    ): Mono<ResponseEntity<ReservationResponse>> =
         reservationService.createReservation(reservationRequest)
             .map { ResponseEntity.ok(it.toDto()) }
 

@@ -1,8 +1,8 @@
 package com.cli.fancy.movie_reservation_system.infrastructure.persistence.movie
 
 import org.springframework.data.annotation.Id
-import org.springframework.data.relational.core.mapping.Table
 import org.springframework.data.relational.core.mapping.Column
+import org.springframework.data.relational.core.mapping.Table
 import java.util.*
 
 @Table("movies")

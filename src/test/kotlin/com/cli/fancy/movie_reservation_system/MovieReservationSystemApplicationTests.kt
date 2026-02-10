@@ -11,5 +11,4 @@ class MovieReservationSystemApplicationTests {
     @Test
     fun contextLoads() {
     }
-
 }
