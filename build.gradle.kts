@@ -1,8 +1,10 @@
 plugins {
-    kotlin("jvm") version "2.2.21"
-    kotlin("plugin.spring") version "2.2.21"
+    kotlin("jvm") version "2.0.21"
+    kotlin("plugin.spring") version "2.0.21"
     id("org.springframework.boot") version "4.0.2"
     id("io.spring.dependency-management") version "1.1.7"
+    id("io.gitlab.arturbosch.detekt") version "1.23.8"
+
 }
 
 group = "com.cli.fancy"
@@ -13,6 +15,13 @@ java {
         languageVersion = JavaLanguageVersion.of(21)
     }
 }
+
+detekt {
+    buildUponDefaultConfig = true
+    allRules = false
+    config.setFrom("$projectDir/config/detekt.yml")
+}
+
 
 repositories {
     mavenCentral()
@@ -39,6 +48,7 @@ dependencies {
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.8")
     runtimeOnly("org.flywaydb:flyway-database-postgresql")
     runtimeOnly("org.postgresql:postgresql")
     runtimeOnly("org.postgresql:r2dbc-postgresql")
