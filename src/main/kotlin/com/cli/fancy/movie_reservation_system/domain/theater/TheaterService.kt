@@ -11,5 +11,4 @@ class TheaterService(
 ) {
     fun getAllTheaters(): Flux<Theater> =
         theaterRepository.findAll().map { it.toTheater() }
-
 }

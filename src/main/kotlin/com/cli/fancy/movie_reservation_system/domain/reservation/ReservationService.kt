@@ -18,5 +18,4 @@ class ReservationService(
 
     fun getAllReservations(): Flux<Reservation> =
         reservationRepository.findAll().map { it.toDomain() }
-
 }
