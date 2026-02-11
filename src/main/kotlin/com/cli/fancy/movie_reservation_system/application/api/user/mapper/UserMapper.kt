@@ -13,6 +13,8 @@ fun User.toDto(): UserResponse = UserResponse(
 
 fun UserEntity.toUserDomain(): User = User(
     id = this.id,
+    providerId = this.providerId,
+    provider = this.provider,
     name = this.name,
     email = this.email,
     avatar = this.avatar,

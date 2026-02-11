@@ -11,30 +11,20 @@ import java.util.*
 @Service
 class UserService(private val userRepository: UserRepository) {
     fun getAllUsers(): Flux<User> = userRepository.findAll().map { it.toUserDomain() }
-    fun getUserById(id: String): Mono<User> =
-        userRepository.findById(id)
+    fun findByProviderIdAndProvider(id: String, provider: String): Mono<User> =
+        userRepository.findByProviderIdAndProvider(id, provider)
             .switchIfEmpty(Mono.error(NoSuchElementException("User with id $id not found")))
             .map { it.toUserDomain() }
 
-    fun findOrCreateDiscordUser(
-        id: String,
+    fun findOrCreateUser(
+        providerId: String,
+        provider: String,
         name: String,
         email: String,
         avatar: String
     ): Mono<UserEntity> {
-        return userRepository.findById(id)
-            .switchIfEmpty(
-                userRepository.save(
-                    UserEntity(
-                        id = id,
-                        email = email,
-                        name = name,
-                        avatar = avatar
-                    )
-                )
-            )
+        return userRepository.findByProviderIdAndProvider(providerId, provider)
             .flatMap { existingUser ->
-                // Update username/avatar if changed
                 if (existingUser.name != name || existingUser.avatar != avatar || existingUser.email != email) {
                     userRepository.save(
                         existingUser.copy(
@@ -47,5 +37,18 @@ class UserService(private val userRepository: UserRepository) {
                     Mono.just(existingUser)
                 }
             }
+            .switchIfEmpty(
+                Mono.defer {
+                    userRepository.save(
+                        UserEntity(
+                            providerId = providerId,
+                            provider = provider,
+                            email = email,
+                            name = name,
+                            avatar = avatar
+                        )
+                    )
+                }
+            )
     }
 }

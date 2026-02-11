@@ -24,7 +24,7 @@ class AuthSecurityConfig(
             .csrf { it.disable() }
             .authorizeExchange { exchanges ->
                 exchanges
-                    .pathMatchers("/oauth2/**", "/login/**", "/logout").permitAll()
+                    .pathMatchers("/oauth2/**", "/login/**", "/logout", "/program/**").permitAll()
                     .anyExchange().authenticated()
             }
             .oauth2Login { oauth ->

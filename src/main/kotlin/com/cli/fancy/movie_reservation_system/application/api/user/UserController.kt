@@ -23,7 +23,13 @@ class UserController(
     fun getUsers(): Flux<UserResponse> = userService.getAllUsers().map { it.toDto() }
 
     @GetMapping("/{id}")
-    fun getUser(@PathVariable id: String): Mono<UserResponse> = userService.getUserById(id)
+    fun getUserByProviderId(
+        @AuthenticationPrincipal oauth2User: OAuth2User,
+        @PathVariable id: String
+    ): Mono<UserResponse> = userService.findByProviderIdAndProvider(
+        oauth2User.attributes["id"] as String,
+        oauth2User.attributes["provider"] as String
+    )
         .map { it.toDto() }
 
     @GetMapping("/me")
