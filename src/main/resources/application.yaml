@@ -55,3 +55,23 @@ logging:
     io.r2dbc.postgresql.QUERY: DEBUG
     io.r2dbc.postgresql.PARAM: DEBUG
     org.springframework.boot.context.config: DEBUG
+    org.springdoc: DEBUG
+    org.springframework.web.reactive.result.method.annotation: DEBUG
+
+# SpringDoc OpenAPI Configuration
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+  show-actuator: false
+  default-produces-media-type: application/json
+  default-consumes-media-type: application/json
+  packages-to-scan: com.cli.fancy.movie_reservation_system.application.api
+  paths-to-match: /**
+
+
