@@ -28,7 +28,7 @@ class OAuth2LoginSuccessHandler(
 
         return userService.findOrCreateUser(providerId, provider, name, email, avatar)
             .then(
-                RedirectServerAuthenticationSuccessHandler("http://localhost:3000/program")
+                RedirectServerAuthenticationSuccessHandler("http://localhost:3000/")
                     .onAuthenticationSuccess(webFilterExchange, authentication)
             )
     }
