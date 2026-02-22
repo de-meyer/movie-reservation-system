@@ -94,7 +94,7 @@ class OpenApiConfig {
             // Prüfe, ob der Pfad öffentlich ist
             val isPublic = publicPaths.any { pattern ->
                 pathMatcher.match(pattern, basePath) ||
-                        pathMatcher.match(pattern, "$basePath/**")
+                    pathMatcher.match(pattern, "$basePath/**")
             }
 
             // Wenn nicht öffentlich, füge Security hinzu
@@ -111,4 +111,3 @@ class OpenApiConfig {
         }
     }
 }
-

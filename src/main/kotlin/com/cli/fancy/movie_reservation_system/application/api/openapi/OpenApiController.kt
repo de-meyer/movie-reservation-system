@@ -27,5 +27,3 @@ class OpenApiController {
             .onErrorReturn("{\"error\": \"Could not load OpenAPI specification\"}")
     }
 }
-
-
