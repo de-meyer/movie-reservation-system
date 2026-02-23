@@ -1,14 +1,15 @@
 package com.cli.fancy.movie_reservation_system.application.api.user
 
+import com.cli.fancy.movie_reservation_system.application.api.user.dto.UserLoginResponse
 import com.cli.fancy.movie_reservation_system.application.api.user.dto.UserResponse
 import com.cli.fancy.movie_reservation_system.application.api.user.mapper.toDto
+import com.cli.fancy.movie_reservation_system.application.api.user.mapper.toLoginDto
 import com.cli.fancy.movie_reservation_system.domain.user.UserService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
 import io.swagger.v3.oas.annotations.tags.Tag
-import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.oauth2.core.user.OAuth2User
 import org.springframework.web.bind.annotation.GetMapping
@@ -48,7 +49,7 @@ class UserController(
         @PathVariable id: String
     ): Mono<UserResponse> = userService.findByProviderIdAndProvider(
         oauth2User.attributes["id"] as String,
-        oauth2User.attributes["provider"] as String
+        "discord"
     )
         .map { it.toDto() }
 
@@ -59,7 +60,9 @@ class UserController(
             ApiResponse(responseCode = "200", description = "Successfully retrieved current user")
         ]
     )
-    fun me(@AuthenticationPrincipal oauth2User: OAuth2User): Mono<ResponseEntity<Map<String, Any?>>> {
-        return Mono.just(ResponseEntity.ok(oauth2User.attributes))
-    }
+    fun me(@AuthenticationPrincipal oauth2User: OAuth2User): Mono<UserLoginResponse> =
+        userService.findByProviderIdAndProvider(
+            oauth2User.attributes["id"] as String,
+            "discord"
+        ).map { it.toLoginDto() }
 }
