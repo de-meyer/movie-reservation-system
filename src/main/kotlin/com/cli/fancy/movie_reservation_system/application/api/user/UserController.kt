@@ -11,7 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.security.core.annotation.AuthenticationPrincipal
-import org.springframework.security.oauth2.core.user.OAuth2User
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -44,12 +44,12 @@ class UserController(
         ]
     )
     fun getUserByProviderId(
-        @AuthenticationPrincipal oauth2User: OAuth2User,
+        @AuthenticationPrincipal oauth2User: OAuth2AuthenticationToken,
         @Parameter(description = "Provider ID of the user", required = true)
         @PathVariable id: String
     ): Mono<UserResponse> = userService.findByProviderIdAndProvider(
-        oauth2User.attributes["id"] as String,
-        "discord"
+        oauth2User.principal?.attributes["id"] as String,
+        oauth2User.authorizedClientRegistrationId
     )
         .map { it.toDto() }
 
@@ -60,9 +60,9 @@ class UserController(
             ApiResponse(responseCode = "200", description = "Successfully retrieved current user")
         ]
     )
-    fun me(@AuthenticationPrincipal oauth2User: OAuth2User): Mono<UserLoginResponse> =
+    fun me(@AuthenticationPrincipal oauth2User: OAuth2AuthenticationToken): Mono<UserLoginResponse> =
         userService.findByProviderIdAndProvider(
-            oauth2User.attributes["id"] as String,
-            "discord"
+            oauth2User.principal?.attributes["id"] as String,
+            oauth2User.authorizedClientRegistrationId
         ).map { it.toLoginDto() }
 }
