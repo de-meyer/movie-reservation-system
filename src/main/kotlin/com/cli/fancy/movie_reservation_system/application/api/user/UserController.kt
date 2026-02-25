@@ -10,12 +10,10 @@ import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.responses.ApiResponses
 import io.swagger.v3.oas.annotations.tags.Tag
+import org.springframework.http.HttpStatus
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
@@ -52,6 +50,21 @@ class UserController(
         oauth2User.authorizedClientRegistrationId
     )
         .map { it.toDto() }
+
+    @DeleteMapping("/me")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(summary = "Delete current user", description = "Delete the currently authenticated user")
+    @ApiResponses(
+        value = [
+            ApiResponse(responseCode = "204", description = "User successfully deleted"),
+            ApiResponse(responseCode = "404", description = "User not found")
+        ]
+    )
+    fun deleteMe(@AuthenticationPrincipal oauth2User: OAuth2AuthenticationToken): Mono<Void> =
+        userService.findByProviderIdAndProvider(
+            oauth2User.principal?.attributes["id"] as String,
+            oauth2User.authorizedClientRegistrationId
+        ).flatMap { userService.deleteById(it.id!!) }
 
     @GetMapping("/me")
     @Operation(summary = "Get current user", description = "Retrieve the currently authenticated user's information")

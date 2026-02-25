@@ -16,6 +16,11 @@ class UserService(private val userRepository: UserRepository) {
             .switchIfEmpty(Mono.error(NoSuchElementException("User with id $id not found")))
             .map { it.toUserDomain() }
 
+    fun deleteById(id: UUID): Mono<Void> =
+        userRepository.findById(id)
+            .switchIfEmpty(Mono.error(NoSuchElementException("User with id $id not found")))
+            .flatMap { userRepository.deleteById(id) }
+
     fun findOrCreateUser(
         providerId: String,
         provider: String,
