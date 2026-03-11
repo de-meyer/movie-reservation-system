@@ -4,7 +4,6 @@ import com.cli.fancy.movie_reservation_system.application.api.theater.dto.SeatRe
 import com.cli.fancy.movie_reservation_system.domain.seat.Seat
 import com.cli.fancy.movie_reservation_system.infrastructure.persistence.seat.SeatEntity
 
-
 fun SeatEntity.toSeat(): Seat = Seat(
     id = this.id,
     row = this.rowLabel,
