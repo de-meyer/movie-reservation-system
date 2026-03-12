@@ -5,7 +5,7 @@ import org.springframework.data.relational.core.mapping.Column
 import org.springframework.data.relational.core.mapping.Table
 import java.util.UUID
 
-@Table(name = "theater")
+@Table(name = "seats")
 data class SeatEntity(
     @Id
     val id: UUID = UUID.randomUUID(),
