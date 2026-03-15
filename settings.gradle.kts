@@ -1,1 +1,1 @@
-rootProject.name = "movie_reservation_system"
+rootProject.name = "cinevault"

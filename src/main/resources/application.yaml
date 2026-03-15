@@ -1,6 +1,6 @@
 spring:
   application:
-    name: movie-reservation-system
+    name: cinevault
 
   # R2DBC PostgreSQL Configuration
   r2dbc:
@@ -71,7 +71,7 @@ springdoc:
   show-actuator: false
   default-produces-media-type: application/json
   default-consumes-media-type: application/json
-  packages-to-scan: com.cli.fancy.movie_reservation_system.application.api
+  packages-to-scan: com.cli.fancy.cinevault.application.api
   paths-to-match: /**
 
 
