@@ -1,0 +1,8 @@
+package com.cli.fancy.cinevault.infrastructure.persistence.movie
+
+import org.springframework.data.repository.reactive.ReactiveCrudRepository
+import java.util.*
+
+interface MovieRepository : ReactiveCrudRepository<MovieEntity, UUID> {
+    fun id(id: UUID): MutableList<MovieEntity>
+}

@@ -1,0 +1,59 @@
+package com.cli.fancy.cinevault.domain.user
+
+import com.cli.fancy.cinevault.application.api.user.mapper.toUserDomain
+import com.cli.fancy.cinevault.infrastructure.persistence.user.UserEntity
+import com.cli.fancy.cinevault.infrastructure.persistence.user.UserRepository
+import org.springframework.stereotype.Service
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
+import java.util.*
+
+@Service
+class UserService(private val userRepository: UserRepository) {
+    fun getAllUsers(): Flux<User> = userRepository.findAll().map { it.toUserDomain() }
+    fun findByProviderIdAndProvider(id: String, provider: String): Mono<User> =
+        userRepository.findByProviderIdAndProvider(id, provider)
+            .switchIfEmpty(Mono.error(NoSuchElementException("User with id $id not found")))
+            .map { it.toUserDomain() }
+
+    fun deleteById(id: UUID): Mono<Void> =
+        userRepository.findById(id)
+            .switchIfEmpty(Mono.error(NoSuchElementException("User with id $id not found")))
+            .flatMap { userRepository.deleteById(id) }
+
+    fun findOrCreateUser(
+        providerId: String,
+        provider: String,
+        name: String,
+        email: String,
+        avatar: String
+    ): Mono<UserEntity> {
+        return userRepository.findByProviderIdAndProvider(providerId, provider)
+            .flatMap { existingUser ->
+                if (existingUser.name != name || existingUser.avatar != avatar || existingUser.email != email) {
+                    userRepository.save(
+                        existingUser.copy(
+                            name = name,
+                            email = email,
+                            avatar = avatar
+                        )
+                    )
+                } else {
+                    Mono.just(existingUser)
+                }
+            }
+            .switchIfEmpty(
+                Mono.defer {
+                    userRepository.save(
+                        UserEntity(
+                            providerId = providerId,
+                            provider = provider,
+                            email = email,
+                            name = name,
+                            avatar = avatar
+                        )
+                    )
+                }
+            )
+    }
+}

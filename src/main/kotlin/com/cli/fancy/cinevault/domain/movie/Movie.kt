@@ -1,0 +1,15 @@
+package com.cli.fancy.cinevault.domain.movie
+
+import java.util.*
+
+data class Movie(
+    val id: UUID,
+    val title: String,
+    val description: String,
+    val durationMinutes: Int,
+    val director: String,
+    val genre: String,
+    val releaseYear: Int,
+    val imageProfile: String,
+    val imageLandscape: String
+)
